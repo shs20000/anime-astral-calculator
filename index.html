@@ -1,0 +1,2125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anime Astral • Calculator</title>
+<link rel="icon" type="image/png" href="anime-astral-logo.png">
+<link rel="apple-touch-icon" href="anime-astral-logo.png">
+<style>
+:root{
+  --bg:#080611;--panel:#0f0d18;--panel2:#151126;--border:#29263a;
+  --purple:#8b55f5;--purple2:#b18aff;--blue:#5e68ef;
+  --text:#f7f4ff;--muted:#aaa3b8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(500px 300px at 50% 4%,rgba(104,54,218,.30),transparent 70%),
+    radial-gradient(600px 420px at 50% 20%,rgba(61,32,130,.10),transparent 74%),
+    linear-gradient(180deg,#090610 0%,#05040a 52%,#030309 100%);
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.34;
+  background-image:
+   radial-gradient(circle,#fff 0 1px,transparent 1.3px),
+   radial-gradient(circle,#b999ff 0 1px,transparent 1.4px),
+   radial-gradient(circle,#fff 0 .8px,transparent 1.2px);
+  background-size:220px 220px,330px 330px,410px 410px;
+  background-position:20px 10px,80px 90px,150px 30px;
+}
+.page{width:min(1100px,calc(100% - 30px));margin:0 auto;padding:18px 0 55px}
+header{
+  position:relative;
+  text-align:center;
+  padding:4px 8px 28px;
+}
+header:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  top:-35px;
+  left:50%;
+  width:min(620px,90vw);
+  height:250px;
+  transform:translateX(-50%);
+  background:radial-gradient(ellipse at center,rgba(104,54,218,.27) 0%,rgba(73,35,155,.13) 38%,transparent 72%);
+  pointer-events:none;
+}
+.game-logo{
+  display:block;width:min(330px,72vw);height:auto;max-height:150px;object-fit:contain;
+  margin:0 auto 12px;
+  filter:drop-shadow(0 0 24px rgba(92,55,220,.34));
+}
+.brand{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:8px 16px;border:1px solid #5732a0;border-radius:999px;
+  color:#b793ff;background:rgba(29,13,56,.65);
+  font-size:12px;font-weight:900;letter-spacing:.1em
+}
+h1{
+  margin:19px 0 10px;font-size:clamp(44px,6vw,66px);
+  line-height:1.02;letter-spacing:-.045em;word-spacing:.12em;font-weight:950;
+  text-shadow:0 0 25px rgba(175,135,255,.16)
+}
+.tagline{margin:0;color:#a8a1b7;font-size:15px}
+.tabs{display:flex;justify-content:flex-start;margin:0 0 20px}
+.tab{
+  height:45px;padding:0 22px;border-radius:13px;border:1px solid #5a32a0;background:transparent;
+  color:#b18cff;font:inherit;font-size:14px;font-weight:900;white-space:nowrap
+}
+.tab.active{
+  color:#fff;border-color:#8062df;
+  background:linear-gradient(105deg,#8a4df0,#5f68ed);
+  box-shadow:0 0 28px rgba(126,78,241,.28),0 8px 20px rgba(0,0,0,.25)
+}
+.card{
+  background:linear-gradient(180deg,rgba(15,13,25,.97),rgba(9,8,16,.98));
+  border:1px solid var(--border);border-radius:24px;padding:25px;
+  box-shadow:0 25px 80px rgba(0,0,0,.35)
+}
+.section-title{
+  margin:0 0 22px;color:#ae89ff;font-size:16px;font-weight:950;
+  letter-spacing:.08em
+}
+.power-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.field{min-width:0}
+label{display:block;color:#aaa4b8;font-size:14px;font-weight:650;margin-bottom:8px}
+.input-row{display:grid;grid-template-columns:minmax(0,1fr) 108px;gap:9px}
+select optgroup{
+  background:#15121d;
+  color:#bca7d8;
+  font-weight:800;
+}
+select option{
+  background:#0f0c15;
+  color:#f4eff9;
+}
+
+input,select,.unit-static{
+  width:100%;height:54px;border:1px solid #302e42;border-radius:14px;
+  background:#090a12;color:#f7f4ff;padding:0 15px;outline:none;
+  font:inherit;font-size:16px
+}
+input:focus,select:focus{border-color:#8253e5;box-shadow:0 0 0 3px rgba(141,88,255,.10)}
+input::placeholder{color:#625d70;opacity:1}
+.unit-static{
+  display:flex;align-items:center;padding:0 15px;border:1px solid #302e42;border-radius:14px;
+  background:#090a12;color:#a8a1b8;font-size:14px
+}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+.metric{
+  min-height:90px;border:1px solid #29273a;border-radius:15px;background:#080910;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px
+}
+.metric span{color:#858093;font-size:12px}
+.metric strong{margin-top:8px;font-size:16px}
+.boost-section{margin-top:28px}
+.boost-heading{
+  display:flex;align-items:center;gap:9px;margin:0 0 17px;
+  color:#ae89ff;font-size:19px;font-weight:950
+}
+.bolt{font-size:25px;color:#ffd02b;text-shadow:0 0 17px rgba(255,208,43,.35)}
+.boosts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.boost{
+  position:relative;display:grid;grid-template-columns:38px 1fr auto;
+  align-items:center;gap:12px;min-height:104px;padding:17px 18px;
+  border:1px solid #2d2a40;border-radius:17px;
+  background:linear-gradient(120deg,#141222,#0d0c17);
+  cursor:pointer;transition:.15s
+}
+.boost:hover{border-color:#56378d;transform:translateY(-1px)}
+.boost input{position:absolute;opacity:0;pointer-events:none}
+.check{
+  width:28px;height:28px;border-radius:8px;border:2px solid #4b485c;
+  background:#090a11;display:grid;place-items:center;transition:.15s
+}
+.check svg{width:17px;height:17px;opacity:0;transform:scale(.65);transition:.12s}
+.boost input:checked~.check{
+  background:linear-gradient(135deg,#7c4ceb,#9b71ff);
+  border-color:#a580ff;box-shadow:0 0 14px rgba(143,91,255,.28)
+}
+.boost input:checked~.check svg{opacity:1;transform:scale(1)}
+.boost input:checked~.boost-copy{transform:translateX(1px)}
+.boost:has(input:checked){
+  border-color:#7450c6;
+  background:linear-gradient(120deg,#1d1530,#100d1d);
+  box-shadow:inset 0 0 24px rgba(128,76,255,.04)
+}
+.boost-copy{min-width:0;transition:.15s}
+.boost-name{display:block;font-size:16px;font-weight:900;margin-bottom:4px}
+.boost-desc{display:block;color:#9f98ad;font-size:13px}
+.boost-mult{color:#ad86ff;font-size:12px;font-weight:900;white-space:nowrap}
+.calculate{
+  width:100%;height:60px;margin-top:21px;border:0;border-radius:16px;
+  color:#fff;background:linear-gradient(105deg,#8d4ff3,#6069ef);
+  font:inherit;font-size:18px;font-weight:950;cursor:pointer;
+  box-shadow:0 12px 30px rgba(108,71,231,.22)
+}
+.result{margin-top:18px}
+.result-box{
+  border:1px solid #4c3281;border-radius:18px;padding:20px;
+  background:rgba(22,15,39,.88)
+}
+.eyebrow{color:#a989ff;font-size:11px;font-weight:900;letter-spacing:.12em}
+.big{font-size:clamp(34px,6vw,48px);font-weight:950;letter-spacing:-.04em;margin:7px 0}
+.result-box p{margin:0;color:#a8a1b8;font-size:14px;line-height:1.45}
+.progress-meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;color:#817a91;font-size:10px;font-weight:900;letter-spacing:.12em}
+.progress-meta strong{color:#b28cff;font-size:13px;letter-spacing:0}
+.progress-track{height:12px;margin:7px 0 13px;border-radius:999px;background:#090811;border:1px solid #2c2940;overflow:hidden}
+.progress-fill{transition:width .7s cubic-bezier(.22,1,.36,1);height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#8c4ff3,#6069ef);box-shadow:0 0 14px rgba(118,77,240,.35);transition:width .25s ease}
+.rank-progress{margin-top:18px;padding-top:2px}
+.rank-progress .progress-meta{margin-top:0}
+.rank-progress .progress-track{margin-bottom:0}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.result-stat{border:1px solid #29273a;border-radius:15px;padding:13px;background:#080910}
+.result-stat small{display:block;color:#858093;margin-bottom:5px}
+.result-stat strong{font-size:16px}
+.help{
+  margin-top:18px;border:1px solid #493080;border-radius:19px;padding:20px;
+  background:rgba(20,15,35,.88)
+}
+.help h2{margin:0 0 14px;color:#ae89ff;font-size:18px}
+.help ol{margin:0;padding-left:23px;color:#c3bdcf;font-size:14px;line-height:1.55}
+.help li{margin:5px 0}
+.tip{border-top:1px solid #39275b;margin-top:15px;padding-top:13px;color:#aa83ff;font-size:13px}
+footer{text-align:center;color:#5f596d;font-size:11px;line-height:1.6;margin-top:23px}
+footer .domain{display:inline-block;margin-top:9px;padding:9px 18px;border:1px solid #353047;border-radius:999px;color:#d7d1e3}
+@media(max-width:720px){
+ .page{width:calc(100% - 18px);padding-top:7px}
+ header{padding-top:2px}
+ .game-logo{width:min(285px,76vw);max-height:125px}
+ h1{font-size:43px}
+ .power-grid,.boosts{grid-template-columns:1fr}
+ .card{padding:17px}
+ .metrics{grid-template-columns:repeat(3,1fr);gap:7px}
+ .metric{min-height:86px;padding:9px 5px}
+ .metric span{font-size:10px}
+ .metric strong{font-size:13px}
+ .boost{min-height:100px}
+}
+@media(max-width:430px){
+ .input-row{grid-template-columns:minmax(0,1fr) 82px}
+ .boost-mult{font-size:11px}
+}
+
+.input-error{
+  border-color:#ff5b8d!important;
+  box-shadow:0 0 0 3px rgba(255,91,141,.10)!important;
+}
+.input-error-text{
+  margin-top:6px;
+  color:#ff7da6;
+  font-size:11px;
+  font-weight:700;
+}
+
+
+.primordial-note{
+  margin-top:10px;padding:11px 13px;border:1px solid #302747;border-radius:13px;
+  background:rgba(25,17,42,.55);color:#8f879e;font-size:12px;line-height:1.5
+}
+.primordial-note b{color:#b18cff}
+@media(max-width:720px){
+ .primordial-note{font-size:11px}
+}
+
+
+.discord-credit{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  vertical-align:middle;
+}
+.discord-icon{
+  width:13px;
+  height:13px;
+  display:inline-block;
+  color:#9aa4ff;
+  flex:none;
+}
+
+
+/* Discord community button */
+.discord-join-button{
+  position:fixed;
+  top:18px;
+  right:22px;
+  z-index:1000;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:42px;
+  padding:0 16px;
+  border:1px solid rgba(153,93,255,.65);
+  border-radius:13px;
+  color:#fff;
+  background:linear-gradient(135deg,#8d43f4,#5f6df4);
+  box-shadow:0 8px 26px rgba(91,54,190,.28), inset 0 1px 0 rgba(255,255,255,.14);
+  font-size:13px;
+  font-weight:800;
+  text-decoration:none;
+  letter-spacing:.01em;
+  transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
+}
+.discord-join-button:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.08);
+  box-shadow:0 12px 32px rgba(116,67,230,.38), inset 0 1px 0 rgba(255,255,255,.18);
+}
+.discord-join-button:active{transform:translateY(0)}
+.discord-join-icon{
+  width:18px;
+  height:18px;
+  color:#fff;
+  flex:none;
+}
+@media(max-width:760px){
+  .discord-join-button{
+    top:10px;
+    right:10px;
+    min-height:38px;
+    padding:0 11px;
+    gap:6px;
+    border-radius:11px;
+    font-size:11px;
+  }
+  .discord-join-icon{width:16px;height:16px}
+}
+@media(max-width:420px){
+  .discord-join-button span{display:none}
+  .discord-join-button{
+    width:38px;
+    min-height:38px;
+    padding:0;
+    border-radius:50%;
+  }
+  .discord-join-icon{width:19px;height:19px}
+}
+
+
+.tabs{gap:10px;flex-wrap:wrap}
+.tab{cursor:pointer}
+.tab:not(.active){background:rgba(16,13,27,.7)}
+.calculator-view{display:block}
+#dpsView{display:none}
+.dps-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dps-full{grid-column:1/-1}
+.dps-result{margin-top:18px;padding:22px;border:1px solid #4c3281;border-radius:18px;background:linear-gradient(180deg,rgba(22,15,39,.92),rgba(14,10,25,.94))}
+.dps-big{font-size:clamp(34px,6vw,52px);font-weight:950;letter-spacing:-.04em;margin:7px 0 14px}
+.dps-status{border-radius:14px;padding:15px 17px;margin-top:14px;border:1px solid #3a3450;background:#090811;color:#c8c1d5;font-size:14px;line-height:1.5}
+.dps-status.can{border-color:#6245a4;background:rgba(64,36,108,.22);color:#e7ddff}
+.dps-status.cannot{border-color:#4b2940;background:rgba(70,22,48,.18);color:#e5cfdb}
+.dps-status strong{color:#b28cff}
+.dps-info{margin-top:18px;border:1px solid #302747;border-radius:13px;padding:12px 14px;background:rgba(25,17,42,.55);color:#958ca3;font-size:12px;line-height:1.5}
+.dps-info b{color:#b18cff}
+.dps-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.dps-stat{border:1px solid #29273a;border-radius:15px;padding:13px;background:#080910}
+.dps-stat small{display:block;color:#858093;margin-bottom:5px}
+.dps-stat strong{font-size:16px}
+.dps-select-help{margin-top:6px;color:#777082;font-size:11px}
+@media(max-width:720px){
+ .dps-grid{grid-template-columns:1fr}
+ .dps-full{grid-column:auto}
+ .dps-stat-grid{grid-template-columns:1fr}
+}
+
+
+.dps-all-results{margin-top:18px;display:grid;gap:14px}
+.dps-mode-card{border:1px solid #302747;border-radius:16px;background:rgba(11,9,18,.86);overflow:hidden}
+.dps-mode-head{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(90deg,rgba(104,53,174,.18),rgba(88,77,211,.10));border-bottom:1px solid #2a2439}
+.dps-mode-name{font-weight:900;color:#d8c7ff;font-size:15px}
+.dps-mode-summary{font-size:11px;color:#9489a5;text-align:right}
+.dps-stage-row{display:grid;grid-template-columns:minmax(150px,1.2fr) minmax(120px,.8fr) minmax(120px,.8fr) minmax(105px,.55fr);gap:10px;align-items:center;padding:11px 16px;border-bottom:1px solid #211e2d;font-size:12px}
+.dps-stage-row:last-child{border-bottom:0}
+.dps-stage{color:#d2cadc;font-weight:700}
+.dps-required{color:#aaa0b5}
+.dps-current{color:#eee8f4}
+.dps-clear{justify-self:end;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:900;letter-spacing:.03em}
+.dps-clear.yes{background:rgba(128,78,210,.22);border:1px solid #6d48aa;color:#c9aaff}
+.dps-clear.no{background:rgba(90,38,66,.22);border:1px solid #5a344b;color:#d7aeca}
+.dps-clear.unknown{background:rgba(70,63,80,.22);border:1px solid #4b4554;color:#aaa2b1}
+.dps-headers{display:grid;grid-template-columns:minmax(150px,1.2fr) minmax(120px,.8fr) minmax(120px,.8fr) minmax(105px,.55fr);gap:10px;padding:8px 16px;color:#70697c;font-size:9px;text-transform:uppercase;letter-spacing:.08em}
+@media(max-width:720px){
+ .dps-stage-row,.dps-headers{grid-template-columns:1fr 1fr;gap:7px}
+ .dps-stage-row{padding:12px}
+ .dps-headers{display:none}
+ .dps-current{font-size:11px}
+ .dps-clear{justify-self:start}
+ .dps-mode-head{align-items:flex-start}
+}
+
+
+.dps-results-heading{margin-top:24px;padding:4px 2px 2px;display:flex;align-items:end;justify-content:space-between}
+.dps-results-sub{font-size:12px;color:#847b91;margin-top:-7px}
+
+
+#damageMultiplierUnit{min-width:105px}
+@media(max-width:720px){
+  #damageMultiplierUnit{min-width:92px}
+}
+
+
+#damageMultiplierUnit{
+  width:108px;
+  min-width:108px;
+  flex:0 0 108px;
+  appearance:auto;
+  -webkit-appearance:auto;
+  background:#090910;
+  color:#eee8f4;
+  border:1px solid #302c40;
+  border-radius:12px;
+  padding:0 10px;
+  font-weight:700;
+}
+#damageMultiplierUnit:focus{
+  outline:none;
+  border-color:#8b4cf5;
+  box-shadow:0 0 0 3px rgba(139,76,245,.15);
+}
+@media(max-width:720px){
+  #damageMultiplierUnit{width:94px;min-width:94px}
+}
+
+
+.dps-summary-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-top:18px}
+.dps-summary-card{padding:17px 18px;border:1px solid #3b2d58;border-radius:16px;background:linear-gradient(135deg,rgba(38,22,65,.62),rgba(15,11,25,.9))}
+.dps-summary-card small{display:block;color:#8d7aa9;font-size:9px;font-weight:900;letter-spacing:.1em;margin-bottom:7px}
+.dps-summary-card strong{display:block;color:#f4effa;font-size:20px;font-weight:950;line-height:1.15}
+.dps-summary-card span{display:block;color:#8d8498;font-size:11px;margin-top:6px;line-height:1.35}
+.dps-breakdown{margin-top:14px;padding:18px;border:1px solid #302747;border-radius:16px;background:rgba(13,10,21,.72)}
+.dps-formula{margin:4px 0 13px;color:#a99db5;font-size:12px}
+.dps-breakdown-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.dps-breakdown-grid>div{padding:12px;border:1px solid #282437;border-radius:12px;background:#080910}
+.dps-breakdown-grid small{display:block;color:#777082;font-size:9px;margin-bottom:5px}
+.dps-breakdown-grid strong{display:block;color:#eee8f4;font-size:13px;word-break:break-word}
+@media(max-width:720px){
+ .dps-summary-grid{grid-template-columns:1fr}
+ .dps-summary-card{padding:15px}
+ .dps-breakdown{padding:14px}
+ .dps-breakdown-grid{grid-template-columns:1fr 1fr}
+ .dps-formula{font-size:11px;line-height:1.5}
+}
+@media(max-width:420px){
+ .dps-breakdown-grid{grid-template-columns:1fr}
+ .dps-summary-card strong{font-size:18px}
+}
+
+
+.dps-quick-jump{margin-top:18px;padding:12px 14px;border:1px solid #352850;border-radius:15px;background:linear-gradient(90deg,rgba(47,26,78,.48),rgba(17,13,27,.86));display:flex;align-items:center;justify-content:space-between;gap:16px}
+.dps-quick-copy{display:flex;align-items:center;gap:10px;min-width:0}
+.dps-quick-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:rgba(139,76,245,.16);border:1px solid #573b82;color:#b58aff;font-size:17px;font-weight:900}
+.dps-quick-copy strong{display:block;color:#d9c8ff;font-size:13px}
+.dps-quick-copy small{display:block;color:#81788d;font-size:10px;margin-top:2px}
+#dpsModeJump{width:min(360px,48%);min-height:42px;padding:0 12px;border:1px solid #403258;border-radius:11px;background:#090910;color:#eee8f4;font-weight:700;cursor:pointer}
+#dpsModeJump:focus{outline:none;border-color:#8b4cf5;box-shadow:0 0 0 3px rgba(139,76,245,.14)}
+@media(max-width:720px){
+ .dps-quick-jump{align-items:stretch;flex-direction:column;gap:10px}
+ #dpsModeJump{width:100%;min-height:44px}
+}
+
+
+.rank-summary-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-top:14px}
+.rank-breakdown{margin-top:14px;padding:18px;border:1px solid #302747;border-radius:16px;background:rgba(13,10,21,.72)}
+.rank-row{display:grid;grid-template-columns:80px 1fr 1fr 1fr;gap:10px;padding:11px 0;border-bottom:1px solid #211e2d;align-items:center;font-size:12px}
+.rank-row:last-child{border-bottom:0}
+.rank-row strong{color:#eee8f4}
+.rank-row span{color:#958b9f}
+.rank-unknown{color:#c3a9d8!important}
+@media(max-width:720px){
+ .rank-summary-grid{grid-template-columns:1fr}
+ .rank-breakdown{padding:14px}
+ .rank-row{grid-template-columns:1fr 1fr;gap:7px}
+}
+
+/* Rank Up Calculator — clean result layout */
+#rankView .rank-result{
+  margin-top:18px;padding:28px 24px 30px;text-align:center;
+  border:1px solid #4c3281;border-radius:18px;
+  background:linear-gradient(180deg,rgba(27,20,48,.96),rgba(18,13,31,.98));
+}
+#rankView .rank-time-label{color:#b7afc5;font-size:14px;margin-bottom:8px}
+#rankView .rank-time{font-size:clamp(44px,7vw,64px);line-height:1.05;font-weight:950;letter-spacing:-.045em;color:#faf7ff}
+#rankView .rank-time-sub{margin-top:9px;color:#b0a7bd;font-size:14px}
+#rankView .rank-progress-block{margin-top:22px}
+#rankView .rank-progress-title{display:flex;justify-content:space-between;align-items:center;color:#aaa1b5;font-size:13px;margin-bottom:7px}
+#rankView .rank-progress-title strong{color:#b28cff;font-size:14px}
+#rankView .rank-progress-block .progress-track{height:10px;margin:0;border:0;background:#171522}
+#rankView .rank-progress-labels{display:flex;justify-content:space-between;margin-top:7px;color:#736b80;font-size:12px}
+#rankView .rank-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+#rankView .rank-stat-card,#rankView .rank-multiplier-card{
+  min-width:0;border:1px solid #2c2940;border-radius:16px;padding:15px 16px;background:#090910;
+}
+#rankView .rank-stat-card small,#rankView .rank-multiplier-card small{display:block;color:#8d849b;font-size:11px;margin-bottom:7px}
+#rankView .rank-stat-card strong,#rankView .rank-multiplier-card strong{display:block;color:#f3eef8;font-size:17px;line-height:1.25;overflow-wrap:anywhere}
+#rankView .rank-multiplier-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+#rankView .rank-multiplier-card{background:linear-gradient(180deg,rgba(24,17,42,.92),rgba(15,11,25,.96));border-color:#3d2c5c}
+#rankView .rank-multiplier-card strong{font-size:18px}
+#rankView .rank-summary-grid{margin-top:12px}
+#rankView .rank-summary-grid .dps-summary-card{min-height:92px}
+
+/* Rank Up Calculator — match the clean calculator-card styling */
+#rankView .card{padding:25px}
+#rankView .section-title{margin-bottom:22px}
+#rankView .dps-grid{gap:18px}
+#rankView .rank-options{margin-top:28px;margin-bottom:30px;padding-top:2px}
+#rankView .rank-options .boost-heading{margin-bottom:14px}
+#rankView .rank-options .boost{margin:0}
+#rankCalculate{display:block;margin-top:0}
+#rankView .dps-result{margin-top:18px}
+.rank-breakdown{
+  margin-top:18px;
+  padding:20px;
+  border:1px solid #3b2d58;
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(18,13,31,.98),rgba(9,8,16,.99));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
+}
+.rank-breakdown .section-title{margin-bottom:16px}
+.rank-table-head,.rank-row{
+  display:grid;
+  grid-template-columns:minmax(150px,1.05fr) minmax(140px,1fr) minmax(140px,1fr) minmax(110px,.8fr);
+  gap:18px;
+  align-items:center;
+}
+.rank-table-head{
+  padding:11px 13px;
+  border:1px solid #2d2640;
+  border-radius:11px;
+  background:#08070e;
+  color:#81758f;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.rank-row{
+  padding:13px 10px;
+  border-bottom:1px solid #24202f;
+  font-size:12px;
+}
+.rank-row:last-child{border-bottom:0}
+.rank-row strong{color:#f1ebf8;font-size:12px}
+.rank-row span{color:#aaa1b5;min-width:0}
+.rank-row span:nth-child(3){color:#d5c9df;font-weight:700}
+.rank-unknown{color:#c3a9d8!important}
+@media(max-width:720px){
+ #rankView .card{padding:17px}
+ .rank-table-head{display:none}
+ .rank-row{grid-template-columns:1fr 1fr;gap:7px;padding:12px 8px}
+ .rank-row strong{font-size:12px}
+ .rank-row span{font-size:11px}
+ .rank-row span:nth-child(2)::before{content:'Multiplier: ';color:#625a6d;font-weight:600}
+ .rank-row span:nth-child(3)::before{content:'Requirement: ';color:#625a6d;font-weight:600}
+}
+
+
+/* Rank Up input sections — clean grouped layout */
+#rankView .rank-section-heading{
+  display:flex;align-items:center;gap:10px;margin-bottom:20px;
+}
+#rankView .rank-section-icon{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:26px;height:26px;font-size:20px;line-height:1;
+}
+#rankView .rank-current-stats-grid,#rankView .rank-goal-grid{gap:18px}
+#rankView .rank-section-divider{
+  height:1px;background:linear-gradient(90deg,transparent,#3a2b58 12%,#3a2b58 88%,transparent);
+  margin:30px 0 26px;
+}
+#rankView .rank-goal-grid{margin-bottom:0}
+@media(max-width:720px){
+  #rankView .rank-section-divider{margin:24px 0 22px}
+}
+
+
+/* Rank Up polish: actions, validation, live progress and mobile layout */
+#rankView .rank-actions{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin-top:0}
+#rankView .rank-actions .calculate{margin-top:0}
+#rankView .rank-reset{height:60px;padding:0 24px;border:1px solid #493080;border-radius:16px;background:#100d1b;color:#d9d0e7;font:inherit;font-weight:850;cursor:pointer;white-space:nowrap}
+#rankView .rank-reset:hover{background:#181126;border-color:#6d49a8}
+#rankView .rank-calc-note{display:flex;gap:10px;align-items:flex-start;margin-top:12px;padding:12px 14px;border:1px solid #302646;border-radius:13px;background:#100c19;color:#968da5;font-size:12px;line-height:1.5}
+#rankView .rank-calc-note span:first-child{font-size:14px;line-height:1.2}
+#rankView .rank-calc-note b{color:#c4a5ff}
+#rankView .rank-how-works{margin-top:18px;padding:20px;border:1px solid #3b2d58;border-radius:18px;background:#0e0a15}
+#rankView .rank-how-works .section-title{display:flex;align-items:center;gap:8px;margin-bottom:15px}
+#rankView .rank-how-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#rankView .rank-how-grid>div{padding:13px 14px;border:1px solid #29243a;border-radius:13px;background:#090810}
+#rankView .rank-how-grid b{display:block;color:#eee8f4;font-size:13px;margin-bottom:5px}
+#rankView .rank-how-grid span{display:block;color:#8f879b;font-size:12px;line-height:1.45}
+@media(max-width:720px){
+ #rankView .rank-actions{grid-template-columns:1fr}
+ #rankView .rank-reset{width:100%;height:48px}
+ #rankView .rank-how-grid{grid-template-columns:1fr}
+ #rankView .rank-calc-note{font-size:11px}
+ #rankView .rank-stat-grid{grid-template-columns:1fr}
+ #rankView .rank-multiplier-grid{grid-template-columns:1fr}
+}
+
+/* Opaque UI surfaces: keep the starfield/background from showing through panels. */
+.card{background:linear-gradient(180deg,#0f0d19 0%,#0b0912 100%);}
+.brand{background:#1d0d38;}
+.tab:not(.active){background:#100d1b;}
+.boost{background:linear-gradient(120deg,#151126 0%,#0e0b17 100%);}
+.boost:has(input:checked){background:linear-gradient(120deg,#211638 0%,#120d20 100%);}
+.result-box{background:#161027;}
+.help{background:#140f23;}
+.primordial-note{background:#19112a;}
+.dps-result{background:linear-gradient(180deg,#160f27 0%,#0e0a19 100%);}
+.dps-status.can{background:#3a2461;}
+.dps-status.cannot{background:#3f162b;}
+.dps-info{background:#19112a;}
+.dps-mode-card{background:#0d0a12;}
+.dps-mode-head{background:linear-gradient(90deg,#2a1647 0%,#19152f 100%);}
+.dps-clear.yes{background:#3a2461;}
+.dps-clear.no{background:#42182f;}
+.dps-clear.unknown{background:#302b38;}
+.dps-summary-card{background:linear-gradient(135deg,#261641 0%,#100c1b 100%);}
+.dps-breakdown{background:#0e0a15;}
+.dps-quick-jump{background:linear-gradient(90deg,#2b1848 0%,#120e1d 100%);}
+.dps-quick-icon{background:#251440;}
+.rank-breakdown{background:#0e0a15;}
+#rankView .rank-multiplier-card{background:linear-gradient(180deg,#18112a 0%,#100b1b 100%);}
+#rankView .rank-result-card{background:linear-gradient(180deg,#1b1430 0%,#120c1f 100%);}
+#rankView .rank-stat-card{background:#0a0910;}
+#rankView .rank-progress-track{background:#0a0910;}
+</style>
+</head>
+<body>
+<a class="discord-join-button" href="https://discord.gg/animeastral" target="_blank" rel="noopener noreferrer" aria-label="Join Anime Astral Discord">
+  <svg class="discord-icon discord-join-icon" viewBox="0 0 24 24" aria-hidden="true">
+  <path fill="currentColor" d="M19.54 5.01A16.1 16.1 0 0 0 15.47 3.7l-.5 1.02a14.7 14.7 0 0 0-5.94 0L8.53 3.7a16.1 16.1 0 0 0-4.07 1.31C1.88 8.83 1.18 12.56 1.53 16.25a16.3 16.3 0 0 0 5 2.52l1.2-1.64a9.9 9.9 0 0 1-1.88-.9l.46-.35c3.62 1.7 7.55 1.7 11.13 0l.46.35c-.6.35-1.23.65-1.88.9l1.2 1.64a16.3 16.3 0 0 0 5-2.52c.42-4.28-.72-7.97-2.68-11.24ZM8.3 14.57c-1.1 0-2-.99-2-2.2s.88-2.2 2-2.2 2 .99 2 2.2-.9 2.2-2 2.2Zm7.4 0c-1.1 0-2-.99-2-2.2s.88-2.2 2-2.2 2 .99 2 2.2-.9 2.2-2 2.2Z"/>
+</svg>
+  <span>Join Anime Astral Discord</span>
+</a>
+<main class="page">
+<header>
+  <img class="game-logo" src="anime-astral-logo.png" alt="Anime Astral">
+  <div class="brand">ANIME ASTRAL • CALCULATOR</div>
+  <h1 id="pageTitle">Power Calculator</h1>
+  <p class="tagline" id="pageTagline">Find out how much power you need to reach your desired power.</p>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" id="powerTab" type="button">Power Calculator</button>
+  <button class="tab" id="dpsTab" type="button">DPS Calculator</button><button class="tab" id="rankTab" type="button">Rank Up Calculator</button>
+</nav>
+
+<div id="powerView" class="calculator-view">
+<section class="card">
+  <div class="section-title">YOUR POWER</div>
+
+  <div class="power-grid">
+    <div class="field">
+      <label for="current">Current Power</label>
+      <div class="input-row"><input id="current" value="" placeholder="1.5" inputmode="decimal" autocomplete="off"><select id="currentUnit"></select></div>
+    </div>
+    <div class="field">
+      <label for="target">Target Power</label>
+      <div class="input-row"><input id="target" value="" placeholder="5" inputmode="decimal" autocomplete="off"><select id="targetUnit"></select></div>
+    </div>
+    <div class="field">
+      <label for="ppc">Power Per Click (PPC)</label>
+      <div class="input-row"><input id="ppc" value="" placeholder="Enter your PPC" inputmode="decimal" autocomplete="off"><select id="ppcUnit"></select></div>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric"><span>Power Per Click</span><strong id="basePpc">—</strong></div>
+    <div class="metric"><span>Clicks Per Second</span><strong id="metricCps">—</strong></div>
+    <div class="metric"><span>Power Per Second</span><strong id="metricPps">—</strong></div>
+    <div class="metric"><span>Power Per Hour</span><strong id="metricPph">—</strong></div>
+  </div>
+
+  <div class="boost-section">
+    <div class="boost-heading">⚡ Other Options</div>
+    <div class="boosts">
+      <label class="boost">
+        <input type="checkbox" id="fastClick" data-mult="1.375">
+        <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span>
+        <span class="boost-copy">
+          <span class="boost-name">Fast Click Gamepass</span>
+          <span class="boost-desc">Raises click rate to 3.66 clicks/sec</span>
+        </span>
+        <span class="boost-mult">ON</span>
+      </label>
+
+      <label class="boost">
+        <input type="checkbox" id="primordial">
+        <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span>
+        <span class="boost-copy">
+          <span class="boost-name">Primordial</span>
+          <span class="boost-desc">Doubles your PPC for 30s every 90s</span>
+        </span>
+        <span class="boost-mult">×2 PPC</span>
+      </label>
+    </div>
+    <div class="primordial-note">
+      Primordials are obtained from <b>World 14</b>. Only the last three — <b>Diablo, Guy Crimson, and Demon Diablo</b> — affect Power.
+      When equipped, the Power buff doubles your current PPC for 30 seconds every 90 seconds.
+    </div>
+  </div>
+
+  <button class="calculate" id="calculate">Calculate</button>
+</section>
+
+<section class="card result">
+  <div class="section-title">RESULT</div>
+  <div class="result-box">
+    <div class="eyebrow">TIME REMAINING</div>
+    <div class="big" id="timeRemaining">—</div>
+    <div class="progress-meta"><span>PROGRESS</span><strong id="progressPercent">0%</strong></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <p id="status">Enter your values to calculate.</p>
+  </div>
+  <div class="result-grid">
+    <div class="result-stat"><small>Power Needed</small><strong id="needed">—</strong></div>
+    <div class="result-stat"><small>Boosted PPC</small><strong id="effective">—</strong></div>
+    <div class="result-stat"><small>Power Per Second</small><strong id="resultPps">—</strong></div>
+    <div class="result-stat"><small>Power Per Click</small><strong id="resultBase">—</strong></div>
+    <div class="result-stat"><small>Power Per Hour</small><strong id="resultPph">—</strong></div>
+  </div>
+</section>
+
+<section class="help">
+  <h2>ⓘ How to Use</h2>
+  <ol>
+    <li>Enter your <b>current power</b> and select its unit.</li>
+    <li>Enter the <b>desired power</b> you want to reach.</li>
+    <li>Enter your <b>Power Per Click (PPC)</b> exactly as shown in-game.</li>
+    <li>If you have <b>Fast Click</b>, tick it to use <b>3.66 clicks/sec</b>. Otherwise the calculator uses the base <b>2.66 clicks/sec</b>.</li>
+    <li>If you have a qualifying <b>Primordial</b>, tick it to include its 30s ×2 PPC activation every 90s.</li>
+    <li>Press <b>Calculate</b> to see the time remaining and your progress percentage.</li>
+  </ol>
+  <div class="tip">💡 Tip: Your PPC is the power number shown in the bottom-right of Anime Astral.</div>
+</section>
+</div>
+
+
+<section id="rankView" class="calculator-view" style="display:none">
+  <div class="card">
+    <div class="section-title rank-section-heading"><span class="rank-section-icon">📊</span>Current Stats</div>
+    <div class="dps-grid rank-current-stats-grid">
+      <div class="field">
+        <label for="rankCurrentPower">Current Power</label>
+        <div class="input-row">
+          <input id="rankCurrentPower" type="text" placeholder="Enter your current power" inputmode="decimal" autocomplete="off">
+          <select id="rankCurrentPowerUnit" aria-label="Rank calculator current power unit"></select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="rankPpc">Power Per Click (PPC)</label>
+        <div class="input-row">
+          <input id="rankPpc" type="text" placeholder="Enter your PPC" inputmode="decimal" autocomplete="off">
+          <select id="rankPpcUnit" aria-label="Rank calculator PPC unit"></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="rank-section-divider"></div>
+    <div class="section-title rank-section-heading"><span class="rank-section-icon">🎯</span>Rank Goal</div>
+    <div class="dps-grid rank-goal-grid">
+      <div class="field">
+        <label for="rankCurrent">Current Rank</label>
+        <select id="rankCurrent"></select>
+      </div>
+      <div class="field">
+        <label for="rankTarget">Target Rank</label>
+        <select id="rankTarget"></select>
+      </div>
+    </div>
+
+    <div class="dps-options rank-options">
+      <div class="boost-heading"><span class="bolt">⚡</span>Other Options</div>
+      <div class="boosts">
+        <label class="boost">
+          <input type="checkbox" id="rankFastClick">
+          <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span>
+          <span class="boost-copy">
+            <span class="boost-name">Fast Click Gamepass</span>
+            <span class="boost-desc">Raises click rate to 3.66 clicks/sec</span>
+          </span>
+          <span class="boost-mult">3.66 CPS</span>
+        </label>
+
+        <label class="boost">
+          <input type="checkbox" id="rankPrimordial">
+          <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span>
+          <span class="boost-copy">
+            <span class="boost-name">Primordial</span>
+            <span class="boost-desc">Doubles your PPC for 30s every 90s</span>
+          </span>
+          <span class="boost-mult">×2 PPC</span>
+        </label>
+      </div>
+      <div class="primordial-note">
+        Primordials are obtained from <b>World 14</b>. Only the last three — <b>Diablo, Guy Crimson, and Demon Diablo</b> — affect Power.
+        When equipped, the Power buff doubles your current PPC for 30 seconds every 90 seconds.
+      </div>
+    </div>
+
+    <div class="rank-actions"><button class="calculate" id="rankCalculate" type="button">Calculate Rank Up Time</button><button class="rank-reset" id="rankReset" type="button">Reset</button></div>
+
+    <div class="rank-calc-note"><span>ℹ️</span><span><b>Calculation note:</b> Your PPC is treated as your actual in-game PPC. Fast Click changes CPS only, and Primordial uses 60s normal / 30s at ×2 PPC.</span></div>
+
+    <div class="rank-result" aria-live="polite">
+      <div class="rank-time-label">Estimated Time</div>
+      <div class="rank-time" id="rankTime">—</div>
+      <div class="rank-time-sub" id="rankTimeSub">Estimated time to your target rank</div>
+    </div>
+
+    <div class="rank-progress-block">
+      <div class="rank-progress-title"><span>Rank Progress</span><strong id="rankProgressPercent">0%</strong></div>
+      <div class="progress-track"><div class="progress-fill" id="rankProgressFill"></div></div>
+      <div class="rank-progress-labels"><span id="rankProgressStart">Start</span><span id="rankProgressEnd">—</span></div>
+    </div>
+
+    <div class="rank-stat-grid">
+      <div class="rank-stat-card">
+        <small>Power Remaining</small>
+        <strong id="rankPowerRemaining">—</strong>
+      </div>
+      <div class="rank-stat-card">
+        <small>Your Gain</small>
+        <strong id="rankGain">—</strong>
+      </div>
+      <div class="rank-stat-card">
+        <small>Clicks Required</small>
+        <strong id="rankClicksRequired">—</strong>
+      </div>
+    </div>
+
+    <div class="rank-multiplier-grid">
+      <div class="rank-multiplier-card">
+        <small>Current Rank Multiplier</small>
+        <strong id="rankCurrentMultiplier">—</strong>
+      </div>
+      <div class="rank-multiplier-card">
+        <small>Target Rank Multiplier</small>
+        <strong id="rankTargetMultiplier">—</strong>
+      </div>
+    </div>
+
+    <div class="rank-summary-grid">
+      <div class="dps-summary-card">
+        <small>POWER PER HOUR</small>
+        <strong id="rankPph">—</strong>
+        <span id="rankStatus">Enter your PPC, then calculate your rank-up time.</span>
+      </div>
+      <div class="dps-summary-card">
+        <small>RANKS TO COMPLETE</small>
+        <strong id="rankCount">—</strong>
+        <span id="rankRangeText">—</span>
+      </div>
+    </div>
+
+    <div class="rank-breakdown" id="rankBreakdown">
+      <div class="section-title">RANK BREAKDOWN</div>
+      <div class="rank-table-head"><span>Rank Up</span><span>New Multiplier</span><span>Power Needed</span></div>
+      <div id="rankRows"></div>
+    </div>
+
+    <div class="rank-how-works">
+      <div class="section-title"><span class="rank-section-icon">📖</span>HOW IT WORKS</div>
+      <div class="rank-how-grid">
+        <div><b>1. Enter your stats</b><span>Enter your current power and your in-game PPC exactly as shown.</span></div>
+        <div><b>2. Choose your ranks</b><span>Select the rank you currently have and the rank you want to reach.</span></div>
+        <div><b>3. Add your boosts</b><span>Fast Click uses 3.66 CPS. Primordial doubles PPC for 30s every 90s.</span></div>
+        <div><b>4. Calculate</b><span>Your remaining power, progress, clicks, and estimated time update from your inputs.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="dpsView" class="card">
+  <div class="section-title">DAMAGE PER SECOND</div>
+  <div class="dps-grid">
+    <div class="field">
+      <label for="dpsPower">Current Power</label>
+      <div class="input-row"><input id="dpsPower" placeholder="27" inputmode="decimal" autocomplete="off"><select id="dpsPowerUnit"></select></div>
+    </div>
+    <div class="field">
+      <label for="damageMultiplier">Damage Multiplier</label>
+      <div class="input-row">
+        <input id="damageMultiplier" type="text" placeholder="41.4" inputmode="decimal" autocomplete="off" aria-label="Damage multiplier value">
+        <select id="damageMultiplierUnit" aria-label="Damage multiplier unit"></select>
+      </div>
+    </div>
+    <div class="field dps-full">
+      <div class="dps-select-help">After calculating, every supplied game mode and wave/room will be checked automatically. Max Quinque applies its supplied +135% damage bonus; 15s duration and 300 Click are shown for reference.</div>
+    </div>
+    <div class="dps-full">
+      <div class="boosts">
+        <label class="boost">
+          <input type="checkbox" id="dpsQuinque","rankCurrent","rankTarget","rankPpc","rankPpcUnit","rankFastClick">
+          <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span>
+          <span class="boost-copy">
+            <span class="boost-name">Quinque</span>
+            <span class="boost-desc">Max skill tree: +135% damage • 15s duration • 300 Click</span>
+          </span>
+          <span class="boost-mult">+135% DMG</span>
+        </label>
+
+        <label class="boost">
+          <input type="checkbox" id="dpsFastClick">
+          <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span>
+          <span class="boost-copy">
+            <span class="boost-name">Fast Click Gamepass</span>
+            <span class="boost-desc">Uses 3.66 clicks/sec instead of the base 2.66</span>
+          </span>
+          <span class="boost-mult">3.66 CPS</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <button class="calculate" id="dpsCalculate" type="button">Calculate DPS</button>
+  <div class="dps-result" aria-live="polite">
+    <div class="eyebrow">YOUR DPS</div>
+    <div class="dps-big" id="dpsValue">—</div>
+    <div class="dps-status" id="dpsStatus">Enter your power and damage multiplier, then press Calculate DPS.</div>
+    <div class="dps-stat-grid">
+      <div class="dps-stat"><small>Click Rate</small><strong id="dpsCps">—</strong></div>
+      <div class="dps-stat"><small>Damage Multiplier</small><strong id="dpsMult">—</strong></div>
+    </div>
+    <div class="dps-info" id="dpsNote">Each game mode below is checked automatically using your current DPS.</div>
+  </div>
+
+  <div class="dps-summary-grid" id="dpsSummaryGrid">
+      <div class="dps-summary-card">
+        <small>BEST CONFIRMED CLEAR</small>
+        <strong id="dpsBestClear">—</strong>
+        <span id="dpsBestClearMode">Calculate DPS to see your highest clear.</span>
+      </div>
+      <div class="dps-summary-card">
+        <small>CLEAR RATE</small>
+        <strong id="dpsClearRate">—</strong>
+        <span id="dpsClearCount">—</span>
+      </div>
+    </div>
+
+    <div class="dps-breakdown" id="dpsBreakdown">
+      <div class="section-title">DPS BREAKDOWN</div>
+      <div class="dps-formula" id="dpsFormula">Power × Damage Multiplier × CPS = DPS</div>
+      <div class="dps-breakdown-grid">
+        <div><small>Power</small><strong id="breakPower">—</strong></div>
+        <div><small>Damage</small><strong id="breakDamage">—</strong></div>
+        <div><small>Click Rate</small><strong id="breakCps">—</strong></div>
+        <div><small>Final DPS</small><strong id="breakFinal">—</strong></div>
+      </div>
+    </div>
+
+    <div class="dps-quick-jump" id="dpsQuickJump">
+      <div class="dps-quick-copy">
+        <span class="dps-quick-icon">↳</span>
+        <div>
+          <strong>Quick Jump</strong>
+          <small>Jump straight to any game mode</small>
+        </div>
+      </div>
+      <select id="dpsModeJump" aria-label="Jump to game mode">
+        <option value="">Select a game mode…</option>
+      </select>
+    </div>
+
+    <div class="dps-results-heading" id="dpsResultsHeading">
+      <div>
+        <div class="section-title">CLEAR CHECKER</div>
+        <div class="dps-results-sub">Every available game mode is checked automatically.</div>
+      </div>
+    </div>
+    <div class="dps-all-results" id="dpsAllResults"></div>
+</section>
+
+<footer>Anime Astral Power Calculator • Fan-made tool • Created by <span class="discord-credit" title="Discord: zzz101">
+  <svg class="discord-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <path fill="currentColor" d="M19.54 5.01A16.1 16.1 0 0 0 15.47 3.7l-.5 1.02a14.7 14.7 0 0 0-5.94 0L8.53 3.7a16.1 16.1 0 0 0-4.07 1.31C1.88 8.83 1.18 12.56 1.53 16.25a16.3 16.3 0 0 0 5 2.52l1.2-1.64a9.9 9.9 0 0 1-1.88-.9l.46-.35c3.62 1.7 7.55 1.7 11.13 0l.46.35c-.6.35-1.23.65-1.88.9l1.2 1.64a16.3 16.3 0 0 0 5-2.52c.42-4.28-.72-7.97-2.68-11.24ZM8.3 14.57c-1.1 0-2-.99-2-2.2s.88-2.2 2-2.2 2 .99 2 2.2-.9 2.2-2 2.2Zm7.4 0c-1.1 0-2-.99-2-2.2s.88-2.2 2-2.2 2 .99 2 2.2-.9 2.2-2 2.2Z"/>
+  </svg>
+  <span>zzz101</span>
+</span><br><span class="domain">animeastralcalculator.info</span></footer>
+</main>
+
+<script>
+// Persist calculator inputs so visitors don't have to re-enter them every time.
+const SAVE_KEY="animeAstralCalculatorInputs_v1";
+const savedFields=[
+  "current","currentUnit","target","targetUnit","ppcUnit",
+  "fastClick","primordial","damageMultiplier","damageMultiplierUnit","dpsQuinque",
+];
+
+function saveCalculatorInputs(){
+  const state={};
+  savedFields.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) state[id]=el.type==="checkbox"?el.checked:el.value;
+  });
+  try{ localStorage.setItem(SAVE_KEY,JSON.stringify(state)); }catch(e){}
+}
+
+function restoreCalculatorInputs(){
+  try{
+    const raw=localStorage.getItem(SAVE_KEY);
+    if(!raw)return;
+    const state=JSON.parse(raw);
+    savedFields.forEach(id=>{
+      const el=document.getElementById(id);
+      if(!el || state[id]===undefined)return;
+      if(el.type==="checkbox") el.checked=!!state[id];
+      else el.value=state[id];
+    });
+  }catch(e){}
+}
+
+restoreCalculatorInputs();
+// PPC is intentionally never remembered: users must enter their current in-game PPC each visit.
+document.getElementById("ppc").value="";
+document.getElementById("rankPpc").value="";
+document.getElementById("rankCurrentPower").value="";
+savedFields.forEach(id=>{
+  const el=document.getElementById(id);
+  if(el){
+    el.addEventListener("input",saveCalculatorInputs);
+    el.addEventListener("change",saveCalculatorInputs);
+  }
+});
+
+const units=[
+ ["K",1e3],["M",1e6],["B",1e9],["T",1e12],["Qa",1e15],["Qi",1e18],
+ ["Sx",1e21],["Sp",1e24],["Oc",1e27],["No",1e30],["De",1e33]
+];
+// Number Increase System: each tier is 1000× the previous tier.
+for(let i=0;i<26;i++) units.push(["β"+String.fromCharCode(65+i),1e36*Math.pow(1000,i)]);
+for(let i=0;i<26;i++) units.push(["y"+String.fromCharCode(65+i),1e114*Math.pow(1000,i)]);
+for(let i=0;i<26;i++) units.push(["d"+String.fromCharCode(65+i),1e192*Math.pow(1000,i)]);
+
+function fillUnits(id){
+ const s=document.getElementById(id);
+ if(!s)return;
+ const groups=[
+   ["Base Units",units.slice(0,11)],
+   ["β Units",units.slice(11,37)],
+   ["y Units",units.slice(37,63)],
+   ["d Units",units.slice(63,89)]
+ ];
+ groups.forEach(([label,items])=>{
+   const g=document.createElement("optgroup");
+   g.label=label;
+   items.forEach(([name])=>{
+     const o=document.createElement("option");
+     o.value=name;o.textContent=name;g.appendChild(o);
+   });
+   s.appendChild(g);
+ });
+}
+["currentUnit","targetUnit","ppcUnit","dpsPowerUnit","damageMultiplierUnit","rankPpcUnit","rankCurrentPowerUnit"].forEach(fillUnits);
+document.getElementById("currentUnit").value="K";
+document.getElementById("targetUnit").value="K";
+document.getElementById("ppcUnit").value="K";
+
+function parsePower(value,unit){
+ const n=Number(String(value).replace(/,/g,"").trim());
+ const u=units.find(x=>x[0]===unit);
+ return Number.isFinite(n)&&u?n*u[1]:NaN;
+}
+function formatPower(n){
+ if(!Number.isFinite(n))return "—";
+ let best=units[0];
+ for(const u of units){if(n>=u[1])best=u;else break}
+ let v=n/best[1];
+ let s=Math.abs(v)>=100?v.toFixed(0):Math.abs(v)>=10?v.toFixed(1):v.toFixed(2);
+ s=s.replace(/(\.\d*?[1-9])0+$|\.0+$/,"$1");
+ return s+" "+best[0];
+}
+
+function setInputError(input, message){
+  input.classList.add("input-error");
+  input.setAttribute("aria-invalid","true");
+  let error=input.parentElement.querySelector(".input-error-text");
+  if(!error){
+    error=document.createElement("div");
+    error.className="input-error-text";
+    input.parentElement.appendChild(error);
+  }
+  error.textContent=message;
+}
+
+function clearInputError(input){
+  input.classList.remove("input-error");
+  input.removeAttribute("aria-invalid");
+  const error=input.parentElement.querySelector(".input-error-text");
+  if(error) error.remove();
+}
+
+function validateInputs(currentInput, desiredInput, ppcInput){
+  let valid=true;
+  [currentInput,desiredInput,ppcInput].forEach(clearInputError);
+
+  const current=currentInput.value.trim();
+  const desired=desiredInput.value.trim();
+  const ppc=ppcInput.value.trim();
+
+  if(!current){setInputError(currentInput,"Enter your current power.");valid=false;}
+  if(!desired){setInputError(desiredInput,"Enter your desired power.");valid=false;}
+  if(!ppc){setInputError(ppcInput,"Enter your power per click.");valid=false;}
+  if(!valid) return false;
+
+  const currentValue=parsePower(current,document.getElementById("currentUnit").value);
+  const desiredValue=parsePower(desired,document.getElementById("targetUnit").value);
+  const ppcValue=parsePower(ppc,document.getElementById("ppcUnit").value);
+
+  if(!Number.isFinite(currentValue) || currentValue<0){
+    setInputError(currentInput,"Enter a valid current power.");
+    valid=false;
+  }
+  if(!Number.isFinite(desiredValue) || desiredValue<=0){
+    setInputError(desiredInput,"Enter a valid desired power.");
+    valid=false;
+  }else if(Number.isFinite(currentValue) && desiredValue<=currentValue){
+    setInputError(desiredInput,"Desired power must be higher than current power.");
+    valid=false;
+  }
+  if(!Number.isFinite(ppcValue) || ppcValue<=0){
+    setInputError(ppcInput,"Power per click must be greater than 0.");
+    valid=false;
+  }
+
+  return valid;
+}
+
+function animateProgress(percent){
+  const fill=document.getElementById("progressFill");
+  const label=document.getElementById("progressPercent");
+  const target=Math.min(100,Math.max(0,percent));
+
+  fill.style.width="0%";
+  label.textContent="0%";
+
+  requestAnimationFrame(()=>{
+    fill.style.width=target+"%";
+    const start=performance.now();
+    const duration=700;
+
+    function tick(now){
+      const p=Math.min(1,(now-start)/duration);
+      const eased=1-Math.pow(1-p,3);
+      label.textContent=(target*eased).toFixed(1).replace(/\.0$/,"")+"%";
+      if(p<1) requestAnimationFrame(tick);
+      else label.textContent=target.toFixed(1).replace(/\.0$/,"")+"%";
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+
+
+function calculate(){
+  const currentInput=document.getElementById("current");
+  const desiredInput=document.getElementById("target");
+  const ppcInput=document.getElementById("ppc");
+  const currentUnitEl=document.getElementById("currentUnit");
+  const targetUnitEl=document.getElementById("targetUnit");
+  const ppcUnitEl=document.getElementById("ppcUnit");
+
+  if(!validateInputs(currentInput,desiredInput,ppcInput)) return;
+
+  const current=parsePower(currentInput.value,currentUnitEl.value);
+  const target=parsePower(desiredInput.value,targetUnitEl.value);
+  const ppc=parsePower(ppcInput.value,ppcUnitEl.value);
+  const fastClickEnabled=document.getElementById("fastClick").checked;
+  const primordialEnabled=document.getElementById("primordial").checked;
+
+  const cps=fastClickEnabled ? 3.66 : 2.66;
+  const normalPps=ppc*cps;
+  const normalPph=normalPps*3600;
+
+  document.getElementById("basePpc").textContent=formatPower(ppc);
+  document.getElementById("resultBase").textContent=formatPower(ppc);
+  document.getElementById("metricCps").textContent=cps.toFixed(2)+" /sec";
+
+  const needed=target-current;
+
+  if(needed<=0){
+    document.getElementById("timeRemaining").textContent="0 seconds";
+    document.getElementById("needed").textContent="0";
+    document.getElementById("effective").textContent=formatPower(ppc);
+    document.getElementById("metricPps").textContent=formatPower(normalPps)+"/sec";
+    document.getElementById("resultPps").textContent=formatPower(normalPps)+"/sec";
+    document.getElementById("metricPph").textContent=formatPower(normalPph)+"/hr";
+    document.getElementById("resultPph").textContent=formatPower(normalPph)+"/hr";
+    animateProgress(100);
+    document.getElementById("status").textContent="Your current power has already reached the target.";
+    return;
+  }
+
+  let seconds;
+  let pph;
+  let ppsLabel;
+
+  if(primordialEnabled){
+    const normalGain=normalPps*60;
+    const boostedGain=normalPps*2*30;
+    const cycleGain=normalGain+boostedGain;
+    const fullCycles=Math.floor(needed/cycleGain);
+    let remaining=needed-fullCycles*cycleGain;
+    seconds=fullCycles*90;
+
+    if(remaining<=normalGain){
+      seconds+=remaining/normalPps;
+    }else{
+      remaining-=normalGain;
+      seconds+=60+remaining/(normalPps*2);
+    }
+
+    const averagePps=cycleGain/90;
+    pph=averagePps*3600;
+    ppsLabel=formatPower(averagePps)+"/sec avg";
+    document.getElementById("effective").textContent=formatPower(ppc)+" → "+formatPower(ppc*2)+" (30s)";
+  }else{
+    seconds=needed/normalPps;
+    pph=normalPph;
+    ppsLabel=formatPower(normalPps)+"/sec";
+    document.getElementById("effective").textContent=formatPower(ppc);
+  }
+
+  document.getElementById("metricPps").textContent=ppsLabel;
+  document.getElementById("resultPps").textContent=ppsLabel;
+  document.getElementById("metricPph").textContent=formatPower(pph)+"/hr"+(primordialEnabled?" avg":"");
+  document.getElementById("resultPph").textContent=formatPower(pph)+"/hr"+(primordialEnabled?" avg":"");
+
+  const clicks=Math.ceil(needed/ppc);
+  const days=Math.floor(seconds/86400);
+  const hours=Math.floor((seconds%86400)/3600);
+  const minutes=Math.floor((seconds%3600)/60);
+  const secs=Math.ceil(seconds%60);
+
+  const parts=[];
+  if(days) parts.push(days+"d");
+  if(hours) parts.push(hours+"h");
+  if(minutes) parts.push(minutes+"m");
+  if(!days&&!hours&&secs) parts.push(secs+"s");
+
+  const progress=Math.min(100,Math.max(0,(current/target)*100));
+  animateProgress(progress);
+
+  document.getElementById("timeRemaining").textContent=parts.join(" ")||"0s";
+  document.getElementById("needed").textContent=formatPower(needed);
+
+  document.getElementById("status").textContent=primordialEnabled
+    ? `About ${clicks.toLocaleString()} clicks. Primordial cycles 60s normal / 30s at 2× PPC.`
+    : `About ${clicks.toLocaleString()} clicks at ${cps.toFixed(2)} clicks/sec.`;
+}
+
+document.getElementById("calculate").addEventListener("click",calculate);
+document.querySelectorAll("input").forEach(input=>{
+  input.addEventListener("input",()=>clearInputError(input));
+});
+
+
+
+const DPS_ROWS=`Ninja Raid|Wave 5|242.67 M
+Ninja Raid|Wave 10|38 B
+Ninja Raid|Wave 15|6 T
+Ninja Raid|Wave 20|944 T
+Ninja Raid|Wave 25|148.33 Qa
+Ninja Raid|Wave 30|23.33 Qi
+Ninja Raid|Wave 35|3.67 Sx
+Ninja Raid|Wave 40|577.67 Sx
+Ninja Raid|Wave 45|91 Sp
+Ninja Raid|Wave 50|14.33 Oc
+Ninja Raid|Wave 55|2.25 No
+Ninja Raid|Wave 60|353.33 No
+Ninja Raid|Wave 65|55.67 De
+Ninja Raid|Wave 70|8.67 βA
+Ninja Raid|Wave 75|1.37 βB
+Ninja Raid|Wave 80|216.33 βB
+Ninja Raid|Wave 85|34 βC
+Ninja Raid|Wave 90|5.33 βD
+Ninja Raid|Wave 95|841.33 βD
+Ninja Raid|Wave 100|132.33 βE
+Time Trial Easy|Room 5|18.08 M
+Time Trial Easy|Room 10|72.17 B
+Time Trial Easy|Room 15|287.75 T
+Time Trial Easy|Room 20|1.17 Qi
+Time Trial Easy|Room 25|4.58 Sx
+Time Trial Easy|Room 30|3.5 Sp
+Time Trial Easy|Room 35|72.83 Oc
+Time Trial Easy|Room 40|290.42 No
+Time Trial Easy|Room 45|1.17 βA
+Time Trial Easy|Room 50|4.58 βB
+Titan Defense|Wave 5|530 Qa
+Titan Defense|Wave 10|83.33 Qi
+Titan Defense|Wave 15|13.12 Sx
+Titan Defense|Wave 20|2.06 Sp
+Titan Defense|Wave 25|323.33 Sp
+Titan Defense|Wave 30|53.33 Oc
+Titan Defense|Wave 35|8.03 No
+Titan Defense|Wave 40|1.26 De
+Titan Defense|Wave 45|200 De
+Titan Defense|Wave 50|31.29 βA
+Titan Defense|Wave 55|4.91 βB
+Titan Defense|Wave 60|773.33 βB
+Titan Defense|Wave 65|120 βC
+Titan Defense|Wave 70|19.11 βD
+Titan Defense|Wave 75|3 βE
+Titan Defense|Wave 80|473.33 βE
+Titan Defense|Wave 85|73.33 βF
+Titan Defense|Wave 90|11.69 βG
+Titan Defense|Wave 95|1.84 βH
+Titan Defense|Wave 100|288.88 βH|Predicted, Not Confirmed
+Timeless Raid|Wave 5|184.67 No
+Timeless Raid|Wave 10|137 Oc
+Timeless Raid|Wave 15|101.67 No
+Timeless Raid|Wave 20|75.33 De
+Timeless Raid|Wave 25|55.67 βA
+Timeless Raid|Wave 30|41.33 βB
+Timeless Raid|Wave 35|30.67 βC
+Timeless Raid|Wave 40|22.67 βD
+Timeless Raid|Wave 45|17 βE
+Timeless Raid|Wave 50|12.67 βF
+Infinity Castle|Wave 5|19.33 No
+Infinity Castle|Wave 10|26.67 De
+Infinity Castle|Wave 15|37 βA
+Infinity Castle|Wave 20|51 βB
+Infinity Castle|Wave 25|71 βC
+Infinity Castle|Wave 30|98.33 βD
+Infinity Castle — Muzan|Wave 10|377 De
+Infinity Castle — Muzan|Wave 20|724.67 βB
+Infinity Castle — Muzan|Wave 30|1.39 βE
+E Rank Gate|Wave 5|569.67 Qi
+E Rank Gate|Wave 10|33 Sx
+E Rank Gate|Wave 15|1.89 Sp
+E Rank Gate|Wave 20|109.33 Sp
+E Rank Gate|Wave 25|6.33 Oc
+E Rank Gate|Wave 30|363 Oc
+E Rank Gate|Wave 35|21 No
+E Rank Gate|Wave 40|1.21 De
+E Rank Gate|Wave 45|69.67 De
+E Rank Gate|Wave 50|4 βA
+E Rank Gate — Arise|Wave 10|582.67 Sx
+E Rank Gate — Arise|Wave 20|1.64 Oc
+E Rank Gate — Arise|Wave 30|5.33 No
+E Rank Gate — Arise|Wave 40|18 De
+E Rank Gate — Arise|Wave 50|60.33 βA
+D Rank Gate|Wave 5|3.33 Oc
+D Rank Gate|Wave 10|197 Oc
+D Rank Gate|Wave 15|11.33 No
+D Rank Gate|Wave 20|655.33 No
+D Rank Gate|Wave 25|37.67 De
+D Rank Gate|Wave 30|2.18 βA
+D Rank Gate|Wave 35|125.67 βA
+D Rank Gate|Wave 40|7.33 βB
+D Rank Gate|Wave 45|417.67 βB
+D Rank Gate|Wave 50|24 βC
+D Rank Gate — Arise|Wave 10|2.96 No
+D Rank Gate — Arise|Wave 20|9.67 De
+D Rank Gate — Arise|Wave 30|32.67 βA
+D Rank Gate — Arise|Wave 40|108.67 βB
+D Rank Gate — Arise|Wave 50|361.33 βC
+C Rank Gate|Wave 5|19.33 De
+C Rank Gate|Wave 10|1.12 βA
+C Rank Gate|Wave 15|64.33 βA
+C Rank Gate|Wave 20|3.67 βB
+C Rank Gate|Wave 25|214 βB
+C Rank Gate|Wave 30|12.33 βC
+C Rank Gate|Wave 35|712 βC
+C Rank Gate|Wave 40|41 βD
+C Rank Gate|Wave 45|2.37 βE
+C Rank Gate|Wave 50|136.67 βE
+C Rank Gate — Arise|Wave 10|16.67 βA
+C Rank Gate — Arise|Wave 20|55.67 βB
+C Rank Gate — Arise|Wave 30|463 βC
+C Rank Gate — Arise|Wave 40|616 βD
+C Rank Gate — Arise|Wave 50|3.67 βF
+B Rank Gate|Wave 5|57 βB
+B Rank Gate|Wave 10|3.28 βC
+B Rank Gate|Wave 15|189.33 βC
+B Rank Gate|Wave 20|11 βD
+B Rank Gate|Wave 25|629.67 βD
+B Rank Gate|Wave 30|36.33 βE
+B Rank Gate|Wave 35|2.09 βF
+B Rank Gate|Wave 40|120.67 βF
+B Rank Gate|Wave 45|7 βG
+B Rank Gate|Wave 50|401.67 βG
+B Rank Gate — Arise|Wave 10|49.33 βC
+B Rank Gate — Arise|Wave 20|163.67 βD
+B Rank Gate — Arise|Wave 30|544.67 βE
+B Rank Gate — Arise|Wave 40|1.81 βG
+B Rank Gate — Arise|Wave 50|6 βH
+Clover Raid|Wave 5|2.77 βB
+Clover Raid|Wave 10|2.02 βC
+Clover Raid|Wave 15|3.29 βD
+Clover Raid|Wave 20|3.67 βE
+Clover Raid|Wave 25|4 βF
+Clover Raid|Wave 30|4.33 βG
+Clover Raid|Wave 35|4.66 βH
+Clover Raid|Wave 40|5 βI
+Clover Raid|Wave 45|5.33 βJ
+Clover Raid|Wave 50|6 βK|Predicted, Not Confirmed
+Clover Raid — Asta Boss|Wave 10|73.33 βD
+Clover Raid — Asta Boss|Wave 20|87 βE
+Clover Raid — Asta Boss|Wave 30|103.33 βG
+Clover Raid — Asta Boss|Wave 40|122.67 βI
+Clover Raid — Asta Boss|Wave 50|Not Possible
+Time Trial Medium|Room 5|174.67 βC
+Time Trial Medium|Room 10|3.5 βE
+Time Trial Medium|Room 15|70.08 βF
+Time Trial Medium|Room 20|1.42 βH
+Time Trial Medium|Room 25|28.08 βI
+Time Trial Medium|Room 30|560.67 βJ|Predicted
+Time Trial Medium|Room 35|11.21 βL|Predicted
+Time Trial Medium|Room 40|224.27 βM|Predicted
+Time Trial Medium|Room 45|4.49 βO|Predicted
+Time Trial Medium|Room 50|89.71 βP|Predicted
+Summer Defense|Wave 5|1.61 βF
+Summer Defense|Wave 10|1.36 βG
+Summer Defense|Wave 15|1.15 βH
+Summer Defense|Wave 20|970 βH
+Summer Defense|Wave 25|823.33 βI
+Summer Defense|Wave 30|696.58 βJ|Predicted
+Summer Defense|Wave 35|589.34 βK|Predicted
+Summer Defense|Wave 40|498.6 βL|Predicted
+Summer Defense|Wave 45|421.84 βM|Predicted
+Summer Defense|Wave 50|356.9 βN|Predicted
+Summer Defense|Wave 55|301.95 βO|Predicted
+Summer Defense|Wave 60|255.46 βP|Predicted
+Summer Defense|Wave 65|216.13 βQ|Predicted
+Summer Defense|Wave 70|182.86 βR|Predicted
+Summer Defense|Wave 75|154.71 βS|Predicted
+Summer Defense|Wave 80|130.89 βT|Predicted
+Summer Defense|Wave 85|110.74 βU|Predicted
+Summer Defense|Wave 90|93.69 βV|Predicted
+Summer Defense|Wave 95|79.27 βW|Predicted
+Summer Defense|Wave 100|67.06 βX|Predicted
+Tomb Raid|Wave 5|1.64 Qa
+Tomb Raid|Wave 10|21.33 Sx
+Tomb Raid|Wave 15|280.67 Oc
+Tomb Raid|Wave 20|3.67 βA
+Tomb Raid|Wave 25|48 βC
+Tomb Raid|Wave 30|626.67 βE
+Tomb Raid|Wave 35|8.33 βH
+Tomb Raid|Wave 40|107 βJ
+Tomb Raid|Wave 45|1.4 βM
+Tomb Raid|Wave 50|18.33 βO
+Tomb Raid|Wave 55|239 βQ
+Tomb Raid|Wave 60|3.12 βT
+Tomb Raid|Wave 65|40.67 βV
+Tomb Raid|Wave 70|533.33 βX
+Tomb Raid|Wave 75|6.97 yA
+Tomb Raid|Wave 80|91 yC
+Tomb Raid|Wave 85|1.19 yF
+Tomb Raid|Wave 90|15.53 yH
+Tomb Raid|Wave 95|15.53 yJ
+Tomb Raid|Wave 100|2.64 yM
+Cursed Rush|Wave 25|73.33 βQ
+Cursed Rush|Wave 50|56.67 βS
+Cursed Rush|Wave 75|33.33 βU
+Cursed Rush|Wave 100|43.33 βW
+Cursed Rush|Wave 125|36.67 βY
+Cursed Rush|Wave 150|30.67 yA|Estimated
+Cursed Rush|Wave 175|26 yC|Estimated
+Cursed Rush|Wave 200|22 yE|Estimated
+Cursed Rush|Wave 225|18.66 yG|Estimated
+Cursed Rush|Wave 250|15.67 yI|Estimated
+Cursed Rush|Wave 275|13.33 yK|Estimated
+Cursed Rush|Wave 300|11.33 yM|Estimated
+King of Curses Raid|Wave 25|5.67 βX
+King of Curses Raid|Wave 50|6.67 βZ
+King of Curses Raid|Wave 75|8.05 yB
+King of Curses Raid|Wave 100|9.6 yD
+King of Curses Raid|Wave 125|11.44 yF|Estimated
+King of Curses Raid|Wave 150|13.62 yH|Estimated
+King of Curses Raid|Wave 175|16.23 yJ|Estimated
+King of Curses Raid|Wave 200|19.33 yL|Estimated
+King of Curses Raid|Wave 225|23.02 yN|Estimated
+King of Curses Raid|Wave 250|27.42 yP|Estimated
+King of Curses Raid|Wave 275|32.66 yR|Estimated
+King of Curses Raid|Wave 300|38.91 yT|Estimated
+Time Trial Hard|Room 5|8.42 βS
+Time Trial Hard|Room 10|36.75 βU
+Time Trial Hard|Room 15|159.5 βW
+Time Trial Hard|Room 20|774.5 βY
+Time Trial Hard|Room 25|2.92 yB
+Time Trial Hard|Room 30|12.92 yD
+Time Trial Hard|Room 35|55.83 yF
+Time Trial Hard|Room 40|240.83 yH
+Time Trial Hard|Room 45|1.04 yJ
+Time Trial Hard|Room 50|4.5 yL
+Tower|Wave 5|24.67 yF
+Tower|Wave 10|182.5 yG
+Tower|Wave 15|56.17 yH
+Tower|Wave 20|414.83 yI
+Tower|Wave 25|127.47 yJ|Predicted
+Tower|Wave 30|952.8 yK|Predicted
+Tower|Wave 35|293.07 yL|Predicted
+Tower|Wave 40|86.95 yM|Predicted
+Tower|Wave 45|671.95 yN|Predicted
+Tower|Wave 50|5 yP|Predicted
+Tower|Wave 55|1.54 yQ|Predicted
+Tower|Wave 60|11.47 yR|Predicted
+Tower|Wave 65|3.52 yS|Predicted
+Tower|Wave 70|26.23 yT|Predicted
+Tower|Wave 75|8.1 yU|Predicted
+Tower|Wave 80|60.33 yV|Predicted
+Zaban Rush|Wave 5|1.03 yO
+Zaban Rush|Wave 10|3.96 yQ
+Zaban Rush|Wave 15|15.24 yS
+Zaban Rush|Wave 20|57.78 yU
+Zaban Rush|Wave 25|224.44 yW
+Zaban Rush|Wave 30|866.67 yY
+Zaban Rush|Wave 35|3.34 dB
+Zaban Rush|Wave 40|12.84 dD
+Zaban Rush|Wave 45|488 dF
+Zaban Rush|Wave 50|19.55 dH
+Owl Suppression|Wave 5|7.33 yT
+Owl Suppression|Wave 10|4.67 yV
+Owl Suppression|Wave 15|3.03 yX
+Owl Suppression|Wave 20|1.94 yZ
+Owl Suppression|Wave 25|1.24 dB
+Owl Suppression|Wave 30|797 dC
+Owl Suppression|Wave 35|510.7 dE
+Owl Suppression|Wave 40|327.3 dG
+Owl Suppression|Wave 45|209.7 dI
+Owl Suppression|Wave 50|134.33 dK
+Owl Suppression|Wave 55|86 dM
+Sanctuary of the Past|Wave 5|62.67 dA
+Sanctuary of the Past|Wave 10|467 dB
+Sanctuary of the Past|Wave 15|3.33 dD
+Sanctuary of the Past|Wave 20|25.67 dE
+Sanctuary of the Past|Wave 25|193.67 dF
+Sanctuary of the Past|Wave 30|1.44 dH
+Sanctuary of the Past|Wave 35|10.67 dI
+Sanctuary of the Past|Wave 40|80.33 dJ
+Sanctuary of the Past|Wave 45|599.33 dK
+Sanctuary of the Past|Wave 50|4.33 dM
+Sanctuary of the Present|Wave 5|24.33 dB
+Sanctuary of the Present|Wave 10|5 dD
+Sanctuary of the Present|Wave 15|1.13 dF
+Sanctuary of the Present|Wave 20|242.67 dG
+Sanctuary of the Present|Wave 25|52 dI
+Sanctuary of the Present|Wave 30|11 dK
+Sanctuary of the Present|Wave 35|2.39 dM
+Sanctuary of the Present|Wave 40|51.47 dN
+Sanctuary of the Present|Wave 45|11.03 dP
+Sanctuary of the Present|Wave 50|2.36 dR
+Sanctuary of the Future|Wave 5|27 dD
+Sanctuary of the Future|Wave 10|3.33 dG
+Sanctuary of the Future|Wave 15|411.67 dI
+Sanctuary of the Future|Wave 20|50.67 dL
+Sanctuary of the Future|Wave 25|60 dN
+Sanctuary of the Future|Wave 30|76.83 dQ
+Sanctuary of the Future|Wave 35|9.43 dT
+Sanctuary of the Future|Wave 40|???
+Sanctuary of the Future|Wave 45|???
+Sanctuary of the Future|Wave 50|???
+Ninja Defense|Wave 5|33.33 dG
+Ninja Defense|Wave 10|4.83 dI
+Ninja Defense|Wave 15|67.93 dJ
+Ninja Defense|Wave 20|93.33 dK
+Ninja Defense|Wave 25|13.33 dM
+Ninja Defense|Wave 30|1.86 dO
+Ninja Defense|Wave 35|2.6 dP
+Ninja Defense|Wave 40|36.7 dQ
+Ninja Defense|Wave 45|50 dR
+Ninja Defense|Wave 50|7.2 dT
+Time Trial Insane|Wave 5|45.33 yP
+Time Trial Insane|Wave 10|2.16 yU
+Time Trial Insane|Wave 15|10.18 yY
+Time Trial Insane|Wave 20|48 dC
+Time Trial Insane|Wave 25|22 dG
+Time Trial Insane|Wave 30|106.67 dK
+Time Trial Insane|Wave 35|5.02 dP
+Time Trial Insane|Wave 40|23.69 dT
+Time Trial Insane|Wave 45|???
+Time Trial Insane|Wave 50|???
+Ninja Exam|Genin to Chunnin|1 dG
+Ninja Exam|Chunnin to Tokubetsu Jonin|33.33 dJ
+Ninja Exam|Tokebetsu Jonin to Jonin|63.33 dN
+Ninja Exam|Jonin to Sannin|56.67 dR
+Ninja Exam|Sannin to Kage|5 dU
+Ninja Exam|Kage to Sennin|???`.trim().split("\n").map(line=>line.split("|"));
+const DPS_DATA={};
+DPS_ROWS.forEach(([mode,stage,required,note])=>{
+  if(!DPS_DATA[mode]) DPS_DATA[mode]=[];
+  DPS_DATA[mode].push({stage,required,note:note||""});
+});
+
+const dpsModeJump=document.getElementById("dpsModeJump");
+Object.keys(DPS_DATA).forEach(mode=>{
+  const option=document.createElement("option");
+  option.value=mode;
+  option.textContent=mode;
+  dpsModeJump.appendChild(option);
+});
+dpsModeJump.addEventListener("change",()=>{
+  if(!dpsModeJump.value)return;
+  const id="dps-mode-"+dpsModeJump.value.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+  const target=document.getElementById(id);
+  if(target){
+    target.scrollIntoView({behavior:"smooth",block:"start"});
+    setTimeout(()=>{dpsModeJump.value="";},500);
+  }
+});
+
+const dpsPowerUnit=document.getElementById("dpsPowerUnit");
+dpsPowerUnit.value="K";
+
+const damageMultiplierUnit=document.getElementById("damageMultiplierUnit");
+damageMultiplierUnit.value="K";
+
+function parseDpsRequirement(text){
+  const s=String(text||"").trim();
+  if(!s || s==="???" || s==="Not Possible") return NaN;
+  const m=s.match(/^([0-9]+(?:\.[0-9]+)?)\s+(.+)$/);
+  if(!m)return NaN;
+  let unit=m[2].trim().replace(/^Y/,"y");
+  const betaAlias=unit.match(/^B([A-Z])$/);
+  if(betaAlias) unit="β"+betaAlias[1];
+  const u=units.find(x=>x[0]===unit);
+  return u ? Number(m[1])*u[1] : NaN;
+}
+function dpsError(input,msg){
+  input.classList.add("input-error");
+  input.setAttribute("aria-invalid","true");
+  let e=input.parentElement.querySelector(".input-error-text");
+  if(!e){
+    e=document.createElement("div");
+    e.className="input-error-text";
+    input.parentElement.appendChild(e);
+  }
+  e.textContent=msg;
+}
+function clearDpsError(input){
+  input.classList.remove("input-error");
+  input.removeAttribute("aria-invalid");
+  const e=input.parentElement.querySelector(".input-error-text");
+  if(e)e.remove();
+}
+function formatMultiplier(n){
+  if(!Number.isFinite(n))return "—";
+  if(Math.abs(n)>=100) return n.toFixed(0)+"×";
+  if(Math.abs(n)>=10) return n.toFixed(1).replace(/\.0$/,"")+"×";
+  return n.toFixed(2).replace(/0+$/,"").replace(/\.$/,"")+"×";
+}
+function calculateDps(){
+  const powerInput=document.getElementById("dpsPower");
+  const multInput=document.getElementById("damageMultiplier");
+  clearDpsError(powerInput);clearDpsError(multInput);
+
+  const power=parsePower(powerInput.value,dpsPowerUnit.value);
+  const baseMult=parsePower(multInput.value,damageMultiplierUnit.value);
+  const quinque=document.getElementById("dpsQuinque").checked;
+  const mult=baseMult*(quinque?2.35:1);
+  let valid=true;
+  if(!Number.isFinite(power)||power<=0){dpsError(powerInput,"Enter a power greater than 0.");valid=false}
+  if(!Number.isFinite(baseMult)||baseMult<=0){dpsError(multInput,"Enter a damage multiplier greater than 0.");valid=false}
+  if(!valid)return;
+
+  const cps=document.getElementById("dpsFastClick").checked?3.66:2.66;
+  const dps=power*cps*mult;
+
+  document.getElementById("dpsValue").textContent=formatPower(dps)+"/sec";
+  document.getElementById("dpsCps").textContent=cps.toFixed(2)+" CPS";
+  document.getElementById("dpsMult").textContent=quinque?`${formatPower(baseMult)} × 2.35 (Quinque)`:formatPower(baseMult);
+  document.getElementById("dpsStatus").className="dps-status can";
+  document.getElementById("dpsStatus").innerHTML=`<strong>${Object.keys(DPS_DATA).length} game modes checked</strong> — every supplied game mode and wave/room is compared against your DPS.`;
+  document.getElementById("dpsNote").innerHTML=`Current DPS: <b>${formatPower(dps)}/sec</b> • ${cps.toFixed(2)} CPS × ${formatPower(mult)} damage`;
+
+  const container=document.getElementById("dpsAllResults");
+  container.innerHTML="";
+  let comparableTotal=0, clearedTotal=0;
+  let best=null;
+  const modeResults=[];
+  Object.entries(DPS_DATA).forEach(([mode,rows])=>{
+    const card=document.createElement("div");
+    card.className="dps-mode-card";
+    card.id="dps-mode-"+mode.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+    const head=document.createElement("div");
+    head.className="dps-mode-head";
+    const name=document.createElement("div");name.className="dps-mode-name";name.textContent=mode;
+    const summary=document.createElement("div");summary.className="dps-mode-summary";
+    const known=rows.filter(r=>Number.isFinite(parseDpsRequirement(r.required)));
+    const can=known.filter(r=>dps>=parseDpsRequirement(r.required)).length;
+    summary.textContent=`${can}/${known.length} comparable stages cleared`;
+    head.append(name,summary);card.appendChild(head);
+
+    const hdr=document.createElement("div");hdr.className="dps-headers";
+    ["Wave / Room","Current DPS","Required DPS","Result"].forEach(t=>{
+      const x=document.createElement("div");x.textContent=t;hdr.appendChild(x);
+    });
+    card.appendChild(hdr);
+
+    rows.forEach(item=>{
+      const row=document.createElement("div");row.className="dps-stage-row";
+      const stage=document.createElement("div");stage.className="dps-stage";stage.textContent=item.stage+(item.note?` • ${item.note}`:"");
+      const current=document.createElement("div");current.className="dps-current";current.textContent=formatPower(dps)+"/s";
+      const required=document.createElement("div");required.className="dps-required";required.textContent=item.required;
+      const result=document.createElement("div");result.className="dps-clear";
+
+      if(Number.isFinite(parseDpsRequirement(item.required))){
+        const reqValue=parseDpsRequirement(item.required);
+        const ok=dps>=reqValue;
+        comparableTotal++;
+        if(ok) clearedTotal++;
+        if(ok && (!best || reqValue>best.required)){
+          best={mode,stage:item.stage,required:reqValue,display:item.required,note:item.note};
+        }
+        result.classList.add(ok?"yes":"no");
+        result.textContent=ok?"✓ CAN CLEAR":"✕ CANNOT CLEAR";
+      }else{
+        result.classList.add("unknown");
+        result.textContent=item.required==="Not Possible"?"NOT POSSIBLE":"COMPARE N/A";
+      }
+      row.append(stage,current,required,result);card.appendChild(row);
+    });
+    container.appendChild(card);
+  });
+
+  const rate=comparableTotal?((clearedTotal/comparableTotal)*100):0;
+  document.getElementById("dpsClearRate").textContent=rate.toFixed(1)+"%";
+  document.getElementById("dpsClearCount").textContent=`${clearedTotal} / ${comparableTotal} confirmed stages cleared`;
+  if(best){
+    document.getElementById("dpsBestClear").textContent=best.stage;
+    document.getElementById("dpsBestClearMode").textContent=`${best.mode} • Required ${best.display}${best.note?" • "+best.note:""}`;
+  }else{
+    document.getElementById("dpsBestClear").textContent="None yet";
+    document.getElementById("dpsBestClearMode").textContent="Your DPS does not currently meet a confirmed requirement.";
+  }
+
+  document.getElementById("breakPower").textContent=formatPower(power);
+  document.getElementById("breakDamage").textContent=quinque?`${formatPower(baseMult)} × 2.35 (Quinque)`:formatPower(baseMult);
+  document.getElementById("breakCps").textContent=cps.toFixed(2)+" CPS";
+  document.getElementById("breakFinal").textContent=formatPower(dps)+"/sec";
+  document.getElementById("dpsFormula").textContent=quinque
+    ? `${formatPower(power)} × ${formatPower(baseMult)} × 2.35 Quinque × ${cps.toFixed(2)} CPS = ${formatPower(dps)}/sec`
+    : `${formatPower(power)} × ${formatPower(baseMult)} × ${cps.toFixed(2)} CPS = ${formatPower(dps)}/sec`;
+}
+document.getElementById("dpsCalculate").addEventListener("click",calculateDps);
+["dpsPower","damageMultiplier"].forEach(id=>document.getElementById(id).addEventListener("input",e=>clearDpsError(e.target)));
+
+
+const RANK_ROWS=`1|1.8x|15k
+2|3.1x|200k
+3|5.4x|1.5M
+4|8.4x|10.5M
+5|16.4x|70M
+6|28.8x|455M
+7|50.3x|2.5B
+8|88.1x|12.5B
+9|154.1x|50B
+10|269.7x|225B
+11|471.9x|1.1T
+12|825.9x|7.5T
+13|1.4kx|52.5T
+14|2.5kx|395T
+15|4.4kx|3.1Qa
+16|7.7kx|27.5Qa
+17|13.6kx|245Qa
+18|23.7kx|2.4Qa
+19|45.1kx|23.2Qi
+20|72.6kx|245Qi
+21|127.1kx|2.7Sx
+22|222.5kx|31.5Sx
+23|389.3kx|350Sx
+24|681.3kx|7.5Sp
+25|1.2Mx|125Sp
+26|2.1Mx|2.5Oc
+27|3.7Mx|25Oc
+28|6.4Mx|750Oc
+29|11.2Mx|30No
+30|19.6Mx|1.4De
+31|32.4Mx|82.5De
+32|59.9Mx|7.5βA
+33|104.9Mx|260βA
+34|183.5Mx|16βB
+35|321.2Mx|1.1βC
+36|570.5Mx|85βC
+37|998.4Mx|4.5βD
+38|1.8Bx|36βD
+39|3.1Bx|430βD
+40|5.4Bx|6.9βE
+41|9.4Bx|165βE
+42|16.4Bx|5.8βF
+43|28.8Bx|175βF
+44|50.4Bx|6.7βG
+45|88.2Bx|325βG
+46|154.4Bx|18.8βH
+47|270.2Bx|980βH
+48|472.9Bx|55βI
+49|827.5Bx|4βJ
+50|1.4Tx|320βJ
+51|2.5Tx|25βK
+52|4.4Tx|800βK
+53|7.8Tx|500βL
+54|13.6Tx|400βM
+55|23.8Tx|300βN
+56|41.6Tx|800βO
+57|72.9Tx|950βP
+58|127.5Tx|9βQ
+59|223.2Tx|95βQ
+60|390.6Tx|750βQ
+61|583.1Tx|16βR
+62|1.2Qax|420βR
+63|2.1Qax|13βS
+64|3.7Qax|520βS
+65|6.4Qax|26βT
+66|11.2Qax|1.6βU
+67|19.6Qax|110βU
+68|34.4Qax|200βU
+69|60.1Qax|4βV
+70|105.2Qax|100βV
+71|Unknown|Unknown
+72|Unknown|Unknown
+73|Unknown|Unknown
+74|Unknown|Unknown
+75|Unknown|Unknown
+76|3Qix|125βY
+77|5.2Qix|1.1βZ
+78|9.2Qix|12βZ
+79|16.1Qix|150βZ
+80|28.3Qix|2.1γA
+81|49.5Qix|35γA
+82|86.7Qix|650γA
+83|151.8Qix|13γB
+84|Qi|300γB
+85|464.8Qix|13yC
+86|813.5Qix|19γD
+87|1.4Sx|4.7γE
+88|2.4Sx|1.2γF
+89|4.3Sx|300γF
+90|Unknown|75γG
+91|13.3Sx|18γH
+92|23.3Sx|2.1yG
+93|40.9Sx|216yG
+94|71.6Sx|23.7yH
+95|125.3Sx|2.8yI
+96|219Sx|370.6yI
+97|383.7Sx|51.8yJ
+98|671.5Sx|7.7yK
+99|1.1Sp|850yK
+100|2Sp|12.5yL
+101|3.6Sp|250yL
+102|6.3Sp|6.2yM
+103|11Sp|190yM
+104|19.3Sp|6.5yN
+105|33.8Sp|260yN
+106|59.1Sp|12yO
+107|103.5Sp|600yO
+108|181.2Sp|33yP
+109|317.1Sp|2yQ
+110|554.9Sp|130yQ
+111|971.1Sp|9.1yR
+112|1.7Oc|728yR
+113|2.9Oc|69.1yS
+114|5.2Oc|7.6yT
+115|9.1Oc|950.9yT
+116|15.9Oc|137.8yT
+117|27.8Oc|22.7yV
+118|48.8Oc|4.2yW
+119|85.4Oc|862.8yW
+120|149.4Oc|???`.trim().split("\n").map(x=>{
+  const [rank,multiplier,requirement]=x.split("|");
+  return {rank:Number(rank),multiplier,requirement};
+});
+const rankByNumber=Object.fromEntries(RANK_ROWS.map(r=>[r.rank,r]));
+
+const rankCurrent=document.getElementById("rankCurrent");
+const rankTarget=document.getElementById("rankTarget");
+const rankPpcUnit=document.getElementById("rankPpcUnit");
+RANK_ROWS.forEach(r=>{
+  const unknownRank = r.rank >= 71 && r.rank <= 75;
+  const label = unknownRank ? `Rank ${r.rank} — Unknown` : `Rank ${r.rank}`;
+
+  const a=document.createElement("option");
+  a.value=r.rank;
+  a.textContent=label;
+  a.disabled=unknownRank;
+  rankCurrent.appendChild(a);
+
+  const b=document.createElement("option");
+  b.value=r.rank;
+  b.textContent=label;
+  b.disabled=unknownRank;
+  rankTarget.appendChild(b);
+});
+rankCurrent.value="1";rankTarget.value="2";
+function updateRankProgress(currentPowerValue=null, firstRequirementValue=null){
+  const fill=document.getElementById("rankProgressFill");
+  const label=document.getElementById("rankProgressPercent");
+  const start=document.getElementById("rankProgressStart");
+  const end=document.getElementById("rankProgressEnd");
+  const current=Number(rankCurrent.value), target=Number(rankTarget.value);
+  let progress=0;
+  if(Number.isFinite(currentPowerValue) && Number.isFinite(firstRequirementValue) && firstRequirementValue>0 && target>current){
+    const rankSpan=target-current;
+    const firstFraction=Math.min(1,Math.max(0,currentPowerValue/firstRequirementValue));
+    progress=((rankSpan-1)+firstFraction)/rankSpan*100;
+  }
+  progress=Math.min(100,Math.max(0,progress));
+  if(fill)fill.style.width=progress.toFixed(2)+"%";
+  if(label)label.textContent=progress.toFixed(1)+"%";
+  if(start){
+    if(Number.isFinite(currentPowerValue) && Number.isFinite(firstRequirementValue)) start.textContent=`${formatPower(currentPowerValue)} / ${formatPower(firstRequirementValue)}`;
+    else start.textContent=`Rank ${current}`;
+  }
+  if(end)end.textContent=`Rank ${target}`;
+  return progress;
+}
+
+function liveRankProgress(){
+  const current=Number(rankCurrent.value), target=Number(rankTarget.value);
+  const req=rankByNumber[current]?.requirement;
+  const reqValue=parseCompactPower(req);
+  const value=parsePower(document.getElementById("rankCurrentPower").value,document.getElementById("rankCurrentPowerUnit").value);
+  updateRankProgress(Number.isFinite(value)?value:NaN,Number.isFinite(reqValue)?reqValue:NaN);
+}
+
+rankCurrent.addEventListener("change",updateRankProgress);
+rankTarget.addEventListener("change",updateRankProgress);
+document.getElementById("rankFastClick").checked=false;
+document.getElementById("rankPrimordial").checked=false;
+rankPpcUnit.value="K";
+document.getElementById("rankCurrentPowerUnit").value="K";
+updateRankProgress();
+
+const rankCurrentPowerInput=document.getElementById("rankCurrentPower");
+const rankPpcInput=document.getElementById("rankPpc");
+rankCurrentPowerInput.addEventListener("input",()=>{ clearDpsError(rankCurrentPowerInput); liveRankProgress(); });
+rankCurrentPowerInput.addEventListener("change",liveRankProgress);
+document.getElementById("rankCurrentPowerUnit").addEventListener("change",liveRankProgress);
+rankCurrent.addEventListener("change",()=>{ clearDpsError(rankCurrent); liveRankProgress(); });
+rankTarget.addEventListener("change",()=>{ clearDpsError(rankTarget); liveRankProgress(); });
+rankPpcInput.addEventListener("input",()=>clearDpsError(rankPpcInput));
+
+function resetRankCalculator(){
+  rankCurrent.value="1";
+  rankTarget.value="2";
+  rankPpcInput.value="";
+  rankCurrentPowerInput.value="";
+  rankPpcUnit.value="K";
+  document.getElementById("rankCurrentPowerUnit").value="K";
+  document.getElementById("rankFastClick").checked=false;
+  document.getElementById("rankPrimordial").checked=false;
+  clearDpsError(rankPpcInput);
+  clearDpsError(rankCurrentPowerInput);
+  clearDpsError(rankCurrent);
+  clearDpsError(rankTarget);
+  document.getElementById("rankTime").textContent="—";
+  document.getElementById("rankTimeSub").textContent="Estimated time to your target rank";
+  document.getElementById("rankPowerRemaining").textContent="—";
+  document.getElementById("rankGain").textContent="—";
+  document.getElementById("rankClicksRequired").textContent="—";
+  document.getElementById("rankCurrentMultiplier").textContent=rankByNumber[1]?.multiplier||"Unknown";
+  document.getElementById("rankTargetMultiplier").textContent=rankByNumber[2]?.multiplier||"Unknown";
+  document.getElementById("rankPph").textContent="—";
+  document.getElementById("rankStatus").textContent="Enter your current power and PPC, then calculate your rank-up time.";
+  document.getElementById("rankCount").textContent="—";
+  document.getElementById("rankRangeText").textContent="—";
+  document.getElementById("rankRows").innerHTML="";
+  updateRankProgress();
+}
+document.getElementById("rankReset").addEventListener("click",resetRankCalculator);
+
+function calculateRankUp(){
+  const ppcEl=document.getElementById("rankPpc");
+  const currentPowerEl=document.getElementById("rankCurrentPower");
+  clearDpsError(ppcEl);
+  clearDpsError(currentPowerEl);
+  const current=Number(rankCurrent.value), target=Number(rankTarget.value);
+  const startingPpc=parsePower(ppcEl.value,rankPpcUnit.value);
+  const currentPower=parsePower(currentPowerEl.value,document.getElementById("rankCurrentPowerUnit").value);
+  if(!Number.isFinite(startingPpc)||startingPpc<=0){dpsError(ppcEl,"Enter a PPC greater than 0.");return}
+  if(!Number.isFinite(currentPower)||currentPower<0){dpsError(currentPowerEl,"Enter your current power (0 or greater).");return}
+  if(target<=current){dpsError(rankTarget,"Target Rank must be higher than Current Rank.");return}
+  if((current>=71&&current<=75)||(target>=71&&target<=75)){
+    dpsError((current>=71&&current<=75)?rankCurrent:rankTarget,"Ranks 71–75 are marked Unknown and cannot be selected.");
+    return;
+  }
+
+  const fastClickEnabled=document.getElementById("rankFastClick").checked;
+  const primordialEnabled=document.getElementById("rankPrimordial").checked;
+  const cps=fastClickEnabled?3.66:2.66;
+  const transitions=[];
+
+  for(let rank=current;rank<target;rank++){
+    const source=rankByNumber[rank];
+    const destination=rankByNumber[rank+1];
+    transitions.push({
+      from:rank,
+      to:rank+1,
+      multiplier:destination?.multiplier||"Unknown",
+      requirement:source?.requirement||"???",
+      multiplierKnown:!!destination && destination.multiplier!=="Unknown",
+      requirementKnown:!!source && source.requirement!=="Unknown" && source.requirement!=="???"
+    });
+  }
+
+  document.getElementById("rankCount").textContent=`${transitions.length} ranks`;
+  document.getElementById("rankRangeText").textContent=`Rank ${current} → Rank ${target}`;
+  document.getElementById("rankTimeSub").textContent=`Estimated time to Rank ${target}`;
+  document.getElementById("rankRows").innerHTML=transitions.map(r=>{
+    return `<div class="rank-row"><strong>Rank ${r.from} → ${r.to}</strong><span>${r.multiplier}</span><span class="${r.requirementKnown?'':'rank-unknown'}">${r.requirement}</span></div>`;
+  }).join("");
+
+  const firstRequirement=transitions[0]?.requirementKnown?parseCompactPower(transitions[0].requirement):NaN;
+  updateRankProgress(currentPower,firstRequirement);
+
+  let currentPpc=startingPpc;
+  let totalTime=0;
+  let totalPower=0;
+  let totalClicks=0;
+  let blockedAt=null;
+  let powerOnCurrentRank=currentPower;
+
+  for(let i=0;i<transitions.length;i++){
+    const r=transitions[i];
+    if(!r.requirementKnown){blockedAt=r;break;}
+
+    const required=parseCompactPower(r.requirement);
+    if(!Number.isFinite(required)){blockedAt=r;break;}
+
+    const remaining=Math.max(0,required-(i===0?powerOnCurrentRank:0));
+    totalPower+=remaining;
+    totalClicks+=remaining/currentPpc;
+
+    if(remaining>0){
+      const pps=currentPpc*cps;
+      totalTime+=primordialSecondsForPower(remaining,pps);
+    }
+
+    if(!r.multiplierKnown){
+      blockedAt=r;break;
+    }
+    const sourceMultiplier=parseRankMultiplier(rankByNumber[r.from]?.multiplier);
+    const destinationMultiplier=parseRankMultiplier(r.multiplier);
+    if(!Number.isFinite(sourceMultiplier)||!Number.isFinite(destinationMultiplier)||sourceMultiplier<=0){
+      blockedAt=r;break;
+    }
+    currentPpc*=destinationMultiplier/sourceMultiplier;
+  }
+
+  const firstPps=startingPpc*cps;
+  const progress=Math.min(100,Math.max(0,Number.isFinite(firstRequirement)&&firstRequirement>0?((target-current-1)+Math.min(1,currentPower/firstRequirement))/(target-current)*100:0));
+  const remainingFirst=Number.isFinite(firstRequirement)?Math.max(0,firstRequirement-currentPower):NaN;
+
+  document.getElementById("rankGain").textContent=formatPower(firstPps)+"/sec"+(primordialEnabled?" normal":"");
+  document.getElementById("rankPph").textContent=formatPower(firstPps*3600)+"/hour"+(primordialEnabled?" normal":"");
+  document.getElementById("rankPowerRemaining").textContent=Number.isFinite(totalPower)?formatPower(totalPower):"—";
+  document.getElementById("rankClicksRequired").textContent=Number.isFinite(totalClicks)?Math.ceil(totalClicks).toLocaleString():"—";
+  document.getElementById("rankCurrentMultiplier").textContent=rankByNumber[current]?.multiplier||"Unknown";
+  document.getElementById("rankTargetMultiplier").textContent=rankByNumber[target]?.multiplier||"Unknown";
+  if(Number.isFinite(progress)){
+    document.getElementById("rankProgressFill").style.width=progress.toFixed(2)+"%";
+    document.getElementById("rankProgressPercent").textContent=progress.toFixed(1)+"%";
+  }
+
+  if(blockedAt){
+    document.getElementById("rankTime").textContent="Unknown";
+    document.getElementById("rankStatus").textContent=`Calculation stops at Rank ${blockedAt.from} → ${blockedAt.to} because ${blockedAt.requirementKnown?'its destination multiplier is not confirmed.':'its Power requirement is not confirmed.'}`;
+    return;
+  }
+
+  document.getElementById("rankTime").textContent=formatDuration(totalTime);
+  document.getElementById("rankStatus").textContent=primordialEnabled
+    ? `Primordial cycles 60s normal / 30s at 2× PPC.`
+    : `Based on ${cps.toFixed(2)} clicks/sec.`;
+}
+
+function parseRankMultiplier(text){
+  const raw=String(text||"").trim();
+  if(!raw||raw==="Unknown")return NaN;
+  if(/^\d+(?:\.\d+)?x$/i.test(raw))return Number(raw.slice(0,-1));
+  const m=raw.match(/^(\d+(?:\.\d+)?)\s*([A-Za-zβγ]+)$/);
+  if(!m)return NaN;
+  let unit=m[2];
+  const aliases={kx:"K",Mx:"M",Bx:"B",Tx:"T",Qax:"Qa",Qix:"Qi"};
+  if(aliases[unit])unit=aliases[unit];
+  unit=normalizeRankUnit(unit);
+  const u=units.find(x=>x[0]===unit);
+  return u?Number(m[1])*u[1]:NaN;
+}
+
+function primordialSecondsForPower(required,normalPps){
+  if(!document.getElementById("rankPrimordial").checked)return required/normalPps;
+  const normalGain=normalPps*60;
+  const boostedGain=normalPps*2*30;
+  const cycleGain=normalGain+boostedGain;
+  const fullCycles=Math.floor(required/cycleGain);
+  let remaining=required-fullCycles*cycleGain;
+  let seconds=fullCycles*90;
+  if(remaining<=normalGain){
+    seconds+=remaining/normalPps;
+  }else{
+    remaining-=normalGain;
+    seconds+=60+remaining/(normalPps*2);
+  }
+  return seconds;
+}
+
+function normalizeRankUnit(unit){
+  const u=String(unit||"").trim();
+  if(/^B[A-Z]$/.test(u)) return "β"+u.slice(1);
+  if(/^Y[A-Z]$/.test(u)) return "y"+u.slice(1);
+  return u;
+}
+function parseCompactPower(text){
+  const raw=String(text||"").replace(/,/g,"").trim();
+  const m=raw.match(/^(\d+(?:\.\d+)?)\s*([A-Za-zβγ]+)$/);
+  if(!m)return NaN;
+  const unit=normalizeRankUnit(m[2]);
+  return parsePower(m[1],unit);
+}
+function formatDuration(sec){
+  if(!Number.isFinite(sec)||sec<0)return "—";
+  const d=Math.floor(sec/86400);sec-=d*86400;
+  const h=Math.floor(sec/3600);sec-=h*3600;
+  const min=Math.floor(sec/60);const s=Math.floor(sec%60);
+  if(d)return `${d}d ${h}h ${min}m`;
+  if(h)return `${h}h ${min}m ${s}s`;
+  if(min)return `${min}m ${s}s`;
+  return `${s}s`;
+}
+document.getElementById("rankCalculate").addEventListener("click",calculateRankUp);
+
+const powerTab=document.getElementById("powerTab");
+const dpsTab=document.getElementById("dpsTab");
+const powerView=document.getElementById("powerView");
+const dpsView=document.getElementById("dpsView");
+function showView(which){
+  const isPower=which==="power";
+  const isDps=which==="dps";
+  const isRank=which==="rank";
+  powerView.style.display=isPower?"block":"none";
+  dpsView.style.display=isDps?"block":"none";
+  rankView.style.display=isRank?"block":"none";
+  powerTab.classList.toggle("active",isPower);
+  dpsTab.classList.toggle("active",isDps);
+  rankTab.classList.toggle("active",isRank);
+  const title=document.getElementById("pageTitle");
+  const tagline=document.getElementById("pageTagline");
+  if(isPower){
+    title.textContent="Power Calculator";
+    tagline.textContent="Find out how much power you need to reach your target power.";
+    document.title="Anime Astral • Power Calculator";
+  }else if(isDps){
+    title.textContent="DPS Calculator";
+    tagline.textContent="Find out how much damage you can deal and what content you can clear.";
+    document.title="Anime Astral • DPS Calculator";
+  }else{
+    title.textContent="Rank Up Calculator";
+    tagline.textContent="Find out how long it will take to reach your target rank.";
+    document.title="Anime Astral • Rank Up Calculator";
+  }
+}
+powerTab.addEventListener("click",()=>showView("power"));
+dpsTab.addEventListener("click",()=>showView("dps"));
+rankTab.addEventListener("click",()=>showView("rank"));
+showView("power");
+
+</script>
+<!-- Cloudflare Web Analytics -->
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3399b1f1543a4c33818a7243ea3fd9cd"}'></script>
+<!-- End Cloudflare Web Analytics -->
+</body>
+</html>
