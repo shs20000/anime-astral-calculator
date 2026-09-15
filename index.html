@@ -1669,7 +1669,7 @@ function calculateDps(){
         result.textContent=ok?"✓ CAN CLEAR":"✕ CANNOT CLEAR";
       }else{
         result.classList.add("unknown");
-        result.textContent=item.required==="Not Possible"?"NOT POSSIBLE":"COMPARE N/A";
+        result.textContent=item.required==="Not Possible"?"NOT POSSIBLE":"UNKNOWN";
       }
       row.append(stage,current,required,result);card.appendChild(row);
     });
