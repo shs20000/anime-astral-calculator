@@ -992,7 +992,7 @@ const units=[
 // Number Increase System: each tier is 1000× the previous tier.
 for(let i=0;i<26;i++) units.push(["β"+String.fromCharCode(65+i),1e36*Math.pow(1000,i)]);
 for(let i=0;i<26;i++) units.push(["y"+String.fromCharCode(65+i),1e114*Math.pow(1000,i)]);
-for(let i=0;i<26;i++) units.push(["d"+String.fromCharCode(65+i),1e192*Math.pow(1000,i)]);
+for(let i=0;i<26;i++) units.push(["δ"+String.fromCharCode(65+i),1e192*Math.pow(1000,i)]);
 
 function fillUnits(id){
  const s=document.getElementById(id);
@@ -1001,7 +1001,7 @@ function fillUnits(id){
    ["Base Units",units.slice(0,11)],
    ["β Units",units.slice(11,37)],
    ["y Units",units.slice(37,63)],
-   ["d Units",units.slice(63,89)]
+   ["δ Units",units.slice(63,89)]
  ];
  groups.forEach(([label,items])=>{
    const g=document.createElement("optgroup");
@@ -1468,76 +1468,76 @@ Zaban Rush|Wave 15|15.24 yS
 Zaban Rush|Wave 20|57.78 yU
 Zaban Rush|Wave 25|224.44 yW
 Zaban Rush|Wave 30|866.67 yY
-Zaban Rush|Wave 35|3.34 dB
-Zaban Rush|Wave 40|12.84 dD
-Zaban Rush|Wave 45|488 dF
-Zaban Rush|Wave 50|19.55 dH
+Zaban Rush|Wave 35|3.34 δB
+Zaban Rush|Wave 40|12.84 δD
+Zaban Rush|Wave 45|488 δF
+Zaban Rush|Wave 50|19.55 δH
 Owl Suppression|Wave 5|7.33 yT
 Owl Suppression|Wave 10|4.67 yV
 Owl Suppression|Wave 15|3.03 yX
 Owl Suppression|Wave 20|1.94 yZ
-Owl Suppression|Wave 25|1.24 dB
-Owl Suppression|Wave 30|797 dC
-Owl Suppression|Wave 35|510.7 dE
-Owl Suppression|Wave 40|327.3 dG
-Owl Suppression|Wave 45|209.7 dI
-Owl Suppression|Wave 50|134.33 dK
-Owl Suppression|Wave 55|86 dM
-Sanctuary of the Past|Wave 5|62.67 dA
-Sanctuary of the Past|Wave 10|467 dB
-Sanctuary of the Past|Wave 15|3.33 dD
-Sanctuary of the Past|Wave 20|25.67 dE
-Sanctuary of the Past|Wave 25|193.67 dF
-Sanctuary of the Past|Wave 30|1.44 dH
-Sanctuary of the Past|Wave 35|10.67 dI
-Sanctuary of the Past|Wave 40|80.33 dJ
-Sanctuary of the Past|Wave 45|599.33 dK
-Sanctuary of the Past|Wave 50|4.33 dM
-Sanctuary of the Present|Wave 5|24.33 dB
-Sanctuary of the Present|Wave 10|5 dD
-Sanctuary of the Present|Wave 15|1.13 dF
-Sanctuary of the Present|Wave 20|242.67 dG
-Sanctuary of the Present|Wave 25|52 dI
-Sanctuary of the Present|Wave 30|11 dK
-Sanctuary of the Present|Wave 35|2.39 dM
-Sanctuary of the Present|Wave 40|51.47 dN
-Sanctuary of the Present|Wave 45|11.03 dP
-Sanctuary of the Present|Wave 50|2.36 dR
-Sanctuary of the Future|Wave 5|27 dD
-Sanctuary of the Future|Wave 10|3.33 dG
-Sanctuary of the Future|Wave 15|411.67 dI
-Sanctuary of the Future|Wave 20|50.67 dL
-Sanctuary of the Future|Wave 25|60 dN
-Sanctuary of the Future|Wave 30|76.83 dQ
-Sanctuary of the Future|Wave 35|9.43 dT
+Owl Suppression|Wave 25|1.24 δB
+Owl Suppression|Wave 30|797 δC
+Owl Suppression|Wave 35|510.7 δE
+Owl Suppression|Wave 40|327.3 δG
+Owl Suppression|Wave 45|209.7 δI
+Owl Suppression|Wave 50|134.33 δK
+Owl Suppression|Wave 55|86 δM
+Sanctuary of the Past|Wave 5|62.67 δA
+Sanctuary of the Past|Wave 10|467 δB
+Sanctuary of the Past|Wave 15|3.33 δD
+Sanctuary of the Past|Wave 20|25.67 δE
+Sanctuary of the Past|Wave 25|193.67 δF
+Sanctuary of the Past|Wave 30|1.44 δH
+Sanctuary of the Past|Wave 35|10.67 δI
+Sanctuary of the Past|Wave 40|80.33 δJ
+Sanctuary of the Past|Wave 45|599.33 δK
+Sanctuary of the Past|Wave 50|4.33 δM
+Sanctuary of the Present|Wave 5|24.33 δB
+Sanctuary of the Present|Wave 10|5 δD
+Sanctuary of the Present|Wave 15|1.13 δF
+Sanctuary of the Present|Wave 20|242.67 δG
+Sanctuary of the Present|Wave 25|52 δI
+Sanctuary of the Present|Wave 30|11 δK
+Sanctuary of the Present|Wave 35|2.39 δM
+Sanctuary of the Present|Wave 40|51.47 δN
+Sanctuary of the Present|Wave 45|11.03 δP
+Sanctuary of the Present|Wave 50|2.36 δR
+Sanctuary of the Future|Wave 5|27 δD
+Sanctuary of the Future|Wave 10|3.33 δG
+Sanctuary of the Future|Wave 15|411.67 δI
+Sanctuary of the Future|Wave 20|50.67 δL
+Sanctuary of the Future|Wave 25|60 δN
+Sanctuary of the Future|Wave 30|76.83 δQ
+Sanctuary of the Future|Wave 35|9.43 δT
 Sanctuary of the Future|Wave 40|???
 Sanctuary of the Future|Wave 45|???
 Sanctuary of the Future|Wave 50|???
-Ninja Defense|Wave 5|33.33 dG
-Ninja Defense|Wave 10|4.83 dI
-Ninja Defense|Wave 15|67.93 dJ
-Ninja Defense|Wave 20|93.33 dK
-Ninja Defense|Wave 25|13.33 dM
-Ninja Defense|Wave 30|1.86 dO
-Ninja Defense|Wave 35|2.6 dP
-Ninja Defense|Wave 40|36.7 dQ
-Ninja Defense|Wave 45|50 dR
-Ninja Defense|Wave 50|7.2 dT
+Ninja Defense|Wave 5|33.33 δG
+Ninja Defense|Wave 10|4.83 δI
+Ninja Defense|Wave 15|67.93 δJ
+Ninja Defense|Wave 20|93.33 δK
+Ninja Defense|Wave 25|13.33 δM
+Ninja Defense|Wave 30|1.86 δO
+Ninja Defense|Wave 35|2.6 δP
+Ninja Defense|Wave 40|36.7 δQ
+Ninja Defense|Wave 45|50 δR
+Ninja Defense|Wave 50|7.2 δT
 Time Trial Insane|Wave 5|45.33 yP
 Time Trial Insane|Wave 10|2.16 yU
 Time Trial Insane|Wave 15|10.18 yY
-Time Trial Insane|Wave 20|48 dC
-Time Trial Insane|Wave 25|22 dG
-Time Trial Insane|Wave 30|106.67 dK
-Time Trial Insane|Wave 35|5.02 dP
-Time Trial Insane|Wave 40|23.69 dT
+Time Trial Insane|Wave 20|48 δC
+Time Trial Insane|Wave 25|22 δG
+Time Trial Insane|Wave 30|106.67 δK
+Time Trial Insane|Wave 35|5.02 δP
+Time Trial Insane|Wave 40|23.69 δT
 Time Trial Insane|Wave 45|???
 Time Trial Insane|Wave 50|???
-Ninja Exam|Genin to Chunnin|1 dG
-Ninja Exam|Chunnin to Tokubetsu Jonin|33.33 dJ
-Ninja Exam|Tokebetsu Jonin to Jonin|63.33 dN
-Ninja Exam|Jonin to Sannin|56.67 dR
-Ninja Exam|Sannin to Kage|5 dU
+Ninja Exam|Genin to Chunnin|1 δG
+Ninja Exam|Chunnin to Tokubetsu Jonin|33.33 δJ
+Ninja Exam|Tokebetsu Jonin to Jonin|63.33 δN
+Ninja Exam|Jonin to Sannin|56.67 δR
+Ninja Exam|Sannin to Kage|5 δU
 Ninja Exam|Kage to Sennin|???`.trim().split("\n").map(line=>line.split("|"));
 const DPS_DATA={};
 DPS_ROWS.forEach(([mode,stage,required,note])=>{
@@ -1669,7 +1669,7 @@ function calculateDps(){
         result.textContent=ok?"✓ CAN CLEAR":"✕ CANNOT CLEAR";
       }else{
         result.classList.add("unknown");
-        result.textContent=item.required==="Not Possible"?"NOT POSSIBLE":"UNKNOWN";
+        result.textContent=item.required==="Not Possible"?"NOT POSSIBLE":"COMPARE N/A";
       }
       row.append(stage,current,required,result);card.appendChild(row);
     });
@@ -1818,7 +1818,7 @@ const RANK_ROWS=`1|1.8x|15k
 117|27.8Oc|22.7yV
 118|48.8Oc|4.2yW
 119|85.4Oc|862.8yW
-120|149.4Oc|???`.trim().split("\n").map(x=>{
+120|Unknown|Unknown`.trim().split("\n").map(x=>{
   const [rank,multiplier,requirement]=x.split("|");
   return {rank:Number(rank),multiplier,requirement};
 });
@@ -1828,7 +1828,7 @@ const rankCurrent=document.getElementById("rankCurrent");
 const rankTarget=document.getElementById("rankTarget");
 const rankPpcUnit=document.getElementById("rankPpcUnit");
 RANK_ROWS.forEach(r=>{
-  const unknownRank = r.rank >= 71 && r.rank <= 75;
+  const unknownRank = (r.rank >= 71 && r.rank <= 75) || r.rank === 120;
   const label = unknownRank ? `Rank ${r.rank} — Unknown` : `Rank ${r.rank}`;
 
   const a=document.createElement("option");
@@ -1933,7 +1933,7 @@ function calculateRankUp(){
   if(!Number.isFinite(currentPower)||currentPower<0){dpsError(currentPowerEl,"Enter your current power (0 or greater).");return}
   if(target<=current){dpsError(rankTarget,"Target Rank must be higher than Current Rank.");return}
   if((current>=71&&current<=75)||(target>=71&&target<=75)){
-    dpsError((current>=71&&current<=75)?rankCurrent:rankTarget,"Ranks 71–75 are marked Unknown and cannot be selected.");
+    dpsError((current>=71&&current<=75)?rankCurrent:rankTarget,"Ranks 71–75 and Rank 120 are marked Unknown and cannot be selected.");
     return;
   }
 
@@ -2119,7 +2119,7 @@ showView("power");
 
 </script>
 <!-- Cloudflare Web Analytics -->
-<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6a8af65e06ed40b1a0b640468e4cd8ce"}'></script>
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3399b1f1543a4c33818a7243ea3fd9cd"}'></script>
 <!-- End Cloudflare Web Analytics -->
 </body>
 </html>
