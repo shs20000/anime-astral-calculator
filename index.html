@@ -801,7 +801,7 @@ footer .domain{margin-top:7px;padding:7px 13px;border-color:#292532;color:#9a92a
 .tool-row{padding:11px 14px;border-bottom:1px solid #211e2d;font-size:12px}
 .tool-row:last-child{border-bottom:0}.tool-row strong{color:#f1ebf8}.tool-row span{color:#aaa1b5}
 .tool-list{display:grid;gap:8px;margin-top:14px}.tool-list-item{padding:12px 13px;border:1px solid #29253a;border-radius:13px;background:#080910;color:#bcb4c7;font-size:12px;line-height:1.45}.tool-list-item b{color:#eee8f4}
-.pet-lookup{margin-top:18px}.pet-lookup select{font-size:14px}
+.pet-lookup{margin-top:18px}.pet-lookup select{font-size:14px}.pet-lookup-result{margin-top:12px;padding:15px 17px;border:1px solid #4c3281;border-radius:14px;background:linear-gradient(180deg,rgba(25,17,42,.92),rgba(12,9,20,.96));color:#f3edff;font-size:16px;font-weight:800;line-height:1.45;letter-spacing:.01em;box-shadow:0 0 18px rgba(125,70,220,.08)}.pet-lookup-result::before{content:"Selected Pet  •  ";color:#a990e4;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
 .promo-buffs{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}.promo-buff{border:1px solid #29273a;border-radius:13px;padding:12px;background:#080910}.promo-buff small{display:block;color:#777082;font-size:10px;margin-bottom:5px}.promo-buff strong{font-size:15px}
 @media(max-width:720px){.tool-grid{grid-template-columns:1fr}.tool-card{padding:17px}.promo-buffs{grid-template-columns:1fr 1fr}.tool-table-head{display:none}.tool-row{grid-template-columns:1fr 1fr;gap:7px}.tool-row span:nth-child(2)::before{content:'New: ';color:#625a6d}.tool-row span:nth-child(3)::before{content:'Needed: ';color:#625a6d}}
 @media(max-width:420px){.promo-buffs{grid-template-columns:1fr}}
@@ -1293,7 +1293,7 @@ footer{font-size:12px}
     <div class="pet-passive-note">💡 <b>Pet Passives:</b> Pet passives can be obtained from <span class="world-word">World 9</span>. <span class="divine-word">Divine Predator</span> is the <span class="divine-word">Divine</span> rarity pet passive from there and increases pet power by <span class="divine-word">100%</span> when active.</div>
     <button class="calculate" id="petCalculate" type="button">Calculate Pet Value</button>
     <div class="tool-results" aria-live="polite"><div class="eyebrow">RESULT</div><div class="tool-big" id="petResult">—</div><div class="tool-stat-grid"><div class="tool-stat"><small>Base Scaling Value</small><strong id="petBaseResult">—</strong></div><div class="tool-stat"><small>Final Multiplier</small><strong id="petFinalResult">—</strong></div></div></div>
-    <div class="pet-lookup"><div class="section-title">PET LOOKUP</div><select id="petLookup"><option value="">Select a known pet…</option></select><div class="more-tools-note" id="petLookupResult">Select a pet to see its documented multiplier.</div></div>
+    <div class="pet-lookup"><div class="section-title">PET LOOKUP</div><select id="petLookup"><option value="">Select a known pet…</option></select><div class="pet-lookup-result" id="petLookupResult">Select a pet to see its documented multiplier.</div></div>
     <div class="more-tools-note">Scaling pets are based on your strongest normal pet. Percentage pets cannot be renamed. Shiny pets use 1.5× their normal version.</div>
     <div class="tool-how-works">
       <div class="section-title tool-how-title"><span class="how-works-icon">📖</span>HOW IT WORKS</div>
@@ -1410,9 +1410,11 @@ function fillUnits(id){
  });
 }
 ["currentUnit","targetUnit","ppcUnit","dpsPowerUnit","damageMultiplierUnit","rankPpcUnit","rankCurrentPowerUnit"].forEach(fillUnits);
+fillUnits("petBestUnit");
 document.getElementById("currentUnit").value="K";
 document.getElementById("targetUnit").value="K";
 document.getElementById("ppcUnit").value="K";
+document.getElementById("petBestUnit").value="K";
 
 function parsePower(value,unit){
  const n=Number(String(value).replace(/,/g,"").trim());
@@ -2502,6 +2504,71 @@ if(promoCurrent){for(let i=0;i<=42;i++){for(const s of [promoCurrent,promoTarget
    const rows=document.getElementById('promoRows');rows.innerHTML='';
    for(let r=c+1;r<=t;r++){const div=document.createElement('div');div.className='tool-row';const s=promotionData.stats[String(r)];const ms=promotionData.missions[String(r)]||[];div.innerHTML=`<strong>Rank ${r}</strong><span>${s&&Object.keys(s).length?`Power ${s.power??'—'}% • Dmg ${s.damage??'—'}% • Yen ${s.yen??'—'}% • Luck ${s.luck??'—'} • XP ${s.xp??'—'}% • Drop ${s.drop??'—'} • Crit ${s.critChance??'—'}% • Crit Dmg ${s.critDamage??'—'}% • Shiny ${s.shiny??'—'}%`:'Stats not listed'}</span><span>${ms.length?ms.length+' missions':'—'}</span>`;rows.appendChild(div)}
  });
+}
+
+
+// Pet Calculator
+const petBestInput=document.getElementById("petBest");
+const petBestUnit=document.getElementById("petBestUnit");
+const petPercentInput=document.getElementById("petPercent");
+const petShiny=document.getElementById("petShiny");
+const petDivinePredator=document.getElementById("petDivinePredator");
+const petCalculate=document.getElementById("petCalculate");
+const petLookup=document.getElementById("petLookup");
+const petLookupResult=document.getElementById("petLookupResult");
+
+function petUnitForValue(value){
+  let best=units[0];
+  for(const u of units){ if(value>=u[1]) best=u; else break; }
+  return best;
+}
+function petSetLookupValue(value){
+  const [name,mult]=value.split("|");
+  const n=Number(mult);
+  if(!Number.isFinite(n)) return;
+  const u=petUnitForValue(n);
+  petBestInput.value=(n/u[1]).toString();
+  petBestUnit.value=u[0];
+  petLookupResult.textContent=`${name} • ${formatPower(n)}`;
+}
+
+if(petLookup && petData && Array.isArray(petData.pets)){
+  const grouped={};
+  petData.pets.forEach(pet=>{
+    if(!grouped[pet.world]) grouped[pet.world]=[];
+    grouped[pet.world].push(pet);
+  });
+  Object.entries(grouped).forEach(([world,pets])=>{
+    const group=document.createElement("optgroup");
+    group.label=world;
+    pets.forEach(pet=>{
+      const o=document.createElement("option");
+      o.value=`${pet.name}|${pet.mult}`;
+      o.textContent=`${pet.name} • ${pet.rarity}`;
+      group.appendChild(o);
+    });
+    petLookup.appendChild(group);
+  });
+  petLookup.addEventListener("change",()=>{
+    if(!petLookup.value){ petLookupResult.textContent="Select a pet to see its documented multiplier."; return; }
+    petSetLookupValue(petLookup.value);
+  });
+}
+
+if(petCalculate){
+  petCalculate.addEventListener("click",()=>{
+    const best=parsePower(petBestInput.value,petBestUnit.value);
+    const pct=Number(String(petPercentInput.value).replace(/,/g,"").trim());
+    if(!Number.isFinite(best) || best<=0){ petBestInput.focus(); return; }
+    if(!Number.isFinite(pct) || pct<=0){ petPercentInput.focus(); return; }
+    let base=best*(pct/100);
+    let final=base;
+    if(petShiny && petShiny.checked) final*=1.5;
+    if(petDivinePredator && petDivinePredator.checked) final*=2;
+    document.getElementById("petBaseResult").textContent=formatPower(base);
+    document.getElementById("petFinalResult").textContent=formatPower(final);
+    document.getElementById("petResult").textContent=formatPower(final);
+  });
 }
 
 const petTab=document.getElementById('petTab'),promotionTab=document.getElementById('promotionTab');
