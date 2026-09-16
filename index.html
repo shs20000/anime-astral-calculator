@@ -587,6 +587,295 @@ footer .domain{display:inline-block;margin-top:9px;padding:9px 18px;border:1px s
 #rankView .rank-result-card{background:linear-gradient(180deg,#1b1430 0%,#120c1f 100%);}
 #rankView .rank-stat-card{background:#0a0910;}
 #rankView .rank-progress-track{background:#0a0910;}
+
+
+/* =========================================================
+   V70 VISUAL POLISH — cleaner, tighter, more premium UI
+   ========================================================= */
+:root{
+  --bg:#05040a;
+  --panel:#0d0b15;
+  --panel2:#121020;
+  --border:#29243a;
+  --border-strong:#3b3157;
+  --purple:#8c5cf5;
+  --purple2:#c0a0ff;
+  --blue:#6674f2;
+  --text:#f8f6fc;
+  --muted:#91899e;
+  --muted2:#6f687d;
+}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(700px 420px at 50% -5%,rgba(111,64,225,.24),transparent 68%),
+    radial-gradient(900px 500px at 50% 35%,rgba(64,42,135,.08),transparent 72%),
+    linear-gradient(180deg,#08070d 0%,#05040a 52%,#030308 100%);
+  letter-spacing:.005em;
+}
+body:before{opacity:.22}
+.page{width:min(1120px,calc(100% - 32px));padding:24px 0 64px}
+header{padding:2px 8px 24px}
+header:before{top:-50px;width:min(760px,96vw);height:300px;background:radial-gradient(ellipse at center,rgba(115,67,238,.24),rgba(73,35,155,.08) 42%,transparent 72%)}
+.game-logo{width:min(320px,70vw);margin-bottom:10px;filter:drop-shadow(0 0 28px rgba(111,69,232,.30))}
+.brand{padding:7px 13px;border-color:#4a3573;background:#140d22;color:#bca0ff;font-size:10px;letter-spacing:.16em}
+h1{margin:14px 0 7px;font-size:clamp(38px,5.4vw,58px);letter-spacing:-.055em;text-shadow:0 10px 40px rgba(0,0,0,.5)}
+.tagline{font-size:14px;color:#8e879b}
+.tabs{gap:7px;margin:0 0 14px;padding:5px;border:1px solid #211d2d;border-radius:16px;background:#0b0911;box-shadow:0 12px 35px rgba(0,0,0,.22)}
+.tab{height:42px;padding:0 18px;border:0;border-radius:11px;color:#8f87a1;background:transparent;font-size:13px;font-weight:850;transition:background .18s ease,color .18s ease,transform .18s ease}
+.tab:hover{color:#e9e2f3;background:#141020}
+.tab.active{color:#fff;background:linear-gradient(135deg,#8750ee,#626fee);box-shadow:0 7px 20px rgba(106,71,226,.25),inset 0 1px 0 rgba(255,255,255,.16)}
+.card,.help{border-color:#272332;border-radius:20px;box-shadow:0 28px 80px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.018)}
+.card{padding:24px;background:linear-gradient(180deg,#0f0d18 0%,#0a0911 100%);position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;left:24px;right:24px;top:0;height:1px;background:linear-gradient(90deg,transparent,#7250b0,transparent);opacity:.55}
+.section-title{margin:0 0 18px;color:#a990e4;font-size:11px;font-weight:950;letter-spacing:.15em;text-transform:uppercase}
+.power-grid,.dps-grid{gap:14px}
+.field label{margin:0 0 7px;color:#a7a0b1;font-size:11px;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
+.input-row{grid-template-columns:minmax(0,1fr) 118px;gap:7px}
+input,select,.unit-static{height:50px;border-color:#292633;border-radius:12px;background:#08080e;box-shadow:inset 0 1px 0 rgba(255,255,255,.018);transition:border-color .18s ease,box-shadow .18s ease,background .18s ease}
+input:hover,select:hover{border-color:#383147}
+input:focus,select:focus{border-color:#7651bf;background:#0a0911;box-shadow:0 0 0 3px rgba(139,85,245,.09),0 8px 24px rgba(0,0,0,.16)}
+.metrics{grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
+.metric{min-height:78px;border-color:#25222f;border-radius:13px;background:#08080d;padding:10px}
+.metric span{font-size:10px;color:#716a7c;letter-spacing:.04em}
+.metric strong{margin-top:6px;font-size:14px;color:#eeeaf4}
+.boost-section{margin-top:22px}
+.boost-heading{margin:0 0 11px;font-size:14px;color:#b399e7;letter-spacing:.02em}
+.bolt{font-size:19px}
+.boosts{gap:9px}
+.boost{min-height:82px;padding:13px 14px;grid-template-columns:31px 1fr auto;gap:10px;border-radius:13px;border-color:#292532;background:linear-gradient(135deg,#12101b,#0c0b12);transition:transform .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease}
+.boost:hover{transform:translateY(-2px);border-color:#4c3b69;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.boost:has(input:checked){border-color:#66499a;background:linear-gradient(135deg,#191229,#0e0b17);box-shadow:inset 0 0 30px rgba(123,74,238,.05)}
+.check{width:25px;height:25px;border-radius:7px}
+.boost-name{font-size:13px;margin-bottom:3px}
+.boost-desc{font-size:11px;color:#7f778c;line-height:1.35}
+.boost-mult{font-size:10px;color:#a989e6}
+.primordial-note,.dps-info,.rank-calc-note{border-color:#292333;border-radius:11px;background:#0d0b14;color:#777082;font-size:11px}
+.calculate{height:52px;margin-top:16px;border-radius:13px;font-size:15px;letter-spacing:.01em;background:linear-gradient(105deg,#8a50ef 0%,#626fee 100%);box-shadow:0 10px 25px rgba(103,70,220,.20),inset 0 1px 0 rgba(255,255,255,.18);position:relative;overflow:hidden;transition:transform .18s ease,filter .18s ease,box-shadow .18s ease}
+.calculate:before{content:"";position:absolute;top:0;left:-30%;width:22%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-20deg);transition:left .55s ease}
+.calculate:hover{transform:translateY(-1px);filter:brightness(1.06);box-shadow:0 14px 30px rgba(103,70,220,.28),inset 0 1px 0 rgba(255,255,255,.2)}
+.calculate:hover:before{left:115%}
+.result{margin-top:14px}
+.result-box,.dps-result,#rankView .rank-result{border-color:#493273;border-radius:16px;background:linear-gradient(135deg,#171125,#0d0b15);box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+.result-box{padding:18px}
+.eyebrow{font-size:9px;letter-spacing:.16em;color:#9b82d3}
+.big,.dps-big{font-size:clamp(32px,5vw,46px);margin:5px 0 10px}
+.progress-track{height:9px;margin:6px 0 10px;border:1px solid #252131;background:#07070c}
+.progress-fill{background:linear-gradient(90deg,#8950ef,#6270ef);box-shadow:0 0 12px rgba(119,77,236,.3)}
+.result-grid{gap:8px;margin-top:10px}
+.result-stat,.dps-stat{border-color:#25222f;border-radius:12px;background:#08080d;padding:11px 12px}
+.result-stat small,.dps-stat small{font-size:10px;color:#70697b}
+.result-stat strong,.dps-stat strong{font-size:14px}
+.help{margin-top:14px;padding:18px;background:#0d0b14;border-radius:16px}
+.help h2{margin:0 0 11px;font-size:14px;color:#aa92dd}
+.help ol{font-size:12px;line-height:1.5;color:#a49caf}
+.help li{margin:4px 0}
+.tip{margin-top:12px;padding-top:11px;font-size:11px;color:#9b7ed1}
+.discord-join-button{top:20px;right:24px;min-height:38px;padding:0 13px;border-radius:11px;font-size:11px;box-shadow:0 8px 22px rgba(91,54,190,.20)}
+.dps-result{padding:20px;margin-top:16px}
+.dps-status{border-radius:11px;padding:12px 14px;margin-top:12px;font-size:12px}
+.dps-status.can{background:#24183b;border-color:#4a3475}
+.dps-info{margin-top:12px;padding:10px 12px}
+.dps-summary-grid{gap:9px;margin-top:12px}
+.dps-summary-card{border-color:#33294a;border-radius:13px;padding:14px;background:linear-gradient(135deg,#1b122d,#0d0b15);min-height:88px}
+.dps-summary-card small{font-size:9px;color:#817493;letter-spacing:.13em}
+.dps-summary-card strong{font-size:19px;margin:5px 0}
+.dps-summary-card span{font-size:10px;color:#777082}
+.dps-breakdown,.rank-breakdown{border-color:#292333;border-radius:15px;background:#0b0911;box-shadow:none}
+.dps-breakdown{margin-top:12px;padding:16px}
+.dps-formula{font-size:11px;color:#aaa1b5;padding:9px 11px;border:1px solid #262230;border-radius:10px;background:#08070d;overflow:auto}
+.dps-breakdown-grid{gap:8px;margin-top:8px}
+.dps-breakdown-grid>div{border:1px solid #25212e;border-radius:10px;background:#08080d;padding:10px 11px}
+.dps-breakdown-grid small{font-size:9px;color:#70697b}
+.dps-breakdown-grid strong{font-size:13px}
+.dps-quick-jump{margin-top:12px;padding:10px 12px;border-color:#2c2440;border-radius:12px;background:#100d18}
+.dps-quick-icon{width:27px;height:27px;border-radius:8px;font-size:14px}
+#dpsModeJump{min-height:38px;background:#08080d;border-color:#2a2633;font-size:12px}
+.dps-results-heading{margin-top:20px}
+.dps-results-sub{font-size:11px;color:#756e80}
+.dps-mode-card{margin-top:10px;border-color:#292532;border-radius:14px;background:#09080e;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.14)}
+.dps-mode-head{padding:12px 14px;background:linear-gradient(90deg,#171025,#0e0c15);border-bottom:1px solid #272231}
+.dps-mode-name{font-size:13px;font-weight:900}
+.dps-mode-summary{font-size:10px;color:#786f83}
+.dps-headers,.dps-stage-row{grid-template-columns:1.05fr 1fr 1fr 1.05fr;gap:10px;padding-left:14px;padding-right:14px}
+.dps-headers{padding-top:8px;padding-bottom:8px;font-size:9px;color:#6f6879;background:#07070b;border-bottom:1px solid #211e2a}
+.dps-stage-row{padding-top:10px;padding-bottom:10px;border-bottom:1px solid #1c1923;font-size:10px}
+.dps-stage-row:last-child{border-bottom:0}
+.dps-clear{border-radius:7px;padding:5px 7px;font-size:9px;font-weight:900;text-align:center}
+.dps-clear.yes{background:#25183b;border-color:#4c3572;color:#cbb8ee}
+.dps-clear.no{background:#2a1421;border-color:#4a2437;color:#d7a9bc}
+.dps-clear.unknown{background:#1b1820;color:#98909e}
+#rankView .rank-result{margin-top:16px;padding:24px 20px}
+#rankView .rank-time-label{font-size:10px;color:#8e849d;letter-spacing:.13em;text-transform:uppercase}
+#rankView .rank-time{font-size:clamp(38px,6vw,56px);margin-top:4px}
+#rankView .rank-time-sub{font-size:11px;color:#82798c}
+#rankView .rank-progress-block{margin-top:16px}
+#rankView .rank-progress-title{font-size:10px;color:#777080}
+#rankView .rank-progress-title strong{font-size:12px}
+#rankView .rank-stat-grid{gap:8px;margin-top:14px}
+#rankView .rank-stat-card,#rankView .rank-multiplier-card{border-color:#25222f;border-radius:12px;background:#08080d;padding:12px 13px}
+#rankView .rank-stat-card small,#rankView .rank-multiplier-card small{font-size:9px;color:#71697b}
+#rankView .rank-stat-card strong,#rankView .rank-multiplier-card strong{font-size:14px}
+#rankView .rank-multiplier-grid{gap:8px;margin-top:8px}
+#rankView .rank-multiplier-card{background:linear-gradient(135deg,#151021,#0b0910);border-color:#33294a}
+#rankView .rank-summary-grid{gap:8px;margin-top:8px}
+#rankView .rank-summary-grid .dps-summary-card{min-height:82px}
+#rankView .rank-breakdown{margin-top:12px;padding:14px}
+#rankView .rank-table-head,#rankView .rank-row{grid-template-columns:1.1fr 1fr 1.15fr;gap:12px}
+#rankView .rank-table-head{padding:9px 10px;font-size:8px}
+#rankView .rank-row{padding:10px 8px;font-size:10px}
+#rankView .rank-row strong{font-size:10px}
+#rankView .rank-row span{font-size:10px}
+#rankView .rank-row span:nth-child(3){color:#d2c7dc}
+#rankView .rank-how-works{margin-top:12px;padding:14px;border-color:#292333;border-radius:14px;background:#0b0911}
+#rankView .rank-how-grid{gap:8px}
+#rankView .rank-how-grid>div{padding:11px 12px;border-color:#24202d;border-radius:10px;background:#08080d}
+#rankView .rank-how-grid b{font-size:11px;margin-bottom:4px}
+#rankView .rank-how-grid span{font-size:10px}
+#rankView .rank-section-divider{margin:22px 0 20px;background:linear-gradient(90deg,transparent,#34294d 15%,#34294d 85%,transparent)}
+#rankView .rank-section-heading{margin-bottom:15px;font-size:11px}
+#rankView .rank-section-icon{width:22px;height:22px;font-size:17px}
+#rankView .rank-options{margin-top:22px;margin-bottom:20px}
+#rankView .rank-actions{gap:8px}
+#rankView .rank-reset{height:52px;border-radius:13px;background:#0d0b14;border-color:#302744;font-size:13px}
+footer{margin-top:18px;color:#514b5c;font-size:10px}
+footer .domain{margin-top:7px;padding:7px 13px;border-color:#292532;color:#9a92a5;background:#09080e}
+@media(max-width:720px){
+  .page{width:calc(100% - 18px);padding-top:10px}
+  header{padding-bottom:18px}
+  .discord-join-button{top:9px;right:9px}
+  .game-logo{width:min(280px,72vw)}
+  .tabs{overflow-x:auto;justify-content:flex-start;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;padding:0 14px}
+  .card{padding:17px}
+  .card:before{left:17px;right:17px}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .boosts{grid-template-columns:1fr}
+  .dps-grid{grid-template-columns:1fr}
+  .dps-full{grid-column:auto}
+  .dps-headers{display:none}
+  .dps-stage-row{grid-template-columns:1fr 1fr;gap:6px}
+  .dps-stage{grid-column:1/-1;font-weight:800}
+  .dps-current:before{content:'Current: ';color:#5f586b}
+  .dps-required:before{content:'Required: ';color:#5f586b}
+  #rankView .rank-table-head{display:none}
+  #rankView .rank-row{grid-template-columns:1fr 1fr;gap:5px;padding:10px 6px}
+  #rankView .rank-row strong{grid-column:1/-1}
+  #rankView .rank-row span:nth-child(2):before{content:'Multiplier: ';color:#5e5769;font-weight:600}
+  #rankView .rank-row span:nth-child(3):before{content:'Power: ';color:#5e5769;font-weight:600}
+}
+@media(max-width:430px){
+  .page{width:calc(100% - 12px)}
+  .input-row{grid-template-columns:minmax(0,1fr) 82px}
+  h1{font-size:37px}
+  .tagline{font-size:12px}
+  .metric strong{font-size:13px}
+  .discord-join-button span{display:none}
+  .discord-join-button{width:36px;min-height:36px;padding:0;border-radius:50%}
+}
+</style>
+
+<style id="v71-readability-polish">
+/* v71 — readability pass: same layout, larger and clearer typography */
+.tagline{font-size:17px;line-height:1.6;color:#b9b2c6}
+.section-title{font-size:18px;letter-spacing:.075em}
+label{font-size:15px;line-height:1.35;color:#bbb4c8}
+.eyebrow{font-size:13px;letter-spacing:.11em}
+.result-box p{font-size:15px;line-height:1.6;color:#bbb3c8}
+.progress-meta{font-size:12px}
+.progress-meta strong{font-size:14px}
+.metric span,.result-stat span{font-size:13px;line-height:1.4}
+.metric strong,.result-stat strong{font-size:18px}
+.boost-desc{font-size:14px;line-height:1.45;color:#b0a8bb}
+.boost-mult{font-size:13px}
+.help ol{font-size:15px;line-height:1.7}
+.tip{font-size:14px;line-height:1.55}
+footer{font-size:12px}
+.dps-status{font-size:15px;line-height:1.6}
+.dps-info{font-size:14px;line-height:1.6;color:#aaa1b5}
+.dps-select-help{font-size:13px;line-height:1.45}
+.dps-mode-name{font-size:16px}
+.dps-mode-summary{font-size:13px}
+.dps-stage-row{font-size:14px;line-height:1.4}
+.dps-clear{font-size:11px}
+.dps-headers{font-size:11px}
+.dps-current{font-size:13px}
+.dps-results-sub{font-size:14px;line-height:1.5}
+.dps-summary-card small{font-size:11px}
+.dps-summary-card strong{font-size:22px}
+.dps-summary-card span{font-size:13px;line-height:1.45}
+.dps-formula{font-size:14px;line-height:1.55}
+.dps-breakdown-grid small{font-size:11px}
+.dps-breakdown-grid strong{font-size:15px}
+.dps-quick-copy strong{font-size:14px}
+.dps-quick-copy small{font-size:12px}
+.rank-row{font-size:14px}
+.rank-row strong{font-size:14px}
+#rankView .rank-time-label{font-size:16px}
+#rankView .rank-time-sub{font-size:15px;line-height:1.5}
+#rankView .rank-progress-title{font-size:14px}
+#rankView .rank-progress-title strong{font-size:15px}
+#rankView .rank-progress-labels{font-size:13px}
+#rankView .rank-stat-card small,#rankView .rank-multiplier-card small{font-size:13px}
+#rankView .rank-stat-card strong,#rankView .rank-multiplier-card strong{font-size:19px}
+@media(max-width:640px){
+  .tagline{font-size:16px}
+  .section-title{font-size:17px}
+  label{font-size:15px}
+  .metric span{font-size:12px}
+  .metric strong{font-size:15px}
+  .dps-stage-row{font-size:13px}
+  .dps-headers{font-size:10px}
+  .rank-row,.rank-row strong{font-size:13px}
+}
+
+/* v72 — unify Power + DPS How It Works with the cleaner Rank Up presentation */
+.how-works{
+  margin-top:18px;padding:20px;border:1px solid #3b2d58;border-radius:18px;
+  background:#0e0a15;
+}
+.how-works-title{display:flex;align-items:center;gap:8px;margin-bottom:15px}
+.how-works-icon{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;font-size:20px;line-height:1}
+.how-works-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.how-works-grid>div{padding:13px 14px;border:1px solid #29243a;border-radius:13px;background:#090810}
+.how-works-grid b{display:block;color:#eee8f4;font-size:13px;margin-bottom:5px}
+.how-works-grid span{display:block;color:#8f879b;font-size:12px;line-height:1.45}
+.how-works-tip{margin-top:12px;padding:12px 14px;border-top:1px solid #302544;color:#a990d5;font-size:13px;line-height:1.5}
+.how-works-tip b{color:#d5c1ff}
+@media(max-width:720px){
+  .how-works{margin-top:14px;padding:14px;border-color:#292333;border-radius:14px;background:#0b0911}
+  .how-works-grid{grid-template-columns:1fr;gap:8px}
+  .how-works-grid>div{padding:11px 12px;border-color:#24202d;border-radius:10px;background:#08080d}
+  .how-works-grid b{font-size:13px;margin-bottom:4px}
+  .how-works-grid span{font-size:12px;line-height:1.5}
+  .how-works-tip{font-size:12px;padding:10px 2px 2px}
+  .how-works-title{margin-bottom:12px}
+  .how-works-icon{width:22px;height:22px;font-size:17px}
+}
+/* v74 — Rank Up How It Works typography matched to Power Calculator */
+#rankView .rank-how-works .section-title{
+  font-size:18px;
+  font-weight:950;
+  letter-spacing:.075em;
+  color:#ae89ff;
+}
+#rankView .rank-how-grid b{
+  font-size:13px;
+  font-weight:900;
+  line-height:1.4;
+  color:#eee8f4;
+}
+#rankView .rank-how-grid span{
+  font-size:12px;
+  line-height:1.45;
+  color:#8f879b;
+}
+@media(max-width:720px){
+  #rankView .rank-how-works .section-title{font-size:17px}
+  #rankView .rank-how-grid b{font-size:13px}
+  #rankView .rank-how-grid span{font-size:12px;line-height:1.5}
+}
 </style>
 </head>
 <body>
@@ -685,17 +974,15 @@ footer .domain{display:inline-block;margin-top:9px;padding:9px 18px;border:1px s
   </div>
 </section>
 
-<section class="help">
-  <h2>ⓘ How to Use</h2>
-  <ol>
-    <li>Enter your <b>current power</b> and select its unit.</li>
-    <li>Enter the <b>desired power</b> you want to reach.</li>
-    <li>Enter your <b>Power Per Click (PPC)</b> exactly as shown in-game.</li>
-    <li>If you have <b>Fast Click</b>, tick it to use <b>3.66 clicks/sec</b>. Otherwise the calculator uses the base <b>2.66 clicks/sec</b>.</li>
-    <li>If you have a qualifying <b>Primordial</b>, tick it to include its 30s ×2 PPC activation every 90s.</li>
-    <li>Press <b>Calculate</b> to see the time remaining and your progress percentage.</li>
-  </ol>
-  <div class="tip">💡 Tip: Your PPC is the power number shown in the bottom-right of Anime Astral.</div>
+<section class="how-works how-works-power">
+  <div class="section-title how-works-title"><span class="how-works-icon">📖</span>HOW IT WORKS</div>
+  <div class="how-works-grid">
+    <div><b>1. Enter your power</b><span>Enter your current power, target power, and select the correct unit for each.</span></div>
+    <div><b>2. Enter your PPC</b><span>Use the Power Per Click value exactly as it appears in-game.</span></div>
+    <div><b>3. Add your boosts</b><span>Fast Click uses 3.66 CPS. Primordial doubles PPC for 30s every 90s.</span></div>
+    <div><b>4. Calculate</b><span>Your power per second, power per hour, progress, and estimated time update from your inputs.</span></div>
+  </div>
+  <div class="how-works-tip">💡 <b>Tip:</b> Your PPC is the power number shown in the bottom-right of Anime Astral.</div>
 </section>
 </div>
 
@@ -849,21 +1136,11 @@ footer .domain{display:inline-block;margin-top:9px;padding:9px 18px;border:1px s
       </div>
     </div>
     <div class="field dps-full">
-      <div class="dps-select-help">After calculating, every supplied game mode and wave/room will be checked automatically. Max Quinque applies its supplied +135% damage bonus; 15s duration and 300 Click are shown for reference.</div>
+      <div class="dps-select-help">After calculating, every supplied game mode and wave/room will be checked automatically. Use your current power, damage multiplier, and click rate to calculate DPS.</div>
     </div>
     <div class="dps-full">
       <div class="boosts">
-        <label class="boost">
-          <input type="checkbox" id="dpsQuinque","rankCurrent","rankTarget","rankPpc","rankPpcUnit","rankFastClick">
-          <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span>
-          <span class="boost-copy">
-            <span class="boost-name">Quinque</span>
-            <span class="boost-desc">Max skill tree: +135% damage • 15s duration • 300 Click</span>
-          </span>
-          <span class="boost-mult">+135% DMG</span>
-        </label>
-
-        <label class="boost">
+<label class="boost">
           <input type="checkbox" id="dpsFastClick">
           <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span>
           <span class="boost-copy">
@@ -931,6 +1208,16 @@ footer .domain{display:inline-block;margin-top:9px;padding:9px 18px;border:1px s
       </div>
     </div>
     <div class="dps-all-results" id="dpsAllResults"></div>
+
+<section class="how-works how-works-dps">
+  <div class="section-title how-works-title"><span class="how-works-icon">📖</span>HOW IT WORKS</div>
+  <div class="how-works-grid">
+    <div><b>1. Enter your stats</b><span>Enter your current power and damage multiplier, then select the correct units.</span></div>
+    <div><b>2. Choose your click rate</b><span>Turn on Fast Click if you have it to use 3.66 clicks/sec instead of 2.66.</span></div>
+    <div><b>3. Calculate your DPS</b><span>Your DPS is calculated from Power × Damage Multiplier × CPS.</span></div>
+    <div><b>4. Check your clears</b><span>Every supplied game mode and wave/room is checked automatically against your DPS.</span></div>
+  </div>
+</section>
 </section>
 
 <footer>Anime Astral Power Calculator • Fan-made tool • Created by <span class="discord-credit" title="Discord: zzz101">
@@ -938,7 +1225,7 @@ footer .domain{display:inline-block;margin-top:9px;padding:9px 18px;border:1px s
     <path fill="currentColor" d="M19.54 5.01A16.1 16.1 0 0 0 15.47 3.7l-.5 1.02a14.7 14.7 0 0 0-5.94 0L8.53 3.7a16.1 16.1 0 0 0-4.07 1.31C1.88 8.83 1.18 12.56 1.53 16.25a16.3 16.3 0 0 0 5 2.52l1.2-1.64a9.9 9.9 0 0 1-1.88-.9l.46-.35c3.62 1.7 7.55 1.7 11.13 0l.46.35c-.6.35-1.23.65-1.88.9l1.2 1.64a16.3 16.3 0 0 0 5-2.52c.42-4.28-.72-7.97-2.68-11.24ZM8.3 14.57c-1.1 0-2-.99-2-2.2s.88-2.2 2-2.2 2 .99 2 2.2-.9 2.2-2 2.2Zm7.4 0c-1.1 0-2-.99-2-2.2s.88-2.2 2-2.2 2 .99 2 2.2-.9 2.2-2 2.2Z"/>
   </svg>
   <span>zzz101</span>
-</span><br><span class="domain">animeastralcalculator.info</span></footer>
+</span><br><span class="domain">animeastralcalculator.org</span></footer>
 </main>
 
 <script>
@@ -946,7 +1233,7 @@ footer .domain{display:inline-block;margin-top:9px;padding:9px 18px;border:1px s
 const SAVE_KEY="animeAstralCalculatorInputs_v1";
 const savedFields=[
   "current","currentUnit","target","targetUnit","ppcUnit",
-  "fastClick","primordial","damageMultiplier","damageMultiplierUnit","dpsQuinque",
+  "fastClick","primordial","damageMultiplier","damageMultiplierUnit",
 ];
 
 function saveCalculatorInputs(){
@@ -1609,8 +1896,7 @@ function calculateDps(){
 
   const power=parsePower(powerInput.value,dpsPowerUnit.value);
   const baseMult=parsePower(multInput.value,damageMultiplierUnit.value);
-  const quinque=document.getElementById("dpsQuinque").checked;
-  const mult=baseMult*(quinque?2.35:1);
+  const mult=baseMult;
   let valid=true;
   if(!Number.isFinite(power)||power<=0){dpsError(powerInput,"Enter a power greater than 0.");valid=false}
   if(!Number.isFinite(baseMult)||baseMult<=0){dpsError(multInput,"Enter a damage multiplier greater than 0.");valid=false}
@@ -1621,7 +1907,7 @@ function calculateDps(){
 
   document.getElementById("dpsValue").textContent=formatPower(dps)+"/sec";
   document.getElementById("dpsCps").textContent=cps.toFixed(2)+" CPS";
-  document.getElementById("dpsMult").textContent=quinque?`${formatPower(baseMult)} × 2.35 (Quinque)`:formatPower(baseMult);
+  document.getElementById("dpsMult").textContent=formatPower(baseMult);
   document.getElementById("dpsStatus").className="dps-status can";
   document.getElementById("dpsStatus").innerHTML=`<strong>${Object.keys(DPS_DATA).length} game modes checked</strong> — every supplied game mode and wave/room is compared against your DPS.`;
   document.getElementById("dpsNote").innerHTML=`Current DPS: <b>${formatPower(dps)}/sec</b> • ${cps.toFixed(2)} CPS × ${formatPower(mult)} damage`;
@@ -1688,12 +1974,10 @@ function calculateDps(){
   }
 
   document.getElementById("breakPower").textContent=formatPower(power);
-  document.getElementById("breakDamage").textContent=quinque?`${formatPower(baseMult)} × 2.35 (Quinque)`:formatPower(baseMult);
+  document.getElementById("breakDamage").textContent=formatPower(baseMult);
   document.getElementById("breakCps").textContent=cps.toFixed(2)+" CPS";
   document.getElementById("breakFinal").textContent=formatPower(dps)+"/sec";
-  document.getElementById("dpsFormula").textContent=quinque
-    ? `${formatPower(power)} × ${formatPower(baseMult)} × 2.35 Quinque × ${cps.toFixed(2)} CPS = ${formatPower(dps)}/sec`
-    : `${formatPower(power)} × ${formatPower(baseMult)} × ${cps.toFixed(2)} CPS = ${formatPower(dps)}/sec`;
+  document.getElementById("dpsFormula").textContent=`${formatPower(power)} × ${formatPower(baseMult)} × ${cps.toFixed(2)} CPS = ${formatPower(dps)}/sec`;
 }
 document.getElementById("dpsCalculate").addEventListener("click",calculateDps);
 ["dpsPower","damageMultiplier"].forEach(id=>document.getElementById(id).addEventListener("input",e=>clearDpsError(e.target)));
