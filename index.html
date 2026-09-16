@@ -805,6 +805,9 @@ footer .domain{margin-top:7px;padding:7px 13px;border-color:#292532;color:#9a92a
 .promo-buffs{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}.promo-buff{border:1px solid #29273a;border-radius:13px;padding:12px;background:#080910}.promo-buff small{display:block;color:#777082;font-size:10px;margin-bottom:5px}.promo-buff strong{font-size:15px}
 @media(max-width:720px){.tool-grid{grid-template-columns:1fr}.tool-card{padding:17px}.promo-buffs{grid-template-columns:1fr 1fr}.tool-table-head{display:none}.tool-row{grid-template-columns:1fr 1fr;gap:7px}.tool-row span:nth-child(2)::before{content:'New: ';color:#625a6d}.tool-row span:nth-child(3)::before{content:'Needed: ';color:#625a6d}}
 @media(max-width:420px){.promo-buffs{grid-template-columns:1fr}}
+
+    .passive-target{color:#ffd84d;font-weight:800;font-size:.88em;white-space:nowrap;}
+    .pet-passive-note b{font-weight:800;}
 </style>
 
 <style id="v71-readability-polish">
@@ -1288,9 +1291,9 @@ footer{font-size:12px}
     </div>
     <div class="boosts" style="margin-top:14px">
       <label class="boost"><input type="checkbox" id="petShiny"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span><span class="boost-copy"><span class="boost-name">Shiny</span><span class="boost-desc">Shiny pets use 1.5× the normal multiplier.</span></span><span class="boost-mult">×1.5</span></label>
-      <label class="boost"><input type="checkbox" id="petDivinePredator"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span><span class="boost-copy"><span class="boost-name">Divine Predator</span><span class="boost-desc">Divine Predator increases pet power by 100%.</span></span><span class="boost-mult">+100%</span></label>
+      <label class="boost"><input type="checkbox" id="petDivinePredator"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span><span class="boost-copy"><span class="boost-name">Divine Predator <span class="passive-target">(Scaling Pet)</span></span><span class="boost-desc">Applies +100% pet power to the scaling pet.</span></span><span class="boost-mult">+100%</span></label>
     </div>
-    <div class="pet-passive-note">💡 <b>Pet Passives:</b> Pet passives can be obtained from <span class="world-word">World 9</span>. <span class="divine-word">Divine Predator</span> is the <span class="divine-word">Divine</span> rarity pet passive from there and increases pet power by <span class="divine-word">100%</span> when active.</div>
+    <div class="pet-passive-note">💡 <b>Pet Passives:</b> Pet passives can be obtained from <span class="world-word">World 9</span>. <span class="divine-word">Divine Predator</span> is the <span class="divine-word">Divine</span> rarity pet passive from there and increases the <b>scaling pet</b> power by <span class="divine-word">100%</span> when active.</div>
     <button class="calculate" id="petCalculate" type="button">Calculate Pet Value</button>
     <div class="tool-results" aria-live="polite"><div class="eyebrow">RESULT</div><div class="tool-big" id="petResult">—</div><div class="tool-stat-grid"><div class="tool-stat"><small>Base Scaling Value</small><strong id="petBaseResult">—</strong></div><div class="tool-stat"><small>Final Multiplier</small><strong id="petFinalResult">—</strong></div></div></div>
     <div class="pet-lookup"><div class="section-title">PET LOOKUP</div><select id="petLookup"><option value="">Select a known pet…</option></select><div class="pet-lookup-result" id="petLookupResult">Select a pet to see its documented multiplier.</div></div>
