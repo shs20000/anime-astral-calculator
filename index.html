@@ -217,6 +217,15 @@ footer .domain{display:inline-block;margin-top:9px;padding:9px 18px;border:1px s
 }
 
 
+
+.pet-passive-note{
+  margin-top:18px;padding:11px 13px;border:1px solid #302747;border-radius:13px;
+  background:rgba(25,17,42,.55);color:#8f879e;font-size:12px;line-height:1.5
+}
+.pet-passive-note b{color:#b18cff}
+.pet-passive-note .divine-word{color:#ffd84d;font-weight:900}
+.pet-passive-note .world-word{color:#b18cff;font-weight:900}
+@media(max-width:720px){.pet-passive-note{font-size:11px}}
 .primordial-note{
   margin-top:10px;padding:11px 13px;border:1px solid #302747;border-radius:13px;
   background:rgba(25,17,42,.55);color:#8f879e;font-size:12px;line-height:1.5
@@ -774,6 +783,28 @@ footer .domain{margin-top:7px;padding:7px 13px;border-color:#292532;color:#9a92a
   .discord-join-button span{display:none}
   .discord-join-button{width:36px;min-height:36px;padding:0;border-radius:50%}
 }
+
+/* v76 — companion calculators */
+.more-tools-note{margin-top:12px;padding:11px 13px;border:1px solid #302747;border-radius:13px;background:rgba(25,17,42,.55);color:#8f879e;font-size:12px;line-height:1.5}
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.tool-card{background:linear-gradient(180deg,rgba(15,13,25,.97),rgba(9,8,16,.98));border:1px solid var(--border);border-radius:24px;padding:25px}
+.tool-card .section-title{margin-bottom:18px}
+.tool-results{margin-top:18px;border:1px solid #4c3281;border-radius:18px;padding:20px;background:linear-gradient(180deg,rgba(22,15,39,.96),rgba(12,9,20,.98))}
+.tool-big{font-size:clamp(30px,5vw,48px);font-weight:950;letter-spacing:-.04em;margin:7px 0 12px;color:#faf7ff}
+.tool-stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.tool-stat{border:1px solid #29273a;border-radius:15px;padding:13px;background:#080910}
+.tool-stat small{display:block;color:#858093;font-size:11px;margin-bottom:5px}
+.tool-stat strong{font-size:16px;color:#eee8f4;overflow-wrap:anywhere}
+.tool-table{margin-top:18px;border:1px solid #302747;border-radius:16px;overflow:hidden;background:#0b0912}
+.tool-table-head,.tool-row{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:12px;align-items:center}
+.tool-table-head{padding:10px 14px;color:#81758f;font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid #2a2439}
+.tool-row{padding:11px 14px;border-bottom:1px solid #211e2d;font-size:12px}
+.tool-row:last-child{border-bottom:0}.tool-row strong{color:#f1ebf8}.tool-row span{color:#aaa1b5}
+.tool-list{display:grid;gap:8px;margin-top:14px}.tool-list-item{padding:12px 13px;border:1px solid #29253a;border-radius:13px;background:#080910;color:#bcb4c7;font-size:12px;line-height:1.45}.tool-list-item b{color:#eee8f4}
+.pet-lookup{margin-top:18px}.pet-lookup select{font-size:14px}
+.promo-buffs{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}.promo-buff{border:1px solid #29273a;border-radius:13px;padding:12px;background:#080910}.promo-buff small{display:block;color:#777082;font-size:10px;margin-bottom:5px}.promo-buff strong{font-size:15px}
+@media(max-width:720px){.tool-grid{grid-template-columns:1fr}.tool-card{padding:17px}.promo-buffs{grid-template-columns:1fr 1fr}.tool-table-head{display:none}.tool-row{grid-template-columns:1fr 1fr;gap:7px}.tool-row span:nth-child(2)::before{content:'New: ';color:#625a6d}.tool-row span:nth-child(3)::before{content:'Needed: ';color:#625a6d}}
+@media(max-width:420px){.promo-buffs{grid-template-columns:1fr}}
 </style>
 
 <style id="v71-readability-polish">
@@ -877,6 +908,27 @@ footer{font-size:12px}
   #rankView .rank-how-grid span{font-size:12px;line-height:1.5}
 }
 </style>
+
+<style id="v80-tool-how-polish">
+/* v80 — companion calculator How It Works matches the Rank Up presentation */
+.tool-grid{column-gap:20px;row-gap:20px}
+.tool-how-works{
+  margin-top:20px;padding:20px;border:1px solid #3b2d58;border-radius:18px;background:#0e0a15;
+}
+.tool-how-title{display:flex;align-items:center;gap:8px;margin-bottom:15px;font-size:18px;font-weight:950;letter-spacing:.075em;color:#ae89ff}
+.tool-how-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tool-how-grid>div{padding:13px 14px;border:1px solid #29243a;border-radius:13px;background:#090810}
+.tool-how-grid b{display:block;color:#eee8f4;font-size:13px;font-weight:900;line-height:1.4;margin-bottom:5px}
+.tool-how-grid span{display:block;color:#8f879b;font-size:12px;line-height:1.45}
+@media(max-width:720px){
+  .tool-grid{row-gap:16px}
+  .tool-how-works{margin-top:18px;padding:16px;border-radius:16px}
+  .tool-how-grid{grid-template-columns:1fr;gap:8px}
+  .tool-how-grid>div{padding:11px 12px;border-radius:10px}
+  .tool-how-grid b{font-size:13px;margin-bottom:4px}
+  .tool-how-grid span{font-size:12px;line-height:1.5}
+}
+</style>
 </head>
 <body>
 <a class="discord-join-button" href="https://discord.gg/animeastral" target="_blank" rel="noopener noreferrer" aria-label="Join Anime Astral Discord">
@@ -895,7 +947,7 @@ footer{font-size:12px}
 
 <nav class="tabs">
   <button class="tab active" id="powerTab" type="button">Power Calculator</button>
-  <button class="tab" id="dpsTab" type="button">DPS Calculator</button><button class="tab" id="rankTab" type="button">Rank Up Calculator</button>
+  <button class="tab" id="dpsTab" type="button">DPS Calculator</button><button class="tab" id="rankTab" type="button">Rank Up Calculator</button><button class="tab" id="petTab" type="button">Pet Calculator</button><button class="tab" id="promotionTab" type="button">Promotion Calculator</button>
 </nav>
 
 <div id="powerView" class="calculator-view">
@@ -1220,7 +1272,64 @@ footer{font-size:12px}
 </section>
 </section>
 
-<footer>Anime Astral Power Calculator • Fan-made tool • Created by <span class="discord-credit" title="Discord: zzz101">
+
+<div id="petView" class="calculator-view" style="display:none">
+  <section class="tool-card">
+    <div class="section-title">🐾 PET CALCULATOR</div>
+    <div class="tool-grid">
+      <div class="field">
+        <label for="petBest">Best Normal Pet Multiplier</label>
+        <div class="input-row"><input id="petBest" placeholder="e.g. 1000000" inputmode="decimal" autocomplete="off"><select id="petBestUnit"></select></div>
+      </div>
+      <div class="field">
+        <label for="petPercent">Scaling Pet</label>
+        <div class="input-row"><input id="petPercent" placeholder="e.g. 130" inputmode="decimal" autocomplete="off"><div class="unit-static">%</div></div>
+      </div>
+    </div>
+    <div class="boosts" style="margin-top:14px">
+      <label class="boost"><input type="checkbox" id="petShiny"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span><span class="boost-copy"><span class="boost-name">Shiny</span><span class="boost-desc">Shiny pets use 1.5× the normal multiplier.</span></span><span class="boost-mult">×1.5</span></label>
+      <label class="boost"><input type="checkbox" id="petDivinePredator"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span><span class="boost-copy"><span class="boost-name">Divine Predator</span><span class="boost-desc">Divine Predator increases pet power by 100%.</span></span><span class="boost-mult">+100%</span></label>
+    </div>
+    <div class="pet-passive-note">💡 <b>Pet Passives:</b> Pet passives can be obtained from <span class="world-word">World 9</span>. <span class="divine-word">Divine Predator</span> is the <span class="divine-word">Divine</span> rarity pet passive from there and increases pet power by <span class="divine-word">100%</span> when active.</div>
+    <button class="calculate" id="petCalculate" type="button">Calculate Pet Value</button>
+    <div class="tool-results" aria-live="polite"><div class="eyebrow">RESULT</div><div class="tool-big" id="petResult">—</div><div class="tool-stat-grid"><div class="tool-stat"><small>Base Scaling Value</small><strong id="petBaseResult">—</strong></div><div class="tool-stat"><small>Final Multiplier</small><strong id="petFinalResult">—</strong></div></div></div>
+    <div class="pet-lookup"><div class="section-title">PET LOOKUP</div><select id="petLookup"><option value="">Select a known pet…</option></select><div class="more-tools-note" id="petLookupResult">Select a pet to see its documented multiplier.</div></div>
+    <div class="more-tools-note">Scaling pets are based on your strongest normal pet. Percentage pets cannot be renamed. Shiny pets use 1.5× their normal version.</div>
+    <div class="tool-how-works">
+      <div class="section-title tool-how-title"><span class="how-works-icon">📖</span>HOW IT WORKS</div>
+      <div class="tool-how-grid">
+        <div><b>1. Enter your best normal pet</b><span>Enter the multiplier of your strongest normal pet and select its unit.</span></div>
+        <div><b>2. Enter the scaling percentage</b><span>Enter the percentage value of the scaling pet you want to calculate.</span></div>
+        <div><b>3. Choose your pet passives</b><span>Enable Divine Predator if it is active on your account. It gives +100% pet power. Shiny gives 1.5× the normal pet value.</span></div>
+        <div><b>4. Calculate the pet value</b><span>The calculator applies the scaling percentage first, then applies the pet bonuses you selected.</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="promotionView" class="calculator-view" style="display:none">
+  <section class="tool-card">
+    <div class="section-title">🎖️ PROMOTION CALCULATOR</div>
+    <div class="tool-grid">
+      <div class="field"><label for="promoCurrent">Current Promotion Rank</label><select id="promoCurrent"></select></div>
+      <div class="field"><label for="promoTarget">Target Promotion Rank</label><select id="promoTarget"></select></div>
+    </div>
+    <button class="calculate" id="promoCalculate" type="button">Calculate Promotion Progress</button>
+    <div class="tool-results" aria-live="polite"><div class="eyebrow">RESULT</div><div class="tool-big" id="promoRanks">—</div><div class="tool-stat-grid"><div class="tool-stat"><small>Power Gain</small><strong id="promoPower">—</strong></div><div class="tool-stat"><small>Damage Gain</small><strong id="promoDamage">—</strong></div><div class="tool-stat"><small>Yen Gain</small><strong id="promoYen">—</strong></div><div class="tool-stat"><small>Luck Gain</small><strong id="promoLuck">—</strong></div><div class="tool-stat"><small>XP Gain</small><strong id="promoXp">—</strong></div><div class="tool-stat"><small>Drop Gain</small><strong id="promoDrop">—</strong></div></div><div class="promo-buffs"><div class="promo-buff"><small>Crit Chance</small><strong id="promoCritChance">—</strong></div><div class="promo-buff"><small>Crit Damage</small><strong id="promoCritDamage">—</strong></div><div class="promo-buff"><small>Shiny Chance</small><strong id="promoShiny">—</strong></div></div></div>
+    <div class="tool-table"><div class="tool-table-head"><span>Promotion</span><span>New Buffs</span><span>Requirements</span></div><div id="promoRows"></div></div>
+    <div class="tool-how-works">
+      <div class="section-title tool-how-title"><span class="how-works-icon">📖</span>HOW IT WORKS</div>
+      <div class="tool-how-grid">
+        <div><b>1. Choose your current promotion rank</b><span>Select the promotion rank you are currently on.</span></div>
+        <div><b>2. Choose your target rank</b><span>Select the promotion rank you want to reach.</span></div>
+        <div><b>3. Calculate your promotion progress</b><span>The calculator compares the documented buffs between your selected ranks.</span></div>
+        <div><b>4. Check the requirements</b><span>The promotion breakdown lists the documented buffs and missions for each promotion in the range.</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>Anime Astral Calculator • Fan-made tool • Created by <span class="discord-credit" title="Discord: zzz101">
   <svg class="discord-icon" viewBox="0 0 24 24" aria-hidden="true">
     <path fill="currentColor" d="M19.54 5.01A16.1 16.1 0 0 0 15.47 3.7l-.5 1.02a14.7 14.7 0 0 0-5.94 0L8.53 3.7a16.1 16.1 0 0 0-4.07 1.31C1.88 8.83 1.18 12.56 1.53 16.25a16.3 16.3 0 0 0 5 2.52l1.2-1.64a9.9 9.9 0 0 1-1.88-.9l.46-.35c3.62 1.7 7.55 1.7 11.13 0l.46.35c-.6.35-1.23.65-1.88.9l1.2 1.64a16.3 16.3 0 0 0 5-2.52c.42-4.28-.72-7.97-2.68-11.24ZM8.3 14.57c-1.1 0-2-.99-2-2.2s.88-2.2 2-2.2 2 .99 2 2.2-.9 2.2-2 2.2Zm7.4 0c-1.1 0-2-.99-2-2.2s.88-2.2 2-2.2 2 .99 2 2.2-.9 2.2-2 2.2Z"/>
   </svg>
@@ -2366,44 +2475,129 @@ function formatDuration(sec){
 }
 document.getElementById("rankCalculate").addEventListener("click",calculateRankUp);
 
+
+/* v76 companion calculators */
+const petData={"pets":[{"world":"Ninja Village","name":"Rokiee Le","rarity":"Common","mult":1.5},{"world":"Ninja Village","name":"Naroto","rarity":"Uncommon","mult":3.0},{"world":"Ninja Village","name":"Sazuko","rarity":"Rare","mult":5.5},{"world":"Ninja Village","name":"Kakasher","rarity":"Epic","mult":9.5},{"world":"Ninja Village","name":"Jeraya","rarity":"Legendary","mult":15.0},{"world":"Ninja Village","name":"Minoto","rarity":"Mythical","mult":31.0},{"world":"Ninja Village","name":"Madera","rarity":"Crafted","mult":77.5},{"world":"Ninja Village","name":"Hashiromo","rarity":"Secret","mult":194.0},{"world":"Ninja Village","name":"Baryon Mode","rarity":"Divine","mult":582.0},{"world":"Namek City","name":"Mr Sotan","rarity":"Common","mult":11.0},{"world":"Namek City","name":"Kureren","rarity":"Uncommon","mult":13.5},{"world":"Namek City","name":"Picole","rarity":"Rare","mult":18.0},{"world":"Namek City","name":"Trenks","rarity":"Epic","mult":25.0},{"world":"Namek City","name":"Vezeta","rarity":"Legendary","mult":35.0},{"world":"Namek City","name":"Koku","rarity":"Mythical","mult":70.0},{"world":"Namek City","name":"Broly","rarity":"Crafted","mult":175.0},{"world":"Namek City","name":"Gogueta","rarity":"Secret","mult":437.5},{"world":"Namek City","name":"Gogueta SSJ4","rarity":"Divine","mult":1300.0},{"world":"Wano Island","name":"Namy","rarity":"Common","mult":30.5},{"world":"Wano Island","name":"Luffe","rarity":"Uncommon","mult":37.5},{"world":"Wano Island","name":"Zorro","rarity":"Rare","mult":47.0},{"world":"Wano Island","name":"Sanje","rarity":"Epic","mult":59.5},{"world":"Wano Island","name":"Rosquinha","rarity":"Legendary","mult":76.0},{"world":"Wano Island","name":"Mihowk","rarity":"Mythical","mult":152.0},{"world":"Wano Island","name":"Morshal D Teach","rarity":"Crafted","mult":380.0},{"world":"Wano Island","name":"Gol D Rogger","rarity":"Secret","mult":950.0},{"world":"Wano Island","name":"Luffe Gear 5","rarity":"Divine","mult":2900.0},{"world":"Titan Wall","name":"Cone Springer","rarity":"Common","mult":71.5},{"world":"Titan Wall","name":"Erin Yeger","rarity":"Uncommon","mult":88.0},{"world":"Titan Wall","name":"Armen","rarity":"Rare","mult":108.5},{"world":"Titan Wall","name":"Batata","rarity":"Epic","mult":133.5},{"world":"Titan Wall","name":"Mikesa","rarity":"Legendary","mult":164.0},{"world":"Titan Wall","name":"Erwon Smith","rarity":"Mythical","mult":328.0},{"world":"Titan Wall","name":"Lovi Ackerman","rarity":"Crafted","mult":820.0},{"world":"Titan Wall","name":"Levi","rarity":"Secret","mult":2000.0},{"world":"Titan Wall","name":"Adult Erin","rarity":"Divine","mult":6200.0},{"world":"Solo City","name":"Young Sung","rarity":"Common","mult":175.0},{"world":"Solo City","name":"Esil","rarity":"Uncommon","mult":215.0},{"world":"Solo City","name":"Hae","rarity":"Rare","mult":265.0},{"world":"Solo City","name":"Baek","rarity":"Epic","mult":325.0},{"world":"Solo City","name":"Choi","rarity":"Legendary","mult":400.0},{"world":"Solo City","name":"Sung TimeSkip","rarity":"Mythical","mult":800.0},{"world":"Solo City","name":"Sung Ice","rarity":"Crafted","mult":2000.0},{"world":"Solo City","name":"Igros","rarity":"Secret","mult":5000.0},{"world":"Solo City","name":"Bezu","rarity":"Divine","mult":15000.0},{"world":"Slayer Village","name":"Nezoka","rarity":"Common","mult":450.0},{"world":"Slayer Village","name":"Tanjiro","rarity":"Uncommon","mult":560.0},{"world":"Slayer Village","name":"Zenitsu","rarity":"Rare","mult":700.0},{"world":"Slayer Village","name":"Inosuke","rarity":"Epic","mult":875.0},{"world":"Slayer Village","name":"Iguro","rarity":"Legendary","mult":1100.0},{"world":"Slayer Village","name":"Uzui","rarity":"Mythic","mult":2200.0},{"world":"Slayer Village","name":"Rengoku","rarity":"Crafted","mult":5500.0},{"world":"Slayer Village","name":"Gyomei","rarity":"Secret","mult":14000.0},{"world":"Slayer Village","name":"Yoruichi","rarity":"Divine","mult":32500.0},{"world":"Timeless Raid","name":"Kurumi","rarity":"Divine","mult":27500.0},{"world":"Exclusive","name":"Alucard","rarity":"Exclusive","mult":115.0},{"world":"Clover Island","name":"Yunu","rarity":"Crafted","mult":10500.0},{"world":"Clover Island","name":"Julies","rarity":"Secret","mult":21500.0},{"world":"Clover Island","name":"Asta","rarity":"Divine","mult":47500.0},{"world":"Summer Art Online","name":"Klein","rarity":"Common","mult":3200.0},{"world":"Summer Art Online","name":"Leeta","rarity":"Uncommon","mult":4000.0},{"world":"Summer Art Online","name":"Sinon","rarity":"Rare","mult":5000.0},{"world":"Summer Art Online","name":"Yuuki","rarity":"Epic","mult":6200.0},{"world":"Summer Art Online","name":"Eugeo","rarity":"Legendary","mult":7700.0},{"world":"Summer Art Online","name":"Asuna","rarity":"Mythical","mult":12000.0},{"world":"Summer Art Online","name":"Leenn","rarity":"Crafted","mult":20500.0},{"world":"Summer Art Online","name":"Kirito","rarity":"Secret","mult":34500.0},{"world":"Summer Art Online","name":"Alice","rarity":"Divine","mult":60000.0},{"world":"Fire City","name":"Iris","rarity":"Common","mult":8500.0},{"world":"Fire City","name":"Tamaki","rarity":"Uncommon","mult":9300.0},{"world":"Fire City","name":"Maki","rarity":"Rare","mult":10800.0},{"world":"Fire City","name":"Arthur","rarity":"Epic","mult":12800.0},{"world":"Fire City","name":"Shinra","rarity":"Legendary","mult":16000.0},{"world":"Fire City","name":"Leonard","rarity":"Mythical","mult":21000.0},{"world":"Fire City","name":"Ogun","rarity":"Crafted","mult":31000.0},{"world":"Fire City","name":"Benimaru","rarity":"Secret","mult":43500.0},{"world":"Fire City","name":"Shinrabasho","rarity":"Divine","mult":77000.0},{"world":"Hueco World","name":"Orihimi","rarity":"Common","mult":17200.0},{"world":"Hueco World","name":"Rukyo","rarity":"Uncommon","mult":18500.0},{"world":"Hueco World","name":"Renjyu","rarity":"Rare","mult":21000.0},{"world":"Hueco World","name":"Byakuyo","rarity":"Epic","mult":24500.0},{"world":"Hueco World","name":"Toshiroo","rarity":"Legendary","mult":29500.0},{"world":"Hueco World","name":"Kenpachy","rarity":"Mythical","mult":36500.0},{"world":"Hueco World","name":"Shinjo","rarity":"Crafted","mult":48000.0},{"world":"Hueco World","name":"Yamamotto","rarity":"Secret","mult":65500.0},{"world":"Hueco World","name":"Ichigoo vasto","rarity":"Divine","mult":112500.0},{"world":"Waifu Bundle","name":"Esdeath","rarity":"Divine","mult":125000.0},{"world":"Tomb Raid","name":"Albedo","rarity":"Divine","mult":127000.0},{"world":"Jujutsu World","name":"Nobara","rarity":"Common","mult":30500.0},{"world":"Jujutsu World","name":"Maki","rarity":"Uncommon","mult":36000.0},{"world":"Jujutsu World","name":"Megumi","rarity":"Rare","mult":43000.0},{"world":"Jujutsu World","name":"Itadori","rarity":"Epic","mult":53000.0},{"world":"Jujutsu World","name":"Toge","rarity":"Legendary","mult":63500.0},{"world":"Jujutsu World","name":"Nanami","rarity":"Mythical","mult":76000.0},{"world":"Jujutsu World","name":"Yuta","rarity":"Secret","mult":112000.0},{"world":"Jujutsu World","name":"Satoru Gojo","rarity":"Divine","mult":175000.0},{"world":"Seven Deadly Sins World","name":"Elaine","rarity":"Common","mult":49000.0},{"world":"Seven Deadly Sins World","name":"Diane","rarity":"Uncommon","mult":58500.0},{"world":"Seven Deadly Sins World","name":"King","rarity":"Rare","mult":70000.0},{"world":"Seven Deadly Sins World","name":"Meriln","rarity":"Epic","mult":85500.0},{"world":"Seven Deadly Sins World","name":"Gowther","rarity":"Legendary","mult":102000.0},{"world":"Seven Deadly Sins World","name":"Ban","rarity":"Mythical","mult":122500.0},{"world":"Seven Deadly Sins World","name":"Elizabeth","rarity":"Secret","mult":185000.0},{"world":"Seven Deadly Sins World","name":"Escanor","rarity":"Divine","mult":300000.0},{"world":"Waifu Bundle 4","name":"Alya","rarity":"Divine","mult":350000.0},{"world":"One Punch Man World","name":"Mumem Rider","rarity":"Common","mult":115000.0},{"world":"One Punch Man World","name":"Fubuki","rarity":"Uncommon","mult":140000.0},{"world":"One Punch Man World","name":"Child Emperor","rarity":"Rare","mult":168000.0},{"world":"One Punch Man World","name":"Sonic","rarity":"Epic","mult":205000.0},{"world":"One Punch Man World","name":"Genos","rarity":"Legendary","mult":245000.0},{"world":"One Punch Man World","name":"Blast Hero","rarity":"Crafted","mult":350000.0},{"world":"One Punch Man World","name":"Tatsumaki","rarity":"Secret","mult":450000.0},{"world":"One Punch Man World","name":"Serious Saitama","rarity":"Divine","mult":725000.0},{"world":"Tempest Federation","name":"Gobta","rarity":"Common","mult":245000.0},{"world":"Tempest Federation","name":"Shuna","rarity":"Uncommon","mult":300000.0},{"world":"Tempest Federation","name":"Souei","rarity":"Rare","mult":365000.0},{"world":"Tempest Federation","name":"Benimar","rarity":"Epic","mult":445000.0},{"world":"Tempest Federation","name":"Shion","rarity":"Legendary","mult":535000.0},{"world":"Tempest Federation","name":"Milim","rarity":"Mythical","mult":640000.0},{"world":"Tempest Federation","name":"Veldora","rarity":"Crafted","mult":800000.0},{"world":"Tempest Federation","name":"Demon Rimuru","rarity":"Secret","mult":1100000.0},{"world":"Tempest Federation","name":"Raphael","rarity":"Divine","mult":1600000.0},{"world":"Tokyo Ward","name":"Hideyoshi Nagachika","rarity":"Common","mult":1400000.0},{"world":"Tokyo Ward","name":"Nishiki Nishio","rarity":"Uncommon","mult":1600000.0},{"world":"Tokyo Ward","name":"Touka Kirishima","rarity":"Rare","mult":1900000.0},{"world":"Tokyo Ward","name":"Hinami Fueguchi","rarity":"Epic","mult":2300000.0},{"world":"Tokyo Ward","name":"Renji Yomo","rarity":"Legendary","mult":2700000.0},{"world":"Tokyo Ward","name":"Kaneki","rarity":"Mythical","mult":3200000.0},{"world":"Tokyo Ward","name":"Ayato Kirishima","rarity":"Crafted","mult":4099999.9999999995},{"world":"Tokyo Ward","name":"Juuzou Suzuya","rarity":"Secret","mult":5500000.0},{"world":"Tokyo Ward","name":"Eto Yoshimura","rarity":"Divine","mult":7500000.0},{"world":"Tokyo Ward","name":"Kaneki Kakuja","rarity":"Astral","mult":48000000.0},{"world":"Waifu bundle 5","name":"Mitsuri","rarity":"Limited","mult":28000000.0},{"world":"Kingdom of Lugunica","name":"Otto Suwen","rarity":"Common","mult":3000000.0},{"world":"Kingdom of Lugunica","name":"Crusch Karsten","rarity":"Uncommon","mult":3600000.0},{"world":"Kingdom of Lugunica","name":"Rem","rarity":"Rare","mult":4400000.0},{"world":"Kingdom of Lugunica","name":"Aldebaran","rarity":"Epic","mult":5300000.0},{"world":"Kingdom of Lugunica","name":"Ram","rarity":"Legendary","mult":6500000.0},{"world":"Kingdom of Lugunica","name":"Beatrice","rarity":"Mythical","mult":8000000.0},{"world":"Kingdom of Lugunica","name":"Priscilla Barielle","rarity":"Crafted","mult":10500000.0},{"world":"Kingdom of Lugunica","name":"Emilia","rarity":"Secret","mult":14500000.0},{"world":"Kingdom of Lugunica","name":"Subaru Natsuki","rarity":"Divine","mult":22500000.0},{"world":"Kingdom of Lugunica","name":"Reinhard van astreon","rarity":"Astral","mult":100000000.0},{"world":"New Leaf Village","name":"Hinata","rarity":"Common","mult":7000000.0},{"world":"New Leaf Village","name":"Shikamaru","rarity":"Uncommon","mult":8500000.0},{"world":"New Leaf Village","name":"Sakura","rarity":"Rare","mult":10500000.0},{"world":"New Leaf Village","name":"Himawari","rarity":"Epic","mult":13000000.0},{"world":"New Leaf Village","name":"Mitsuki","rarity":"Legendary","mult":16000000.0},{"world":"New Leaf Village","name":"Sarada","rarity":"Mythical","mult":20000000.0},{"world":"New Leaf Village","name":"Naruto (hokage)","rarity":"Crafted","mult":26000000.0},{"world":"New Leaf Village","name":"Sasuke","rarity":"Secret","mult":35000000.0},{"world":"New Leaf Village","name":"Boruto","rarity":"Divine","mult":55000000.0},{"world":"New Leaf Village","name":"Naruto (Baryon Mode)","rarity":"Astral","mult":215000000.0}],"scaling":[{"world":"Battlepass","name":"Guita Onesie","rarity":"Divine","pct":110.0},{"world":"Battlepass","name":"Rem","rarity":"Divine","pct":120.0},{"world":"Castle Battlepass","name":"Guita Onesie","rarity":"Divine","pct":110.0},{"world":"Castle Battlepass","name":"Rem","rarity":"Divine","pct":120.0},{"world":"Clover Battlepass","name":"Noella MAX","rarity":"Divine","pct":115.0},{"world":"Clover Battlepass","name":"Asta MAX","rarity":"Divine","pct":125.0},{"world":"Summer Battlepass","name":"Remi (SUMMER 2026)","rarity":"Divine","pct":120.0},{"world":"Summer Battlepass","name":"Akoa (SUMMER 2026)","rarity":"Divine","pct":130.0},{"world":"Time Chamber (Unobtainable)","name":"Atomic","rarity":"Divine","pct":135.0},{"world":"W10 Battlepass","name":"Asto","rarity":"Divine","pct":120.0},{"world":"W10 Battlepass","name":"Ainz","rarity":"Divine","pct":130.0},{"world":"Ultimate Bundle 2","name":"Gilgamesh","rarity":"Divine","pct":140.0},{"world":"One Punch Man World","name":"Lelouch","rarity":"Divine","pct":130.0},{"world":"Ultimate Bundle 3","name":"Frieren","rarity":"Divine","pct":140.0}]};
+const scalingPetData=[{"world":"Battlepass","name":"Guita Onesie","rarity":"Divine","pct":110.0},{"world":"Battlepass","name":"Rem","rarity":"Divine","pct":120.0},{"world":"Castle Battlepass","name":"Guita Onesie","rarity":"Divine","pct":110.0},{"world":"Castle Battlepass","name":"Rem","rarity":"Divine","pct":120.0},{"world":"Clover Battlepass","name":"Noella MAX","rarity":"Divine","pct":115.0},{"world":"Clover Battlepass","name":"Asta MAX","rarity":"Divine","pct":125.0},{"world":"Summer Battlepass","name":"Remi (SUMMER 2026)","rarity":"Divine","pct":120.0},{"world":"Summer Battlepass","name":"Akoa (SUMMER 2026)","rarity":"Divine","pct":130.0},{"world":"Time Chamber (Unobtainable)","name":"Atomic","rarity":"Divine","pct":135.0},{"world":"W10 Battlepass","name":"Asto","rarity":"Divine","pct":120.0},{"world":"W10 Battlepass","name":"Ainz","rarity":"Divine","pct":130.0},{"world":"Ultimate Bundle 2","name":"Gilgamesh","rarity":"Divine","pct":140.0},{"world":"One Punch Man World","name":"Lelouch","rarity":"Divine","pct":130.0},{"world":"Ultimate Bundle 3","name":"Frieren","rarity":"Divine","pct":140.0}];
+const promotionData={"stats":{"0":{},"1":{"power":10.0,"damage":5.0,"yen":5.0,"walk":2.0},"2":{"power":20.0,"damage":10.0,"yen":10.0,"luck":0.1,"walk":2.0},"3":{"power":30.0,"damage":15.0,"yen":15.0,"luck":0.1,"xp":5.0,"walk":2.0},"4":{"power":40.0,"damage":20.0,"yen":20.0,"luck":0.2,"xp":5.0,"drop":0.05,"walk":2.25},"5":{"power":55.0,"damage":25.0,"yen":30.0,"luck":0.2,"xp":10.0,"drop":0.05,"walk":2.5},"6":{"power":70.0,"damage":30.0,"yen":40.0,"luck":0.3,"xp":10.0,"drop":0.1,"walk":2.75},"7":{"power":85.0,"damage":35.0,"yen":50.0,"luck":0.3,"xp":15.0,"drop":0.1,"walk":3.0},"8":{"power":100.0,"damage":40.0,"yen":60.0,"luck":0.5,"xp":15.0,"drop":0.1,"walk":3.25},"9":{"power":120.0,"damage":50.0,"yen":70.0,"luck":0.5,"xp":25.0,"drop":0.1,"walk":3.5},"10":{"power":140.0,"damage":60.0,"yen":80.0,"luck":0.75,"xp":25.0,"drop":0.15,"walk":3.75,"critChance":1.0,"critDamage":5.0},"11":{"power":160.0,"damage":70.0,"yen":90.0,"luck":0.75,"xp":35.0,"drop":0.15,"walk":4.0,"critChance":1.0,"critDamage":10.0},"12":{"power":180.0,"damage":80.0,"yen":100.0,"luck":1.0,"xp":35.0,"drop":0.15,"walk":4.25,"critChance":2.0,"critDamage":10.0},"13":{"power":200.0,"damage":90.0,"yen":110.0,"luck":1.0,"xp":45.0,"drop":0.2,"walk":4.5,"critChance":2.0,"critDamage":15.0},"14":{"power":220.0,"damage":100.0,"yen":120.0,"luck":1.25,"xp":45.0,"drop":0.2,"walk":4.75,"critChance":2.0,"critDamage":20.0},"15":{"power":240.0,"damage":110.0,"yen":130.0,"luck":1.25,"xp":60.0,"drop":0.25,"walk":5.0,"critChance":2.0},"16":{"power":260.0,"damage":120.0,"yen":140.0,"luck":1.5,"xp":60.0,"drop":0.25,"walk":5.25,"critChance":3.0},"17":{"power":280.0,"damage":130.0,"yen":150.0,"luck":1.5,"xp":75.0,"drop":0.3,"walk":5.5,"critChance":3.0},"18":{"power":300.0,"damage":140.0,"yen":160.0,"luck":1.75,"xp":75.0,"drop":0.3,"walk":5.75,"critChance":3.0},"19":{"power":325.0,"damage":150.0,"yen":170.0,"luck":1.75,"xp":90.0,"drop":0.35,"walk":6.0,"critChance":3.0},"20":{"power":350.0,"damage":160.0,"yen":180.0,"luck":2.0,"xp":90.0,"drop":0.35,"walk":6.25,"critChance":4.0},"21":{"power":375.0,"damage":175.0,"yen":190.0,"luck":2.0,"xp":110.0,"drop":0.4,"walk":6.5,"critChance":4.0},"22":{"power":400.0,"damage":190.0,"yen":200.0,"luck":2.25,"xp":110.0,"drop":0.4,"walk":6.75,"critChance":4.0},"23":{"power":430.0,"damage":205.0,"yen":215.0,"luck":2.25,"xp":130.0,"drop":0.45,"walk":7.0,"critChance":4.0},"24":{"power":465.0,"damage":225.0,"yen":230.0,"luck":2.5,"xp":130.0,"drop":0.45,"walk":7.25,"critChance":5.0},"25":{"power":500.0,"damage":250.0,"yen":250.0,"luck":2.5,"xp":150.0,"drop":0.5,"walk":7.5,"critChance":5.0},"26":{"power":540.0,"damage":275.0,"yen":270.0,"luck":2.75,"xp":165.0,"drop":0.55,"walk":7.75,"critChance":5.0},"27":{"power":585.0,"damage":300.0,"yen":295.0,"luck":2.75,"xp":180.0,"drop":0.55,"walk":8.0,"critChance":6.0,"critDamage":55.0},"28":{"power":630.0,"damage":325.0,"yen":320.0,"luck":3.0,"xp":200.0,"drop":0.6,"walk":8.25,"critChance":6.0,"critDamage":55.0},"29":{"power":690.0,"damage":350.0,"yen":345.0,"luck":3.25,"xp":220.0,"drop":0.6,"walk":8.5,"critChance":6.0,"critDamage":60.0},"30":{"power":750.0,"damage":375.0,"yen":370.0,"luck":3.5,"xp":240.0,"drop":0.65,"walk":8.75,"critChance":7.0,"critDamage":60.0},"31":{"power":815.0,"damage":400.0,"yen":395.0,"luck":3.75,"xp":260.0,"drop":0.65,"walk":9.0,"critDamage":65.0,"shiny":0.25},"32":{"power":885.0,"damage":425.0,"yen":420.0,"luck":4.0,"xp":280.0,"drop":0.7,"walk":9.25,"critDamage":65.0,"shiny":0.5},"33":{"power":960.0,"damage":450.0,"yen":445.0,"luck":4.25,"xp":300.0,"drop":0.7,"walk":9.25,"critDamage":70.0,"shiny":0.5,"petSlots":2.0},"34":{"power":1040.0,"damage":480.0,"yen":475.0,"luck":4.25,"xp":320.0,"drop":0.75,"walk":9.5,"critDamage":70.0,"shiny":0.75,"petSlots":2.0},"35":{"power":1130.0,"damage":510.0,"yen":505.0,"luck":4.25,"xp":340.0,"drop":0.75,"walk":9.5,"critDamage":70.0,"shiny":0.75,"petSlots":2.0},"36":{},"38":{"power":1410.0,"damage":600.0,"yen":595.0,"luck":4.75,"xp":400.0,"drop":0.85,"walk":10.0,"critDamage":80.0,"shiny":1.25,"petSlots":2.0},"39":{"power":1515.0,"damage":630.0,"yen":625.0,"luck":5.0,"xp":420.0,"drop":0.85,"walk":10.0,"critDamage":85.0,"shiny":1.25,"petSlots":2.0,"gachaSlots":1.0},"40":{"power":1625.0,"damage":665.0,"yen":660.0,"luck":5.25,"xp":440.0,"drop":0.9,"walk":10.25,"critDamage":85.0,"shiny":1.5,"petSlots":3.0,"gachaSlots":1.0},"41":{"power":1740.0,"damage":700.0,"yen":695.0,"luck":5.25,"xp":460.0,"drop":0.9,"walk":10.25,"critDamage":90.0,"shiny":1.5,"petSlots":3.0,"gachaSlots":1.0},"42":{"power":1860.0,"damage":735.0,"yen":730.0,"luck":5.5,"xp":480.0,"drop":0.95,"walk":10.5,"critDamage":90.0,"shiny":1.75,"petSlots":3.0,"gachaSlots":1.0}},"missions":{"0":["Reach Level 2","Defeat 100 enemies","Reach Rank 1"],"1":["Reach Rank 2","Reach Range Level 2","Defeat 750 Enemies","Roll 250 Doujutsu Gacha"],"2":["Reach Player Level 10","Reach Rank 4","Summon 2500 Pets in Ninja Village","Obtain any accessory","Defeat Itachi 500 Times"],"4":["Reach Player Level 20","Reach Rank 8","Reach Range Level 4","Roll Races Gacha : 500","Summon Pets in Namek City : 7500","Defeat Enemies : 3000"],"5":["Reach Player Level 25","Reach Rank 10","Reach Range Level 5","Complete 2 Side Quests","Complete 2 Index Maps","Reach Dragon Relic Level 25","Complete 1 Ninja Raid"],"6":["Reach Player Level 30","Reach Rank 12","Reach Range Level 6","Roll 2,500 Haki Gacha","Summon 12,500 Pets in World 3","Defeat 6,000 Enemies"],"7":["Reach Player Level 35","Reach Rank 14","Reach Range Level 7","Defeat White Beard 1,500 Times","Complete 3 Index Maps","Obtain 3 Accessories"],"8":["Reach Player Level 40","Reach Rank 16","Reach Range Level 8","Join Titan Defense 25 Times"],"9":["Reach Player Level 45","Reach Rank 18","Defeat 12,000 Enemies","Defeat 2,000 Armored Titans","Clear 500 Waves in Titan Defense"],"10":["Reach Player Level 20","Reach Rank 20","Reach Range Level 10","Complete 4 Side Quests","Reach Level 50 Titan Relic","Complete 10 Titan Defense"],"11":["Reach Player Level 55","Reach Rank 22","Reach Range Level 11","Roll Hunter Gacha 5,000 Times","Summon Solo City Pets 35,000 Times","180% Power, 80% Dmg, 100% Yen, +1 Luck, 35% Xp, +0.15 Drop, +4.25 WalkSpeed, +2% CritChance, +10% CritDamage","Reach Player Level 60","Reach Rank 24","Reach Range Level 12","Defeat Enemies 20,000","Defeat W5 World Boss 3,000"],"13":["Reach Player Level 65","Each Rank 26","Reach Range Level 13","Complete 5 Map Index","Obtain 6 of Any Accessory"],"14":["Reach Player Level 70","Reach Rank 28","Reach Range Level 14","Roll 10,000 Demon Moon Gacha","Summon 75,000 Pets in W6","Reach Slayer Relic Level 25"],"15":["Reach Player Level 75","Reach Rank 30","Reach Range Level 15","Defeat 35,000 enemies","Defeat W6 World Boss 4,000 Times","Join Infinity Castle 50 Times"],"16":["Reach Player Level 80","Reach Rank 32","Reach Range Level 16","Complete 6 Index","Complete 6 Side Quests","Reach Slayer Relic Max Level","Reach Slayer Relic Ascension 3","Clear 2,000 Infinity Castle Waves"],"17":["Reach Player Level 90","Reach Rank 34","Reach Range Level 18","Roll 25,000 World 7 Gacha","Summon 150,000 Pets in World 7","Join Clover Raid 100 Times"],"18":["Reach Player Level 100","Reach Rank 36","Reach Range Level 20","Defeat 50,000 Enemies","Defeat 5,000  Times World 7 World Boss","Compete 7 Map Index","Obtain 7 Of Any Accessory","Complete 5 Times Clover Raid"],"19":["Reach Player Level 110","Reach Rank 38","Reach Range Level 21","Roll 50,000 W8 Gacha (SAO)","Summon 300,000 Pets in W8 (SAO)","Join Beach Defense 100 Times"],"20":["Reach Player Level 120","Reach Rank 40","Reach Range Level 22","Defeat 70,000 Enemies","Defeat Quinella 6,000 Times","Compete 8 Map Index","Clear 2,500 Beach Defense Waves"],"21":["Reach Player Level 130","Reach Rank 43","Reach Range Level 23","Roll 100,000 W9 Gacha (Fire City)","Summon 500,000 Pets in W9 (Fire City)","Join 15 Fire City Dungeons"],"22":["Reach Player Level 135","Reach Rank 45","Reach Range Level 24","Defeat 90,000 Enemies","Defeat Sho 7,500 Times","Clear 500 Fire City Dungeon Waves"],"23":["Reach Player Level 140","Reach Rank 47","Reach Range Level 25","Complete 9 Side Quests","Complete 9 Map Index","Obtain 12 of any Accessory","Complete Fire Dungeon 5 Times"],"24":["Reach Player Level 145","Reach Rank 49","Reach Range Level 26","Roll 150,000 Soul Artifact Gacha (W10)","Defeat 120,000 Enemies","Summon 1,000,000 Pets in Hueco World","Compete 10 SideQuests"],"25":["Reach Player Level 150","Reach Rank 52","Reach Range Level 28","Defeat 10,000 Times Ainz, World 10 WB","Complete 10 Side Quests","Obtain 15 Accessories","Join 150 Soul Raids","Complete 10,000 Soul Raid Waves"],"26":["Reach Player Level 155","Reach Rank 54","Roll 175,000 Times Innate Technique Gacha","Defeat 115,000 Enemies","Complete 11 Index Maps"],"27":["Reach Player Level 150 (Was 160 Before)","Reach Rank 52 (Was 57 Before)","Complete 11 Side Quests","Obtain 20 Of Any Accessory","Roll 7,000 Innate Technique Gacha (W11) (was 200,000 Before)","Summon 28,000 Pets in W11 (was 1,250,000 Before)"],"28":["Reach Player Level 155","Reach Rank 54","Join Cursed Rush V1 3 Times","Complete 600 Cursed Rush V1 Waves","Defeat 2,000  Sukuna World 11 World Boss","Defeat 13,000 Enemies"],"35":["Reach Player Level 210","Reach Rank 80","Complete 15 Side Quests","Obtain 12 of any accessory","Roll 17,000 of the W15 Gacha","Summon 65,000 Pets in W15"],"36":["Reach Player Level 220","Reach Rank 84","Defeat 22,000 enemies in World 15","Defeat 9,000 Times Hisoka","Defeat 5,000 Chrollo","Complete 15 Map Index"],"37":["Reach Player Level 225","Reach Rank 88","Complete 16 Side Quests","Obtain 14 of any accessory","Roll 20,000 of the W16 Gacha","Summon 75,000 Pets in W16"],"38":["Reach Player Level 230","Reach Rank 92","Join Owl Suppression 5 times","Clear 500 Waves in Owl Suppression","Defeat Eto 7,000","Defeat Arima 4,000","Complete 16 Index Maps"],"39":["Reach Player Level 240","Reach Rank 96","Complete 17 side quests","Obtain any Accessory","Roll 23,300 of the W17 gacha","Summon 85,000 pets in W17"],"40":["Reach Player Level 250","Reach Rank 104","Defeat 26,000 enemies in World 17","Defeat Roswall L.Mathers 10,000","Defeat Regulus Corneas 6,000","Complete 17 Index Maps"],"41":["Reach Player Level 260","Reach Rank 108","Complete 18 side quests","Obtain any Accessory 20 times","Roll 26,000 of the W18 gacha","Summon 95,000 pets in W18"],"42":["Reach Player Level 270","Reach Rank 112","Join W18 Raid 5 times","Clear 600 Waves in New Leaf Defense","Defeat Momoshiki 8,000","Defeat Isshiki Otsutsuki 4,500","Complete 18 Map Index"]}};
+function petFmt(n){return formatPower(n);}
+const petBestUnit=document.getElementById('petBestUnit');
+if(petBestUnit){fillUnits('petBestUnit');petBestUnit.value='K';}
+const petLookup=document.getElementById('petLookup');
+if(petLookup){
+ const byWorld={}; petData.pets.forEach((p,i)=>(byWorld[p.world]??=[]).push({...p,i}));
+ Object.entries(byWorld).forEach(([world,items])=>{const g=document.createElement('optgroup');g.label=world;items.forEach(p=>{const o=document.createElement('option');o.value=p.i;o.textContent=`${p.name} • ${p.rarity} • ${petFmt(p.mult)}`;g.appendChild(o)});petLookup.appendChild(g);});
+ petLookup.addEventListener('change',()=>{const p=petData.pets[Number(petLookup.value)];document.getElementById('petLookupResult').textContent=p?`${p.name} — ${p.rarity}: ${petFmt(p.mult)} multiplier.`:'Select a pet to see its documented multiplier.';});
+}
+function calculatePet(){
+ const best=parsePower(document.getElementById('petBest').value,petBestUnit.value); const pct=Number(document.getElementById('petPercent').value);
+ const shiny=document.getElementById('petShiny').checked;
+ const divinePredator=document.getElementById('petDivinePredator').checked;
+ if(!Number.isFinite(best)||best<=0||!Number.isFinite(pct)||pct<=0){document.getElementById('petResult').textContent='Enter valid values';return;}
+ const base=best*(pct/100);
+ let final=base;
+ if(shiny)final*=1.5;
+ if(divinePredator)final*=2;
+ document.getElementById('petBaseResult').textContent=petFmt(base);document.getElementById('petFinalResult').textContent=petFmt(final);document.getElementById('petResult').textContent=petFmt(final);
+
+}
+document.getElementById('petCalculate')?.addEventListener('click',calculatePet);
+document.getElementById('petShiny')?.addEventListener('change',()=>{});
+document.getElementById('petDivinePredator')?.addEventListener('change',()=>{});
+
+const promoCurrent=document.getElementById('promoCurrent'),promoTarget=document.getElementById('promoTarget');
+if(promoCurrent){for(let i=0;i<=42;i++){for(const s of [promoCurrent,promoTarget]){const o=document.createElement('option');o.value=i;o.textContent=`Promotion Rank ${i}`;s.appendChild(o)}} promoCurrent.value='1';promoTarget.value='42';
+ function promoVal(r,k){return promotionData.stats[String(r)]?.[k];}
+ function fmtDelta(a,b,k){if(a==null||b==null)return 'UNKNOWN';const d=b-a; if(k==='power'||k==='damage'||k==='yen'||k==='xp'||k==='shiny'||k==='critChance'||k==='critDamage')return `${d>=0?'+':''}${d}%`; if(k==='luck'||k==='drop'||k==='walk'||k==='petSlots'||k==='gachaSlots')return `${d>=0?'+':''}${d}`;return '—';}
+ document.getElementById('promoCalculate').addEventListener('click',()=>{
+   let c=Number(promoCurrent.value),t=Number(promoTarget.value);if(t<c)[c,t]=[t,c];
+   const keys=['power','damage','yen','luck','xp','drop']; const ids=['promoPower','promoDamage','promoYen','promoLuck','promoXp','promoDrop'];
+   document.getElementById('promoRanks').textContent=`${t-c} promotion${t-c===1?'':'s'}`;
+   keys.forEach((k,i)=>document.getElementById(ids[i]).textContent=fmtDelta(promoVal(c,k),promoVal(t,k),k));
+   document.getElementById('promoCritChance').textContent=fmtDelta(promoVal(c,'critChance'),promoVal(t,'critChance'),'critChance');
+   document.getElementById('promoCritDamage').textContent=fmtDelta(promoVal(c,'critDamage'),promoVal(t,'critDamage'),'critDamage');
+   document.getElementById('promoShiny').textContent=fmtDelta(promoVal(c,'shiny'),promoVal(t,'shiny'),'shiny');
+   const rows=document.getElementById('promoRows');rows.innerHTML='';
+   for(let r=c+1;r<=t;r++){const div=document.createElement('div');div.className='tool-row';const s=promotionData.stats[String(r)];const ms=promotionData.missions[String(r)]||[];div.innerHTML=`<strong>Rank ${r}</strong><span>${s?`Power ${s.power??'—'}% • Dmg ${s.damage??'—'}% • Yen ${s.yen??'—'}%`:'UNKNOWN STATS'}</span><span>${ms.length?ms.length+' missions':'—'}</span>`;rows.appendChild(div)}
+ });
+}
+
+const petTab=document.getElementById('petTab'),promotionTab=document.getElementById('promotionTab');
+
 const powerTab=document.getElementById("powerTab");
 const dpsTab=document.getElementById("dpsTab");
+const rankTab=document.getElementById("rankTab");
 const powerView=document.getElementById("powerView");
 const dpsView=document.getElementById("dpsView");
+const rankView=document.getElementById("rankView");
+const petView=document.getElementById("petView");
+const promotionView=document.getElementById("promotionView");
 function showView(which){
-  const isPower=which==="power";
-  const isDps=which==="dps";
-  const isRank=which==="rank";
-  powerView.style.display=isPower?"block":"none";
-  dpsView.style.display=isDps?"block":"none";
-  rankView.style.display=isRank?"block":"none";
-  powerTab.classList.toggle("active",isPower);
-  dpsTab.classList.toggle("active",isDps);
-  rankTab.classList.toggle("active",isRank);
-  const title=document.getElementById("pageTitle");
-  const tagline=document.getElementById("pageTagline");
-  if(isPower){
-    title.textContent="Power Calculator";
-    tagline.textContent="Find out how much power you need to reach your target power.";
-    document.title="Anime Astral • Power Calculator";
-  }else if(isDps){
-    title.textContent="DPS Calculator";
-    tagline.textContent="Find out how much damage you can deal and what content you can clear.";
-    document.title="Anime Astral • DPS Calculator";
-  }else{
-    title.textContent="Rank Up Calculator";
-    tagline.textContent="Find out how long it will take to reach your target rank.";
-    document.title="Anime Astral • Rank Up Calculator";
-  }
+  const views={power:powerView,dps:dpsView,rank:rankView,pet:petView,promotion:promotionView};
+  Object.entries(views).forEach(([k,v])=>{if(v)v.style.display=which===k?"block":"none"});
+  const tabs={power:powerTab,dps:dpsTab,rank:rankTab,pet:petTab,promotion:promotionTab};
+  Object.entries(tabs).forEach(([k,v])=>v?.classList.toggle("active",which===k));
+  const title=document.getElementById("pageTitle"),tagline=document.getElementById("pageTagline");
+  const meta={
+    power:["Power Calculator","Find out how much power you need to reach your target power."],
+    dps:["DPS Calculator","Find out how much damage you can deal and what content you can clear."],
+    rank:["Rank Up Calculator","Find out how long it will take to reach your target rank."],
+    pet:["Pet Calculator","Calculate scaling pet values and look up documented pet multipliers."],
+    promotion:["Promotion Calculator","See the promotion buffs and missions between your current and target rank."]
+  }[which]||["Power Calculator","Find out how much power you need to reach your target power."];
+  title.textContent=meta[0];tagline.textContent=meta[1];document.title=`Anime Astral • ${meta[0]}`;
 }
 powerTab.addEventListener("click",()=>showView("power"));
 dpsTab.addEventListener("click",()=>showView("dps"));
 rankTab.addEventListener("click",()=>showView("rank"));
+petTab.addEventListener("click",()=>showView("pet"));
+promotionTab.addEventListener("click",()=>showView("promotion"));
 showView("power");
 
 </script>
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3399b1f1543a4c33818a7243ea3fd9cd"}'></script>
 <!-- End Cloudflare Web Analytics -->
+<!-- Navigation safety handler: keeps the calculator tabs working even if another calculator script errors. -->
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const views = {
+    power: document.getElementById("powerView"),
+    dps: document.getElementById("dpsView"),
+    rank: document.getElementById("rankView"),
+    pet: document.getElementById("petView"),
+    promotion: document.getElementById("promotionView")
+  };
+  const tabs = {
+    power: document.getElementById("powerTab"),
+    dps: document.getElementById("dpsTab"),
+    rank: document.getElementById("rankTab"),
+    pet: document.getElementById("petTab"),
+    promotion: document.getElementById("promotionTab")
+  };
+  const meta = {
+    power: ["Power Calculator", "Find out how much power you need to reach your target power."],
+    dps: ["DPS Calculator", "Find out how much damage you can deal and what content you can clear."],
+    rank: ["Rank Up Calculator", "Find out how long it will take to reach your target rank."],
+    pet: ["Pet Calculator", "Calculate scaling pet values and look up documented pet multipliers."],
+    promotion: ["Promotion Calculator", "See the promotion buffs and missions between your current and target rank."]
+  };
+  function switchView(which){
+    Object.keys(views).forEach(k => { if(views[k]) views[k].style.display = (k === which ? "block" : "none"); });
+    Object.keys(tabs).forEach(k => { if(tabs[k]) tabs[k].classList.toggle("active", k === which); });
+    const title = document.getElementById("pageTitle");
+    const tagline = document.getElementById("pageTagline");
+    if(meta[which]){
+      if(title) title.textContent = meta[which][0];
+      if(tagline) tagline.textContent = meta[which][1];
+      document.title = "Anime Astral • " + meta[which][0];
+    }
+  }
+  Object.keys(tabs).forEach(k => {
+    if(tabs[k]) tabs[k].addEventListener("click", function(e){ e.preventDefault(); switchView(k); });
+  });
+  switchView("power");
+});
+</script>
 </body>
 </html>
