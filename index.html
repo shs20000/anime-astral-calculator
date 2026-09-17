@@ -970,6 +970,10 @@ footer{font-size:12px}
       <label for="ppc">Power Per Click (PPC)</label>
       <div class="input-row"><input id="ppc" value="" placeholder="Enter your PPC" inputmode="decimal" autocomplete="off"><select id="ppcUnit"></select></div>
     </div>
+    <div class="field">
+      <label for="attackSpeed">Attack Speed (%)</label>
+      <div class="input-row"><input id="attackSpeed" value="0" placeholder="0" inputmode="decimal" autocomplete="off" aria-label="Attack Speed percentage"></div>
+    </div>
   </div>
 
   <div class="metrics">
@@ -987,7 +991,7 @@ footer{font-size:12px}
         <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span>
         <span class="boost-copy">
           <span class="boost-name">Fast Click Gamepass</span>
-          <span class="boost-desc">Raises click rate to 3.66 clicks/sec</span>
+          <span class="boost-desc">Uses the game's 4 CPS Fast Click rate before Attack Speed</span>
         </span>
         <span class="boost-mult">ON</span>
       </label>
@@ -1034,8 +1038,8 @@ footer{font-size:12px}
   <div class="how-works-grid">
     <div><b>1. Enter your power</b><span>Enter your current power, target power, and select the correct unit for each.</span></div>
     <div><b>2. Enter your PPC</b><span>Use the Power Per Click value exactly as it appears in-game.</span></div>
-    <div><b>3. Add your boosts</b><span>Fast Click uses 3.66 CPS. Primordial doubles PPC for 30s every 90s.</span></div>
-    <div><b>4. Calculate</b><span>Your power per second, power per hour, progress, and estimated time update from your inputs.</span></div>
+    <div><b>3. Add your boosts</b><span>Fast Click uses the game's 4 CPS rate before Attack Speed. Primordial doubles PPC for 30s every 90s.</span></div>
+    <div><b>4. Calculate</b><span>Your Attack Speed increases CPS, which updates power per second, power per hour, progress, and estimated time.</span></div>
   </div>
   <div class="how-works-tip">💡 <b>Tip:</b> Your PPC is the power number shown in the bottom-right of Anime Astral.</div>
 </section>
@@ -1060,6 +1064,10 @@ footer{font-size:12px}
           <select id="rankPpcUnit" aria-label="Rank calculator PPC unit"></select>
         </div>
       </div>
+      <div class="field">
+        <label for="rankAttackSpeed">Attack Speed (%)</label>
+        <div class="input-row"><input id="rankAttackSpeed" type="text" value="0" placeholder="0" inputmode="decimal" autocomplete="off" aria-label="Rank calculator Attack Speed percentage"></div>
+      </div>
     </div>
 
     <div class="rank-section-divider"></div>
@@ -1083,9 +1091,9 @@ footer{font-size:12px}
           <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span>
           <span class="boost-copy">
             <span class="boost-name">Fast Click Gamepass</span>
-            <span class="boost-desc">Raises click rate to 3.66 clicks/sec</span>
+            <span class="boost-desc">Uses the game's 4 CPS Fast Click rate before Attack Speed</span>
           </span>
-          <span class="boost-mult">3.66 CPS</span>
+          <span class="boost-mult">4 CPS</span>
         </label>
 
         <label class="boost">
@@ -1106,7 +1114,7 @@ footer{font-size:12px}
 
     <div class="rank-actions"><button class="calculate" id="rankCalculate" type="button">Calculate Rank Up Time</button><button class="rank-reset" id="rankReset" type="button">Reset</button></div>
 
-    <div class="rank-calc-note"><span>ℹ️</span><span><b>Calculation note:</b> Your PPC is treated as your actual in-game PPC. Fast Click changes CPS only, and Primordial uses 60s normal / 30s at ×2 PPC.</span></div>
+    <div class="rank-calc-note"><span>ℹ️</span><span><b>Calculation note:</b> Your PPC is treated as your actual in-game PPC. Fast Click uses the game's 4 CPS rate before Attack Speed. Attack Speed increases CPS by its entered percentage. Primordial uses 60s normal / 30s at ×2 PPC.</span></div>
 
     <div class="rank-result" aria-live="polite">
       <div class="rank-time-label">Estimated Time</div>
@@ -1170,7 +1178,7 @@ footer{font-size:12px}
       <div class="rank-how-grid">
         <div><b>1. Enter your stats</b><span>Enter your current power and your in-game PPC exactly as shown.</span></div>
         <div><b>2. Choose your ranks</b><span>Select the rank you currently have and the rank you want to reach.</span></div>
-        <div><b>3. Add your boosts</b><span>Fast Click uses 3.66 CPS. Primordial doubles PPC for 30s every 90s.</span></div>
+        <div><b>3. Add your boosts</b><span>Fast Click uses the game's 4 CPS rate before Attack Speed. Primordial doubles PPC for 30s every 90s.</span></div>
         <div><b>4. Calculate</b><span>Your remaining power, progress, clicks, and estimated time update from your inputs.</span></div>
       </div>
     </div>
@@ -1190,8 +1198,12 @@ footer{font-size:12px}
         <select id="damageMultiplierUnit" aria-label="Damage multiplier unit"></select>
       </div>
     </div>
+    <div class="field">
+      <label for="dpsAttackSpeed">Attack Speed (%)</label>
+      <div class="input-row"><input id="dpsAttackSpeed" type="text" value="0" placeholder="0" inputmode="decimal" autocomplete="off" aria-label="DPS calculator Attack Speed percentage"></div>
+    </div>
     <div class="field dps-full">
-      <div class="dps-select-help">After calculating, every supplied game mode and wave/room will be checked automatically. Use your current power, damage multiplier, and click rate to calculate DPS.</div>
+      <div class="dps-select-help">After calculating, every supplied game mode and wave/room will be checked automatically. Use your current power, damage multiplier, Attack Speed, and click rate to calculate DPS.</div>
     </div>
     <div class="dps-full">
       <div class="boosts">
@@ -1200,9 +1212,9 @@ footer{font-size:12px}
           <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="m5 12 4 4L19 6"/></svg></span>
           <span class="boost-copy">
             <span class="boost-name">Fast Click Gamepass</span>
-            <span class="boost-desc">Uses 3.66 clicks/sec instead of the base 2.66</span>
+            <span class="boost-desc">Uses the game's 4 CPS Fast Click rate before Attack Speed</span>
           </span>
-          <span class="boost-mult">3.66 CPS</span>
+          <span class="boost-mult">4 CPS</span>
         </label>
       </div>
     </div>
@@ -1216,7 +1228,7 @@ footer{font-size:12px}
       <div class="dps-stat"><small>Click Rate</small><strong id="dpsCps">—</strong></div>
       <div class="dps-stat"><small>Damage Multiplier</small><strong id="dpsMult">—</strong></div>
     </div>
-    <div class="dps-info" id="dpsNote">Each game mode below is checked automatically using your current DPS.</div>
+    <div class="dps-info" id="dpsNote">Each game mode below is checked automatically using your current DPS. Attack Speed is applied to your click rate.</div>
   </div>
 
   <div class="dps-summary-grid" id="dpsSummaryGrid">
@@ -1268,7 +1280,7 @@ footer{font-size:12px}
   <div class="section-title how-works-title"><span class="how-works-icon">📖</span>HOW IT WORKS</div>
   <div class="how-works-grid">
     <div><b>1. Enter your stats</b><span>Enter your current power and damage multiplier, then select the correct units.</span></div>
-    <div><b>2. Choose your click rate</b><span>Turn on Fast Click if you have it to use 3.66 clicks/sec instead of 2.66.</span></div>
+    <div><b>2. Choose your click rate</b><span>Turn on Fast Click if you have it to use the game's 4 CPS rate before Attack Speed; otherwise the base rate is 2.66 CPS.</span></div>
     <div><b>3. Calculate your DPS</b><span>Your DPS is calculated from Power × Damage Multiplier × CPS.</span></div>
     <div><b>4. Check your clears</b><span>Every supplied game mode and wave/room is checked automatically against your DPS.</span></div>
   </div>
@@ -1515,6 +1527,18 @@ function animateProgress(percent){
 
 
 
+function getAttackSpeedPercent(id){
+  const el=document.getElementById(id);
+  if(!el) return 0;
+  const value=Number(el.value);
+  return Number.isFinite(value) ? value : 0;
+}
+
+function calculateCps(fastClickEnabled, attackSpeedPercent){
+  const baseCps=fastClickEnabled ? 4 : 2.66;
+  return baseCps*(1 + attackSpeedPercent/100);
+}
+
 function calculate(){
   const currentInput=document.getElementById("current");
   const desiredInput=document.getElementById("target");
@@ -1530,8 +1554,15 @@ function calculate(){
   const ppc=parsePower(ppcInput.value,ppcUnitEl.value);
   const fastClickEnabled=document.getElementById("fastClick").checked;
   const primordialEnabled=document.getElementById("primordial").checked;
+  const attackSpeedInput=document.getElementById("attackSpeed");
+  const attackSpeedPercent=getAttackSpeedPercent("attackSpeed");
+  clearInputError(attackSpeedInput);
+  if(!Number.isFinite(Number(attackSpeedInput.value)) || Number(attackSpeedInput.value)<0){
+    setInputError(attackSpeedInput,"Attack Speed must be 0 or greater.");
+    return;
+  }
 
-  const cps=fastClickEnabled ? 3.66 : 2.66;
+  const cps=calculateCps(fastClickEnabled,attackSpeedPercent);
   const normalPps=ppc*cps;
   const normalPph=normalPps*3600;
 
@@ -1609,7 +1640,7 @@ function calculate(){
 
   document.getElementById("status").textContent=primordialEnabled
     ? `About ${clicks.toLocaleString()} clicks. Primordial cycles 60s normal / 30s at 2× PPC.`
-    : `About ${clicks.toLocaleString()} clicks at ${cps.toFixed(2)} clicks/sec.`;
+    : `About ${clicks.toLocaleString()} clicks at ${cps.toFixed(2)} clicks/sec (${attackSpeedPercent.toFixed(2).replace(/\.00$/,"" )}% Attack Speed).`;
 }
 
 document.getElementById("calculate").addEventListener("click",calculate);
@@ -2016,7 +2047,11 @@ function calculateDps(){
   if(!Number.isFinite(baseMult)||baseMult<=0){dpsError(multInput,"Enter a damage multiplier greater than 0.");valid=false}
   if(!valid)return;
 
-  const cps=document.getElementById("dpsFastClick").checked?3.66:2.66;
+  const attackSpeedInput=document.getElementById("dpsAttackSpeed");
+  clearDpsError(attackSpeedInput);
+  const attackSpeedPercent=Number(attackSpeedInput.value);
+  if(!Number.isFinite(attackSpeedPercent)||attackSpeedPercent<0){dpsError(attackSpeedInput,"Attack Speed must be 0 or greater.");return;}
+  const cps=calculateCps(document.getElementById("dpsFastClick").checked,attackSpeedPercent);
   const dps=power*cps*mult;
 
   document.getElementById("dpsValue").textContent=formatPower(dps)+"/sec";
@@ -2024,7 +2059,7 @@ function calculateDps(){
   document.getElementById("dpsMult").textContent=formatPower(baseMult);
   document.getElementById("dpsStatus").className="dps-status can";
   document.getElementById("dpsStatus").innerHTML=`<strong>${Object.keys(DPS_DATA).length} game modes checked</strong> — every supplied game mode and wave/room is compared against your DPS.`;
-  document.getElementById("dpsNote").innerHTML=`Current DPS: <b>${formatPower(dps)}/sec</b> • ${cps.toFixed(2)} CPS × ${formatPower(mult)} damage`;
+  document.getElementById("dpsNote").innerHTML=`Current DPS: <b>${formatPower(dps)}/sec</b> • ${cps.toFixed(2)} CPS × ${formatPower(mult)} damage • ${attackSpeedPercent}% Attack Speed`;
 
   const container=document.getElementById("dpsAllResults");
   container.innerHTML="";
@@ -2299,6 +2334,7 @@ function resetRankCalculator(){
   document.getElementById("rankCurrentPowerUnit").value="K";
   document.getElementById("rankFastClick").checked=false;
   document.getElementById("rankPrimordial").checked=false;
+  document.getElementById("rankAttackSpeed").value="0";
   clearDpsError(rankPpcInput);
   clearDpsError(rankCurrentPowerInput);
   clearDpsError(rankCurrent);
@@ -2337,7 +2373,11 @@ function calculateRankUp(){
 
   const fastClickEnabled=document.getElementById("rankFastClick").checked;
   const primordialEnabled=document.getElementById("rankPrimordial").checked;
-  const cps=fastClickEnabled?3.66:2.66;
+  const rankAttackSpeedInput=document.getElementById("rankAttackSpeed");
+  const attackSpeedPercent=Number(rankAttackSpeedInput.value);
+  clearDpsError(rankAttackSpeedInput);
+  if(!Number.isFinite(attackSpeedPercent)||attackSpeedPercent<0){dpsError(rankAttackSpeedInput,"Attack Speed must be 0 or greater.");return;}
+  const cps=calculateCps(fastClickEnabled,attackSpeedPercent);
   const transitions=[];
 
   for(let rank=current;rank<target;rank++){
@@ -2424,7 +2464,7 @@ function calculateRankUp(){
   document.getElementById("rankTime").textContent=formatDuration(totalTime);
   document.getElementById("rankStatus").textContent=primordialEnabled
     ? `Primordial cycles 60s normal / 30s at 2× PPC.`
-    : `Based on ${cps.toFixed(2)} clicks/sec.`;
+    : `Based on ${cps.toFixed(2)} clicks/sec with ${attackSpeedPercent}% Attack Speed.`;
 }
 
 function parseRankMultiplier(text){
