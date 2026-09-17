@@ -1942,7 +1942,7 @@ Sanctuary of the Future|Wave 20|50.67 δL
 Sanctuary of the Future|Wave 25|60 δN
 Sanctuary of the Future|Wave 30|76.83 δQ
 Sanctuary of the Future|Wave 35|9.43 δT
-Sanctuary of the Future|Wave 40|???
+Sanctuary of the Future|Wave 40|1.13 δW
 Sanctuary of the Future|Wave 45|???
 Sanctuary of the Future|Wave 50|???
 Ninja Defense|Wave 5|33.33 δG
@@ -1963,14 +1963,14 @@ Time Trial Insane|Wave 25|22 δG
 Time Trial Insane|Wave 30|106.67 δK
 Time Trial Insane|Wave 35|5.02 δP
 Time Trial Insane|Wave 40|23.69 δT
-Time Trial Insane|Wave 45|???
+Time Trial Insane|Wave 45|10.66 δX
 Time Trial Insane|Wave 50|???
 Ninja Exam|Genin to Chunnin|1 δG
 Ninja Exam|Chunnin to Tokubetsu Jonin|33.33 δJ
 Ninja Exam|Tokebetsu Jonin to Jonin|63.33 δN
 Ninja Exam|Jonin to Sannin|56.67 δR
 Ninja Exam|Sannin to Kage|5 δU
-Ninja Exam|Kage to Sennin|???`.trim().split("\n").map(line=>line.split("|"));
+Ninja Exam|Kage to Sennin|1 δZ`.trim().split("\n").map(line=>line.split("|"));
 const DPS_DATA={};
 DPS_ROWS.forEach(([mode,stage,required,note])=>{
   if(!DPS_DATA[mode]) DPS_DATA[mode]=[];
@@ -2006,6 +2006,9 @@ function parseDpsRequirement(text){
   const m=s.match(/^([0-9]+(?:\.[0-9]+)?)\s+(.+)$/);
   if(!m)return NaN;
   let unit=m[2].trim().replace(/^Y/,"y");
+  // Older data may use ASCII "d" where the in-game Greek delta is "δ".
+  const deltaAlias=unit.match(/^d([A-Z])$/);
+  if(deltaAlias) unit="δ"+deltaAlias[1];
   const betaAlias=unit.match(/^B([A-Z])$/);
   if(betaAlias) unit="β"+betaAlias[1];
   const u=units.find(x=>x[0]===unit);
