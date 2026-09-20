@@ -932,6 +932,178 @@ footer{font-size:12px}
   .tool-how-grid span{font-size:12px;line-height:1.5}
 }
 </style>
+
+<style id="v98-visual-overhaul">
+:root{
+  --bg:#05030b;
+  --panel:rgba(15,12,27,.88);
+  --panel-strong:rgba(18,14,34,.96);
+  --panel-soft:rgba(24,19,45,.72);
+  --line:rgba(164,119,255,.18);
+  --line-strong:rgba(164,119,255,.42);
+  --purple:#9b5cff;
+  --purple-hot:#c084ff;
+  --indigo:#6d73ff;
+  --cyan:#45d8ff;
+  --gold:#ffd45c;
+  --text:#fbf9ff;
+  --muted:#aaa4bc;
+  --shadow:0 24px 80px rgba(0,0,0,.48),0 0 45px rgba(128,67,255,.08);
+}
+html{scroll-behavior:smooth}
+body{
+  overflow-x:hidden;
+  background:
+    radial-gradient(900px 480px at 50% -5%,rgba(133,69,255,.28),transparent 64%),
+    radial-gradient(650px 520px at 8% 35%,rgba(80,54,190,.08),transparent 70%),
+    radial-gradient(700px 520px at 92% 62%,rgba(64,103,255,.07),transparent 70%),
+    linear-gradient(180deg,#07040d 0%,#05030a 48%,#030208 100%);
+}
+body:after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.18;
+  background:radial-gradient(520px 520px at var(--mx,50%) var(--my,15%),rgba(167,105,255,.22),transparent 68%);
+  transition:background-position .18s ease;
+}
+.page{position:relative;z-index:1}
+.game-logo{
+  filter:drop-shadow(0 12px 30px rgba(132,69,255,.34));
+  animation:aaLogoFloat 5s ease-in-out infinite;
+}
+.brand{
+  border-color:rgba(174,119,255,.5)!important;
+  background:linear-gradient(180deg,rgba(38,22,73,.72),rgba(13,8,25,.62))!important;
+  box-shadow:0 0 28px rgba(133,71,255,.11),inset 0 1px 0 rgba(255,255,255,.06);
+  letter-spacing:.18em!important;
+}
+#pageTitle{
+  text-shadow:0 0 30px rgba(181,132,255,.18),0 4px 0 rgba(0,0,0,.35);
+  letter-spacing:-.035em;
+  animation:titleIn .55s cubic-bezier(.2,.8,.2,1);
+}
+#pageTagline{transition:opacity .25s ease,transform .25s ease}
+.tabs{
+  position:sticky!important;top:14px;z-index:20;
+  padding:6px!important;
+  border:1px solid rgba(171,120,255,.19)!important;
+  border-radius:18px!important;
+  background:rgba(8,5,16,.82)!important;
+  backdrop-filter:blur(22px) saturate(150%);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  box-shadow:0 18px 60px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.04);
+}
+.tab{
+  position:relative;overflow:hidden;
+  border:1px solid transparent!important;
+  border-radius:13px!important;
+  background:linear-gradient(180deg,rgba(23,17,39,.86),rgba(12,9,23,.86))!important;
+  color:#a9a0bd!important;
+  transition:transform .2s ease,color .2s ease,box-shadow .25s ease,border-color .25s ease,background .25s ease!important;
+}
+.tab:before{
+  content:"";position:absolute;inset:-80% 20% auto;height:180%;transform:translateX(-120%) rotate(18deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  transition:transform .55s ease;pointer-events:none;
+}
+.tab:hover{transform:translateY(-2px);color:#eee7ff!important;border-color:rgba(173,119,255,.22)!important;box-shadow:0 8px 25px rgba(117,62,255,.15)}
+.tab:hover:before{transform:translateX(180%) rotate(18deg)}
+.tab.active{
+  color:#fff!important;
+  border-color:rgba(198,153,255,.55)!important;
+  background:linear-gradient(135deg,#9251f7,#6572ff)!important;
+  box-shadow:0 8px 30px rgba(120,68,255,.32),inset 0 1px 0 rgba(255,255,255,.25);
+}
+.card,.how-works{
+  position:relative;overflow:hidden;
+  border:1px solid rgba(158,113,245,.16)!important;
+  background:linear-gradient(145deg,rgba(19,15,34,.94),rgba(9,7,17,.91))!important;
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.045)!important;
+  backdrop-filter:blur(16px) saturate(130%);
+  -webkit-backdrop-filter:blur(16px) saturate(130%);
+}
+.card:before,.how-works:before{
+  content:"";position:absolute;left:8%;right:8%;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(196,149,255,.55),transparent);
+  opacity:.65;pointer-events:none;
+}
+.card:after,.how-works:after{
+  content:"";position:absolute;width:240px;height:240px;right:-160px;top:-160px;border-radius:50%;
+  background:radial-gradient(circle,rgba(143,82,255,.13),transparent 68%);pointer-events:none;
+}
+.section-title,.how-works-title,.rank-section-heading{
+  text-shadow:0 0 18px rgba(176,119,255,.18);
+}
+.field input,.field select{
+  border:1px solid rgba(164,130,219,.18)!important;
+  background:linear-gradient(180deg,rgba(8,6,16,.92),rgba(13,9,22,.92))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 5px 20px rgba(0,0,0,.18);
+  transition:border-color .2s ease,box-shadow .25s ease,transform .2s ease,background .25s ease!important;
+}
+.field input:hover,.field select:hover{border-color:rgba(168,119,255,.38)!important}
+.field input:focus,.field select:focus{
+  outline:none!important;transform:translateY(-1px);
+  border-color:rgba(179,128,255,.78)!important;
+  box-shadow:0 0 0 3px rgba(140,78,255,.12),0 0 28px rgba(140,78,255,.13),inset 0 1px 0 rgba(255,255,255,.06)!important;
+}
+.metric,.result-stat,.boost,.primordial-note,.rank-calc-note,.pet-passive-note{
+  border-color:rgba(154,111,229,.16)!important;
+  background:linear-gradient(145deg,rgba(17,13,31,.86),rgba(9,7,16,.82))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 10px 30px rgba(0,0,0,.16);
+}
+.metric,.result-stat{transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.metric:hover,.result-stat:hover{transform:translateY(-3px);border-color:rgba(167,116,255,.38)!important;box-shadow:0 14px 34px rgba(93,43,183,.18),inset 0 1px 0 rgba(255,255,255,.05)}
+.metric strong,.result-stat strong{ text-shadow:0 0 18px rgba(170,113,255,.16)}
+.boost{transition:transform .2s ease,border-color .2s ease,background .2s ease,box-shadow .2s ease!important}
+.boost:hover{transform:translateY(-2px);border-color:rgba(170,120,255,.38)!important;box-shadow:0 12px 30px rgba(100,48,180,.14)}
+.check{box-shadow:0 0 0 1px rgba(177,123,255,.08),0 0 0 rgba(153,88,255,0);transition:box-shadow .2s ease,transform .2s ease}
+.boost input:checked + .check{box-shadow:0 0 0 4px rgba(146,85,255,.11),0 0 22px rgba(146,85,255,.28);transform:scale(1.04)}
+.calculate{
+  position:relative;overflow:hidden!important;
+  background:linear-gradient(110deg,#8d49f5 0%,#7660ff 48%,#4d8fff 100%)!important;
+  box-shadow:0 14px 38px rgba(100,62,255,.28),inset 0 1px 0 rgba(255,255,255,.25)!important;
+  transition:transform .2s ease,box-shadow .25s ease,filter .25s ease!important;
+}
+.calculate:before{
+  content:"";position:absolute;top:-40%;left:-30%;width:30%;height:180%;transform:rotate(20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);animation:buttonShine 4.5s ease-in-out infinite;pointer-events:none;
+}
+.calculate:hover{transform:translateY(-3px);filter:saturate(1.12);box-shadow:0 18px 48px rgba(100,62,255,.42),inset 0 1px 0 rgba(255,255,255,.3)!important}
+.calculate:active{transform:translateY(0) scale(.985)}
+.result-box,.rank-result{
+  border-color:rgba(164,111,255,.35)!important;
+  background:radial-gradient(700px 220px at 50% 0%,rgba(115,63,218,.12),transparent 68%),linear-gradient(145deg,rgba(19,14,35,.96),rgba(9,7,17,.95))!important;
+  box-shadow:0 18px 60px rgba(82,39,164,.12),inset 0 1px 0 rgba(255,255,255,.04)!important;
+}
+.big,.rank-time{ text-shadow:0 0 30px rgba(186,134,255,.2)}
+.progress-track{background:rgba(255,255,255,.055)!important;box-shadow:inset 0 2px 5px rgba(0,0,0,.3)!important}
+.progress-fill{background:linear-gradient(90deg,#8c4dff,#6d73ff,#55c8ff)!important;box-shadow:0 0 18px rgba(121,85,255,.45)!important;position:relative;overflow:hidden}
+.progress-fill:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transform:translateX(-100%);animation:progressSheen 2.6s linear infinite}
+.calculator-view{animation:viewIn .45s cubic-bezier(.2,.8,.2,1)}
+.how-works-grid > *,.how-works-tip{transition:transform .22s ease,border-color .22s ease,background .22s ease}
+.how-works-grid > *:hover{transform:translateY(-3px);border-color:rgba(165,112,255,.3)!important}
+.discord-join-button{
+  border:1px solid rgba(190,147,255,.35)!important;
+  box-shadow:0 10px 30px rgba(91,47,183,.22),inset 0 1px 0 rgba(255,255,255,.2)!important;
+  transition:transform .2s ease,box-shadow .25s ease,filter .2s ease!important;
+}
+.discord-join-button:hover{transform:translateY(-2px) scale(1.02);filter:saturate(1.15);box-shadow:0 15px 40px rgba(91,47,183,.35),inset 0 1px 0 rgba(255,255,255,.25)!important}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#07040d}
+::-webkit-scrollbar-thumb{background:linear-gradient(#7b48e9,#4f62d8);border-radius:20px;border:2px solid #07040d}
+::selection{background:rgba(147,84,255,.35);color:#fff}
+@keyframes aaLogoFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(.3deg)}}
+@keyframes titleIn{from{opacity:0;transform:translateY(10px);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
+@keyframes viewIn{from{opacity:0;transform:translateY(8px) scale(.995)}to{opacity:1;transform:none}}
+@keyframes buttonShine{0%,45%{left:-35%}70%,100%{left:120%}}
+@keyframes progressSheen{to{transform:translateX(100%)}}
+@media (max-width:760px){
+  .tabs{top:8px;overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
+</style>
 </head>
 <body>
 <a class="discord-join-button" href="https://discord.gg/animeastral" target="_blank" rel="noopener noreferrer" aria-label="Join Anime Astral Discord">
@@ -2704,6 +2876,29 @@ document.addEventListener("DOMContentLoaded", function(){
   });
   switchView("power");
 });
+</script>
+
+<script id="v98-visual-motion">
+(function(){
+  const root=document.documentElement;
+  let raf=0;
+  document.addEventListener('pointermove',e=>{
+    if(raf)return;
+    raf=requestAnimationFrame(()=>{
+      root.style.setProperty('--mx',((e.clientX/window.innerWidth)*100).toFixed(1)+'%');
+      root.style.setProperty('--my',((e.clientY/window.innerHeight)*100).toFixed(1)+'%');
+      raf=0;
+    });
+  },{passive:true});
+
+  document.addEventListener('click',e=>{
+    const btn=e.target.closest('.calculate');
+    if(!btn)return;
+    btn.animate([
+      {transform:'scale(1)'},{transform:'scale(.975)'},{transform:'scale(1)'}
+    ],{duration:220,easing:'cubic-bezier(.2,.8,.2,1)'});
+  });
+})();
 </script>
 </body>
 </html>
