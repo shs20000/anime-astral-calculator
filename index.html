@@ -1165,7 +1165,7 @@ h1{position:relative;text-wrap:balance}
 .tabs::-webkit-scrollbar{display:none}
 .tab{position:relative;overflow:hidden;flex:0 0 auto;height:48px;border:1px solid transparent!important;border-radius:12px!important;background:transparent!important;color:#91889e!important;padding:0 18px!important;transition:transform .22s ease,color .22s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease!important}
 .tab:before{display:inline-block;margin-right:7px;color:#716781;font-size:12px;transition:.22s ease}
-#powerTab:before{content:"✦"}#dpsTab:before{content:"ϟ"}#progressionTab:before{content:"▦"}#rankTab:before{content:"↗"}#petTab:before{content:"◆"}#promotionTab:before{content:"⬆"}
+#powerTab:before{content:"✦"}#dpsTab:before{content:"ϟ"}#rankTab:before{content:"↗"}#petTab:before{content:"◆"}#promotionTab:before{content:"⬆"}
 .tab:after{content:"";position:absolute;inset:0;transform:translateX(-125%);background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.18) 48%,transparent 70%);transition:none}
 .tab:hover{transform:translateY(-2px)!important;color:#ddd3ee!important;background:rgba(107,71,174,.10)!important;border-color:rgba(118,82,187,.25)!important;box-shadow:0 7px 20px rgba(0,0,0,.18)}
 .tab.active{color:#fff!important;background:linear-gradient(135deg,#9a5cff,#6474ff)!important;border-color:rgba(195,166,255,.55)!important;box-shadow:0 0 28px rgba(130,74,255,.25),0 10px 28px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.18)!important}
@@ -1294,6 +1294,43 @@ footer:before{content:"";display:block;width:min(500px,70%);height:1px;margin:0 
   .progression-stage-result{justify-self:start}
 }
 </style>
+
+<style id="v103-tools-style">
+.next-card,.pet-finder-card{margin-top:18px}
+.next-intro{display:flex;align-items:center;gap:14px;padding:16px 17px;border:1px solid #493080;border-radius:16px;background:linear-gradient(135deg,rgba(37,22,64,.9),rgba(15,11,25,.96));margin-bottom:18px}
+.next-intro-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#7545d9,#5d67e9);box-shadow:0 0 22px rgba(119,76,235,.22);font-size:20px;flex:none}
+.next-intro-copy{min-width:0}.next-intro-copy strong{display:block;font-size:15px}.next-intro-copy span{display:block;color:#958da3;font-size:12px;line-height:1.45;margin-top:4px}
+.next-controls{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.next-actions{margin-top:16px}
+.next-results{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.next-result{border:1px solid #2e2940;border-radius:17px;background:linear-gradient(145deg,#131022,#090811);padding:17px;min-width:0}
+.next-result-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:13px}.next-result-head span{color:#a989ff;font-size:10px;font-weight:950;letter-spacing:.12em}.next-badge{padding:5px 8px;border-radius:999px;border:1px solid #3d3158;color:#9e91b9;font-size:9px;font-weight:900;white-space:nowrap}.next-result h3{margin:0;font-size:21px;letter-spacing:-.02em}.next-result .next-main{margin-top:8px;color:#c6bfd1;font-size:12px;line-height:1.45}.next-result .next-big{font-size:25px;font-weight:950;color:#fff;margin-top:7px}.next-result .next-sub{display:block;color:#81798e;font-size:11px;margin-top:5px;line-height:1.4}
+.next-progress{height:9px;border-radius:999px;background:#08070e;border:1px solid #2c2940;overflow:hidden;margin-top:13px}.next-progress>span{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#8c4ff3,#6069ef);box-shadow:0 0 12px rgba(118,77,240,.3)}
+.next-missions{margin-top:12px;padding-top:11px;border-top:1px solid #29243a}.next-missions strong{display:block;color:#a989ff;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}.next-missions ul{margin:0;padding-left:17px;color:#9e97aa;font-size:11px;line-height:1.55}.next-missions li{margin:2px 0}
+.next-empty{color:#8f879e;font-size:12px;line-height:1.5}.next-link{margin-top:11px;border:1px solid #53369a;background:#171126;color:#b997ff;border-radius:10px;padding:9px 11px;font-weight:900;cursor:pointer}
+.next-note{margin-top:16px;padding:11px 13px;border:1px solid #302747;border-radius:13px;background:rgba(25,17,42,.55);color:#8f879e;font-size:11px;line-height:1.5}
+.progression-spotlight{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px;margin:0 0 17px}.progression-spotlight>div{border:1px solid #2e2940;border-radius:15px;background:#090811;padding:14px}.progression-spotlight small{display:block;color:#7f778d;font-size:9px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.progression-spotlight strong{display:block;margin-top:6px;font-size:19px}.progression-spotlight span{display:block;color:#8e879a;font-size:11px;margin-top:4px;line-height:1.4}.progression-gap{color:#b18cff!important}.progression-filter{display:flex;gap:8px;align-items:center;margin-bottom:11px}.progression-filter button{border:1px solid #302b42;background:#0b0912;color:#8f879e;border-radius:9px;padding:8px 10px;font:inherit;font-size:10px;font-weight:900;cursor:pointer}.progression-filter button.active{border-color:#6b4bc0;background:#1a1230;color:#c3a6ff}.progression-stage.hidden-stage{display:none!important}
+.pet-finder-controls{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:end}.pet-finder-toggle{min-height:54px;display:flex;align-items:center;gap:10px;padding:0 14px;border:1px solid #302e42;border-radius:14px;background:#090a12;color:#bcb4c9;font-size:12px;font-weight:800}.pet-finder-toggle input{width:18px;height:18px;accent-color:#8b55f5}.pet-finder-summary{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-top:16px}.pet-finder-summary strong{font-size:22px}.pet-finder-summary span{display:block;color:#81798e;font-size:11px;margin-top:3px}.pet-finder-list{display:grid;gap:8px;margin-top:14px}.pet-finder-row{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:11px;padding:12px 13px;border:1px solid #2b273b;border-radius:13px;background:linear-gradient(120deg,#11101b,#090811)}.pet-finder-rank{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:#171126;color:#a989ff;font-size:11px;font-weight:950}.pet-finder-name{min-width:0}.pet-finder-name strong{display:block;font-size:13px}.pet-finder-name span{display:block;color:#81798e;font-size:10px;margin-top:3px}.pet-finder-value{font-size:16px;font-weight:950;white-space:nowrap}.pet-finder-top{border-color:#5d4294;box-shadow:inset 0 0 20px rgba(120,76,240,.05)}
+@media(max-width:850px){.next-results{grid-template-columns:1fr}.progression-spotlight{grid-template-columns:1fr 1fr}.pet-finder-controls{grid-template-columns:1fr}}
+@media(max-width:520px){.next-controls,.progression-spotlight{grid-template-columns:1fr}.next-intro{align-items:flex-start}.pet-finder-row{grid-template-columns:30px minmax(0,1fr) auto}.pet-finder-value{font-size:14px}}
+</style>
+
+
+<style id="v104-nav-cleanup">
+.nav-more{position:relative;display:flex;align-items:center}
+.nav-more-button{display:flex!important;align-items:center;gap:7px;white-space:nowrap}
+.nav-chevron{font-size:15px;line-height:1;opacity:.72;transform:translateY(-1px);transition:transform .2s ease}
+.nav-more.open .nav-chevron{transform:rotate(180deg) translateY(1px)}
+.nav-more-menu{position:fixed;left:0;top:0;width:255px;padding:7px;border:1px solid rgba(164,111,255,.22);border-radius:15px;background:rgba(10,7,18,.97);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 20px 50px rgba(0,0,0,.42),0 0 35px rgba(106,59,214,.14);opacity:0;visibility:hidden;transform:translateY(-5px) scale(.98);transform-origin:top right;transition:opacity .18s ease,transform .18s ease,visibility .18s ease;z-index:99999;pointer-events:none}
+.nav-more-menu.open{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+.nav-more-item{width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:11px 12px;border:0;border-radius:10px;background:transparent;color:#eee7f8;text-align:left;cursor:pointer;font:inherit;font-size:12px;font-weight:850;transition:background .18s ease,color .18s ease}
+.nav-more-item span{display:block}.nav-more-item small{display:block;color:#81778e;font-size:10px;font-weight:700}
+.nav-more-item:hover,.nav-more-item.active{background:rgba(132,78,235,.16);color:#fff}
+.nav-more-item:hover small,.nav-more-item.active small{color:#bda4ec}
+@media(max-width:760px){
+  .nav-more-menu{width:min(255px,calc(100vw - 28px))}
+}
+</style>
 </head>
 <body>
 <a class="discord-join-button" href="https://discord.gg/animeastral" target="_blank" rel="noopener noreferrer" aria-label="Join Anime Astral Discord">
@@ -1312,7 +1349,17 @@ footer:before{content:"";display:block;width:min(500px,70%);height:1px;margin:0 
 
 <nav class="tabs">
   <button class="tab active" id="powerTab" type="button">Power Calculator</button>
-  <button class="tab" id="dpsTab" type="button">DPS Calculator</button><button class="tab" id="progressionTab" type="button">Game Mode Progression</button><button class="tab" id="rankTab" type="button">Rank Up Calculator</button><button class="tab" id="petTab" type="button">Pet Calculator</button><button class="tab" id="promotionTab" type="button">Promotion Calculator</button>
+  <button class="tab" id="dpsTab" type="button">DPS Calculator</button>
+  <button class="tab" id="rankTab" type="button">Rank Up Calculator</button>
+  <button class="tab" id="petTab" type="button">Pet Calculator</button>
+  <button class="tab" id="promotionTab" type="button">Promotion Calculator</button>
+  <div class="nav-more" id="navMore">
+    <button class="tab nav-more-button" id="moreTab" type="button" aria-haspopup="true" aria-expanded="false">More <span class="nav-chevron">⌄</span></button>
+    <div class="nav-more-menu" id="navMoreMenu" role="menu">
+      <button class="nav-more-item" id="progressionTab" type="button" role="menuitem"><span>Game Mode Progression</span><small>See which waves you can clear</small></button>
+      <button class="nav-more-item" id="nextTab" type="button" role="menuitem"><span>What Do I Need Next?</span><small>Your next progression goals</small></button>
+    </div>
+  </div>
 </nav>
 
 <div id="powerView" class="calculator-view">
@@ -1442,6 +1489,17 @@ footer:before{content:"";display:block;width:min(500px,70%);height:1px;margin:0 
       <div><small>KNOWN STAGES</small><strong id="progressionKnown">—</strong><span>stages with supplied DPS data</span></div>
       <div><small>HIGHEST CONFIRMED</small><strong id="progressionHighest">—</strong><span id="progressionHighestSub">based only on known requirements</span></div>
     </div>
+    <div class="progression-spotlight" id="progressionSpotlight" style="display:none">
+      <div><small>NEXT KNOWN CHALLENGE</small><strong id="progressionNextStage">—</strong><span id="progressionNextReq">—</span></div>
+      <div><small>DPS NEEDED</small><strong id="progressionNextNeed">—</strong><span id="progressionNextGap" class="progression-gap">—</span></div>
+      <div><small>KNOWN PROGRESS</small><strong id="progressionWaveProgress">—</strong><span>Unknown waves are excluded.</span></div>
+    </div>
+    <div class="progression-filter" id="progressionFilter" style="display:none">
+      <button type="button" class="active" data-progression-filter="all">ALL</button>
+      <button type="button" data-progression-filter="clear">CAN CLEAR</button>
+      <button type="button" data-progression-filter="blocked">CANNOT CLEAR</button>
+      <button type="button" data-progression-filter="unknown">UNKNOWN</button>
+    </div>
 
     <div class="progression-results-heading" id="progressionResultsHeading" style="display:none">
       <div>
@@ -1460,6 +1518,29 @@ footer:before{content:"";display:block;width:min(500px,70%);height:1px;margin:0 
         <div><b>4. Watch for new data</b><span>Waves without supplied requirements stay UNKNOWN instead of using made-up values.</span></div>
       </div>
     </section>
+  </section>
+</div>
+
+<div id="nextView" class="calculator-view" style="display:none">
+  <section class="tool-card next-card">
+    <div class="section-title">🧭 WHAT DO I NEED NEXT?</div>
+    <div class="next-intro">
+      <div class="next-intro-icon" aria-hidden="true">✦</div>
+      <div class="next-intro-copy"><strong>Find your next progression checkpoint</strong><span>Enter your current Power, Rank, and Promotion. Your calculated DPS is pulled automatically from the DPS Calculator when available.</span></div>
+    </div>
+    <div class="next-controls">
+      <div class="field"><label for="nextPower">Current Power</label><div class="input-row"><input id="nextPower" placeholder="Enter your current power" inputmode="decimal" autocomplete="off"><select id="nextPowerUnit"></select></div></div>
+      <div class="field"><label for="nextRank">Current Rank</label><select id="nextRank"></select></div>
+      <div class="field"><label for="nextPromotion">Current Promotion</label><select id="nextPromotion"></select></div>
+      <div class="field"><label for="nextGameMode">Game Mode Goal</label><select id="nextGameMode"><option value="">Select a game mode…</option></select></div>
+    </div>
+    <div class="next-actions"><button class="calculate" id="nextCalculate" type="button">Calculate What I Need Next</button></div>
+    <div class="next-results" id="nextResults" aria-live="polite">
+      <div class="next-result"><div class="next-result-head"><span>NEXT RANK</span><span class="next-badge">POWER</span></div><h3 id="nextRankTitle">—</h3><div class="next-main" id="nextRankMain">Enter your current Power and Rank.</div><div class="next-big" id="nextRankReq">—</div><span class="next-sub" id="nextRankGap">—</span><div class="next-progress"><span id="nextRankFill"></span></div></div>
+      <div class="next-result"><div class="next-result-head"><span>NEXT PROMOTION</span><span class="next-badge">MISSIONS</span></div><h3 id="nextPromoTitle">—</h3><div class="next-main" id="nextPromoMain">Choose your current Promotion.</div><div class="next-big" id="nextPromoCount">—</div><span class="next-sub" id="nextPromoSub">—</span><div class="next-missions" id="nextPromoMissions" style="display:none"><strong>Next promotion missions</strong><ul id="nextPromoMissionList"></ul></div></div>
+      <div class="next-result"><div class="next-result-head"><span>NEXT GAME MODE GOAL</span><span class="next-badge">DPS</span></div><h3 id="nextModeTitle">—</h3><div class="next-main" id="nextModeMain">Choose a game mode. Your DPS comes from the DPS Calculator.</div><div class="next-big" id="nextModeReq">—</div><span class="next-sub" id="nextModeGap">—</span><button class="next-link" id="nextOpenDps" type="button">Open DPS Calculator →</button></div>
+    </div>
+    <div class="next-note">Requirements marked UNKNOWN are never guessed. When a requirement is missing, the calculator will tell you that more data is needed instead of making up a number.</div>
   </section>
 </div>
 
@@ -1726,7 +1807,16 @@ footer:before{content:"";display:block;width:min(500px,70%);height:1px;margin:0 
     <button class="calculate" id="petCalculate" type="button">Calculate Pet Value</button>
     <div class="tool-results" aria-live="polite"><div class="eyebrow">RESULT</div><div class="tool-big" id="petResult">—</div><div class="tool-stat-grid"><div class="tool-stat"><small>Base Scaling Value</small><strong id="petBaseResult">—</strong></div><div class="tool-stat"><small>Final Multiplier</small><strong id="petFinalResult">—</strong></div></div></div>
     <div class="pet-lookup"><div class="section-title">PET LOOKUP</div><select id="petLookup"><option value="">Select a known pet…</option></select><div class="pet-lookup-result" id="petLookupResult">Select a pet to see its documented multiplier.</div></div>
-    <div class="more-tools-note">Scaling pets are based on your strongest normal pet. Percentage pets cannot be renamed. Shiny pets use 1.5× their normal version.</div>
+    <section class="tool-card pet-finder-card" style="padding:18px;background:linear-gradient(145deg,#11101c,#090811)">
+      <div class="section-title">🏆 BEST PET FINDER</div>
+      <div class="pet-finder-controls">
+        <div class="field"><label for="petFinderWorld">World / Source</label><select id="petFinderWorld"></select></div>
+        <label class="pet-finder-toggle"><input type="checkbox" id="petFinderShiny"><span>Apply Shiny ×1.5</span></label>
+      </div>
+      <div class="pet-finder-summary"><div><small class="eyebrow">BEST DOCUMENTED PET</small><strong id="petFinderBest">—</strong><span id="petFinderBestSub">Choose a world to compare its documented pets.</span></div></div>
+      <div class="pet-finder-list" id="petFinderList"></div>
+      <div class="more-tools-note">This compares the documented pet multipliers in the selected source. It does not invent missing pets or treat rarity alone as a power ranking.</div>
+    </section>
     <div class="tool-how-works">
       <div class="section-title tool-how-title"><span class="how-works-icon">📖</span>HOW IT WORKS</div>
       <div class="tool-how-grid">
@@ -2339,6 +2429,10 @@ Owl Suppression|Wave 65|3.53 δQ
 Owl Suppression|Wave 70|2.26 δS
 Owl Suppression|Wave 75|1.43 δU
 Owl Suppression|Wave 80|90 δV
+Owl Suppression|Wave 85|56.67 δX
+Owl Suppression|Wave 90|36.67 δZ
+Owl Suppression|Wave 95|2.46 εC
+Owl Suppression|Wave 100|1.57 εE
 Sanctuary of the Past|Wave 5|62.67 δA
 Sanctuary of the Past|Wave 10|467 δB
 Sanctuary of the Past|Wave 15|3.33 δD
@@ -2367,8 +2461,8 @@ Sanctuary of the Future|Wave 25|60 δN
 Sanctuary of the Future|Wave 30|76.83 δQ
 Sanctuary of the Future|Wave 35|9.43 δT
 Sanctuary of the Future|Wave 40|1.13 δW
-Sanctuary of the Future|Wave 45|???
-Sanctuary of the Future|Wave 50|???
+Sanctuary of the Future|Wave 45|53.33 δX
+Sanctuary of the Future|Wave 50|2.60 εC
 Ninja Defense|Wave 5|33.33 δG
 Ninja Defense|Wave 10|4.83 δI
 Ninja Defense|Wave 15|67.93 δJ
@@ -2388,7 +2482,7 @@ Time Trial Insane|Wave 30|106.67 δK
 Time Trial Insane|Wave 35|5.02 δP
 Time Trial Insane|Wave 40|23.69 δT
 Time Trial Insane|Wave 45|10.66 δX
-Time Trial Insane|Wave 50|???
+Time Trial Insane|Wave 50|52 εB
 Ninja Exam|Genin to Chunnin|1 δG
 Ninja Exam|Chunnin to Tokubetsu Jonin|33.33 δJ
 Ninja Exam|Tokebetsu Jonin to Jonin|63.33 δN
@@ -2615,21 +2709,40 @@ function renderProgression(){
   progressionResults.innerHTML="";
   progressionSummary.style.display="none";
   progressionResultsHeading.style.display="none";
+  const spotlight=document.getElementById("progressionSpotlight");
+  const filter=document.getElementById("progressionFilter");
+  if(spotlight)spotlight.style.display="none";
+  if(filter)filter.style.display="none";
   if(!mode)return;
   const rows=DPS_DATA[mode]||[];
   const known=rows.filter(r=>Number.isFinite(parseDpsRequirement(r.required)));
   const can=Number.isFinite(animeAstralCurrentDps)?known.filter(r=>animeAstralCurrentDps>=parseDpsRequirement(r.required)):[];
-  const highest=can.reduce((best,row)=>{
-    const wave=Number((row.stage.match(/\d+(?:\.\d+)?/)||[0])[0]);
-    return !best||wave>best.wave?{row,wave}:best;
-  },null);
+  const stageNum=row=>Number((row.stage.match(/\d+(?:\.\d+)?/)||[0])[0]);
+  const highest=can.reduce((best,row)=>!best||stageNum(row)>best.wave?{row,wave:stageNum(row)}:best,null);
+  const next=Number.isFinite(animeAstralCurrentDps)?known.filter(r=>!highest||stageNum(r)>highest.wave).sort((a,b)=>stageNum(a)-stageNum(b))[0]:known[0];
 
   progressionSummary.style.display="grid";
   progressionResultsHeading.style.display="block";
   document.getElementById("progressionClears").textContent=Number.isFinite(animeAstralCurrentDps)?`${can.length} / ${known.length}`:"—";
   document.getElementById("progressionKnown").textContent=`${known.length} / ${rows.length}`;
   document.getElementById("progressionHighest").textContent=highest?highest.row.stage:"—";
-  document.getElementById("progressionHighestSub").textContent=Number.isFinite(animeAstralCurrentDps)?(highest?`required ${highest.row.required}`:"No confirmed clears yet"):`Calculate DPS first`;
+  document.getElementById("progressionHighestSub").textContent=Number.isFinite(animeAstralCurrentDps)?(highest?`required ${highest.row.required}`:`No confirmed clears yet`):`Calculate DPS first`;
+
+  if(spotlight){
+    spotlight.style.display="grid";
+    document.getElementById("progressionNextStage").textContent=next?next.stage:"All known stages cleared";
+    document.getElementById("progressionNextReq").textContent=next?`Required ${next.required}`:"No later known requirement";
+    document.getElementById("progressionWaveProgress").textContent=highest?`${highest.wave} / ${rows.length?stageNum(rows[rows.length-1]):0}`:"0 / —";
+    if(next && Number.isFinite(animeAstralCurrentDps)){
+      const gap=parseDpsRequirement(next.required)-animeAstralCurrentDps;
+      document.getElementById("progressionNextNeed").textContent=formatPower(parseDpsRequirement(next.required));
+      document.getElementById("progressionNextGap").textContent=gap>0?`Need ${formatPower(gap)} more DPS`:`You meet this requirement`;
+    }else{
+      document.getElementById("progressionNextNeed").textContent=next?next.required:"—";
+      document.getElementById("progressionNextGap").textContent=Number.isFinite(animeAstralCurrentDps)?"No later known challenge":"Calculate DPS first";
+    }
+  }
+  if(filter)filter.style.display="flex";
 
   const card=document.createElement("div");
   card.className="progression-mode-card";
@@ -2654,17 +2767,18 @@ function renderProgression(){
     const current=document.createElement("div");current.className="progression-stage-current";current.textContent=Number.isFinite(animeAstralCurrentDps)?formatPower(animeAstralCurrentDps)+"/s":"—";
     const result=document.createElement("div");result.className="progression-stage-result";
     const reqValue=parseDpsRequirement(item.required);
+    let filterKey="unknown";
     if(Number.isFinite(reqValue)&&Number.isFinite(animeAstralCurrentDps)){
       const ok=animeAstralCurrentDps>=reqValue;
+      filterKey=ok?"clear":"blocked";
       result.classList.add(ok?"yes":"no");
       result.textContent=ok?"✓ CAN CLEAR":"✕ CANNOT CLEAR";
     }else if(Number.isFinite(reqValue)){
-      result.classList.add("unknown");
-      result.textContent="USE DPS CALCULATOR";
+      result.classList.add("unknown");result.textContent="USE DPS CALCULATOR";filterKey="unknown";
     }else{
-      result.classList.add("unknown");
-      result.textContent="UNKNOWN";
+      result.classList.add("unknown");result.textContent="UNKNOWN";filterKey="unknown";
     }
+    row.dataset.filter=filterKey;
     row.append(stage,required,current,result);card.appendChild(row);
   });
   if(rows.some(r=>!Number.isFinite(parseDpsRequirement(r.required)))){
@@ -2674,6 +2788,13 @@ function renderProgression(){
     card.appendChild(unknown);
   }
   progressionResults.appendChild(card);
+  if(filter){
+    filter.querySelectorAll("button").forEach(btn=>btn.onclick=()=>{
+      filter.querySelectorAll("button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");
+      const wanted=btn.dataset.progressionFilter;
+      card.querySelectorAll(".progression-stage[data-filter]").forEach(r=>r.classList.toggle("hidden-stage",wanted!=="all"&&r.dataset.filter!==wanted));
+    });
+  }
 }
 
 progressionMode.addEventListener("change",renderProgression);
@@ -3164,8 +3285,124 @@ if(petCalculate){
   });
 }
 
+
+// Best Pet Finder expansion
+const petFinderWorld=document.getElementById("petFinderWorld");
+const petFinderShiny=document.getElementById("petFinderShiny");
+const petFinderList=document.getElementById("petFinderList");
+if(petFinderWorld && petData && Array.isArray(petData.pets)){
+  const worlds=[...new Set(petData.pets.map(p=>p.world))];
+  worlds.forEach(world=>{const o=document.createElement("option");o.value=world;o.textContent=world;petFinderWorld.appendChild(o);});
+  const preferred=worlds.includes("Fuyuki City")?"Fuyuki City":worlds[worlds.length-1];
+  if(preferred)petFinderWorld.value=preferred;
+  function renderPetFinder(){
+    const world=petFinderWorld.value;
+    const shiny=petFinderShiny.checked;
+    const pets=petData.pets.filter(p=>p.world===world).map(p=>({...p,value:p.mult*(shiny?1.5:1)})).sort((a,b)=>b.value-a.value);
+    petFinderList.innerHTML="";
+    const best=pets[0];
+    document.getElementById("petFinderBest").textContent=best?`${best.name} • ${formatPower(best.value)}`:"—";
+    document.getElementById("petFinderBestSub").textContent=best?`${best.rarity} • ${world}${shiny?" • Shiny applied":""}`:"No documented pets in this source.";
+    pets.slice(0,5).forEach((pet,i)=>{
+      const row=document.createElement("div");row.className="pet-finder-row"+(i===0?" pet-finder-top":"");
+      row.innerHTML=`<div class="pet-finder-rank">${i+1}</div><div class="pet-finder-name"><strong>${pet.name}</strong><span>${pet.rarity}${shiny?" • Shiny ×1.5":""}</span></div><div class="pet-finder-value">${formatPower(pet.value)}</div>`;
+      petFinderList.appendChild(row);
+    });
+  }
+  petFinderWorld.addEventListener("change",renderPetFinder);
+  petFinderShiny.addEventListener("change",renderPetFinder);
+  renderPetFinder();
+}
+
+// What Do I Need Next?
+const nextTab=document.getElementById("nextTab");
+const nextView=document.getElementById("nextView");
+const nextPowerUnit=document.getElementById("nextPowerUnit");
+const nextRank=document.getElementById("nextRank");
+const nextPromotion=document.getElementById("nextPromotion");
+const nextGameMode=document.getElementById("nextGameMode");
+if(nextPowerUnit)fillUnits("nextPowerUnit");
+if(nextPowerUnit)nextPowerUnit.value="K";
+if(nextRank){
+  RANK_ROWS.forEach(r=>{const o=document.createElement("option");o.value=r.rank;o.textContent=`Rank ${r.rank}`;o.disabled=(r.rank>=71&&r.rank<=75);nextRank.appendChild(o);});
+  nextRank.value="1";
+}
+if(nextPromotion){
+  for(let i=0;i<=44;i++){const o=document.createElement("option");o.value=i;o.textContent=`Promotion Rank ${i}`;nextPromotion.appendChild(o);}
+  nextPromotion.value="1";
+}
+if(nextGameMode){
+  Object.keys(DPS_DATA).forEach(mode=>{const o=document.createElement("option");o.value=mode;o.textContent=mode;nextGameMode.appendChild(o);});
+}
+function renderNextSteps(){
+  const power=parsePower(document.getElementById("nextPower").value,nextPowerUnit.value);
+  const currentRank=Number(nextRank.value);
+  const currentPromo=Number(nextPromotion.value);
+  const targetRank=currentRank+1;
+  const rankTitle=document.getElementById("nextRankTitle");
+  const rankMain=document.getElementById("nextRankMain");
+  const rankReq=document.getElementById("nextRankReq");
+  const rankGap=document.getElementById("nextRankGap");
+  const rankFill=document.getElementById("nextRankFill");
+  if(targetRank<=120){
+    const reqRaw=rankByNumber[currentRank]?.requirement;
+    const req=parseCompactPower(reqRaw);
+    rankTitle.textContent=`Rank ${targetRank}`;
+    rankMain.textContent=Number.isFinite(req)?`Requirement to reach Rank ${targetRank}`:`The requirement for Rank ${targetRank} is not documented in the current data.`;
+    rankReq.textContent=Number.isFinite(req)?reqRaw||formatPower(req):"UNKNOWN";
+    if(Number.isFinite(power)&&Number.isFinite(req)&&req>0){
+      const pct=Math.min(100,Math.max(0,power/req*100));
+      rankGap.textContent=power>=req?"✓ You have enough Power":`Need ${formatPower(req-power)} more Power`;
+      rankFill.style.width=pct.toFixed(2)+"%";
+    }else{rankGap.textContent="Enter your current Power to see the gap.";rankFill.style.width="0%";}
+  }else{
+    rankTitle.textContent="Max / Unknown";rankMain.textContent="No next rank is documented after Rank 120.";rankReq.textContent="UNKNOWN";rankGap.textContent="More rank data needed.";rankFill.style.width="0%";
+  }
+
+  const promoTarget=currentPromo+1;
+  const promoTitle=document.getElementById("nextPromoTitle"),promoMain=document.getElementById("nextPromoMain"),promoCount=document.getElementById("nextPromoCount"),promoSub=document.getElementById("nextPromoSub"),promoMissions=document.getElementById("nextPromoMissions"),promoList=document.getElementById("nextPromoMissionList");
+  if(promoTarget<=44){
+    const missions=promotionData.missions[String(currentPromo)]||[];
+    const stats=promotionData.stats[String(promoTarget)];
+    promoTitle.textContent=`Promotion Rank ${promoTarget}`;
+    promoMain.textContent=missions.length?"Complete the documented missions below.":"No missions are documented for this transition.";
+    promoCount.textContent=missions.length?`${missions.length} mission${missions.length===1?"":"s"}`:"UNKNOWN";
+    promoSub.textContent=stats?`New cumulative Power +${stats.power??"—"}% • Damage +${stats.damage??"—"}% • Yen +${stats.yen??"—"}%`:"Next promotion stats are not fully documented.";
+    promoList.innerHTML="";
+    missions.slice(0,6).forEach(m=>{const li=document.createElement("li");li.textContent=m;promoList.appendChild(li);});
+    promoMissions.style.display=missions.length?"block":"none";
+  }else{
+    promoTitle.textContent="No documented next promotion";promoMain.textContent="Promotion data currently ends at Rank 44.";promoCount.textContent="—";promoSub.textContent="More promotion data needed.";promoMissions.style.display="none";
+  }
+
+  const mode=nextGameMode.value;
+  const modeTitle=document.getElementById("nextModeTitle"),modeMain=document.getElementById("nextModeMain"),modeReq=document.getElementById("nextModeReq"),modeGap=document.getElementById("nextModeGap");
+  if(!mode){modeTitle.textContent="Select a game mode";modeMain.textContent="Choose a game mode to find your next known DPS checkpoint.";modeReq.textContent="—";modeGap.textContent="";return;}
+  const rows=DPS_DATA[mode]||[];
+  const known=rows.filter(r=>Number.isFinite(parseDpsRequirement(r.required)));
+  if(!Number.isFinite(animeAstralCurrentDps)){
+    modeTitle.textContent=mode;modeMain.textContent="Your DPS has not been calculated yet.";modeReq.textContent="USE DPS CALCULATOR";modeGap.textContent="Calculate DPS first, then return here.";return;
+  }
+  const stageNum=row=>Number((row.stage.match(/\d+(?:\.\d+)?/)||[0])[0]);
+  const cleared=known.filter(r=>animeAstralCurrentDps>=parseDpsRequirement(r.required));
+  const highest=cleared.reduce((best,row)=>!best||stageNum(row)>stageNum(best)?row:best,null);
+  const next=known.filter(r=>!highest||stageNum(r)>stageNum(highest)).sort((a,b)=>stageNum(a)-stageNum(b))[0];
+  if(next){
+    const req=parseDpsRequirement(next.required),gap=req-animeAstralCurrentDps;
+    modeTitle.textContent=`${mode} • ${next.stage}`;modeMain.textContent=`Next known checkpoint after ${highest?highest.stage:"your starting point"}.`;modeReq.textContent=next.required;modeGap.textContent=gap>0?`Need ${formatPower(gap)} more DPS`:`✓ You meet this requirement`;
+  }else{modeTitle.textContent=`${mode} • All known`;modeMain.textContent="You currently meet every known DPS requirement in this mode.";modeReq.textContent="NO NEXT KNOWN";modeGap.textContent="Unknown stages are not counted.";}
+}
+
+document.getElementById("nextCalculate").addEventListener("click",renderNextSteps);
+["nextPower","nextPowerUnit","nextRank","nextPromotion","nextGameMode"].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener("change",renderNextSteps);if(el&&el.tagName==="INPUT")el.addEventListener("input",()=>clearDpsError(el));});
+document.getElementById("nextOpenDps").addEventListener("click",()=>showView("dps"));
+
 const petTab=document.getElementById('petTab'),promotionTab=document.getElementById('promotionTab');
 const progressionTab=document.getElementById('progressionTab');
+const nextTabEl=document.getElementById('nextTab');
+const moreTab=document.getElementById('moreTab');
+const navMore=document.getElementById('navMore');
+const navMoreMenu=document.getElementById('navMoreMenu');
 
 const powerTab=document.getElementById("powerTab");
 const dpsTab=document.getElementById("dpsTab");
@@ -3177,15 +3414,23 @@ const rankView=document.getElementById("rankView");
 const petView=document.getElementById("petView");
 const promotionView=document.getElementById("promotionView");
 function showView(which){
-  const views={power:powerView,dps:dpsView,progression:progressionView,rank:rankView,pet:petView,promotion:promotionView};
+  const views={power:powerView,dps:dpsView,progression:progressionView,next:nextView,rank:rankView,pet:petView,promotion:promotionView};
   Object.entries(views).forEach(([k,v])=>{if(v)v.style.display=which===k?"block":"none"});
-  const tabs={power:powerTab,dps:dpsTab,progression:progressionTab,rank:rankTab,pet:petTab,promotion:promotionTab};
+  const tabs={power:powerTab,dps:dpsTab,progression:progressionTab,next:nextTabEl,rank:rankTab,pet:petTab,promotion:promotionTab};
   Object.entries(tabs).forEach(([k,v])=>v?.classList.toggle("active",which===k));
+  const inMore=which==='next'||which==='promotion';
+  moreTab?.classList.toggle('active',inMore);
+  navMore?.classList.remove('open');
+  navMoreMenu?.classList.remove('open');
+  if(moreTab) moreTab.setAttribute('aria-expanded','false');
+  navMoreMenu?.querySelectorAll('.nav-more-item').forEach(v=>v.classList.remove('active'));
+  if(inMore){ const item=which==='next'?nextTabEl:promotionTab; item?.classList.add('active'); }
   const title=document.getElementById("pageTitle"),tagline=document.getElementById("pageTagline");
   const meta={
     power:["Power Calculator","Find out how much power you need to reach your target power."],
     dps:["DPS Calculator","Find out how much damage you can deal and what content you can clear."],
     progression:["Game Mode Progression","See how far your calculated DPS can take you through each game mode."],
+    next:["What Do I Need Next?","See your next Rank, Promotion, and Game Mode progression checkpoint."],
     rank:["Rank Up Calculator","Find out how long it will take to reach your target rank."],
     pet:["Pet Calculator","Calculate scaling pet values and look up documented pet multipliers."],
     promotion:["Promotion Calculator","See the promotion buffs and missions between your current and target rank."]
@@ -3195,9 +3440,46 @@ function showView(which){
 powerTab.addEventListener("click",()=>showView("power"));
 dpsTab.addEventListener("click",()=>showView("dps"));
 progressionTab.addEventListener("click",()=>showView("progression"));
+nextTabEl.addEventListener("click",()=>showView("next"));
 rankTab.addEventListener("click",()=>showView("rank"));
 petTab.addEventListener("click",()=>showView("pet"));
 promotionTab.addEventListener("click",()=>showView("promotion"));
+// The tab bar is horizontally scrollable on smaller screens, so the menu is moved
+// to <body> and positioned with fixed coordinates. This prevents the menu from
+// being clipped by the nav's overflow container.
+if(navMoreMenu && navMoreMenu.parentElement !== document.body){
+  document.body.appendChild(navMoreMenu);
+}
+function positionMoreMenu(){
+  if(!navMore.classList.contains('open')) return;
+  const rect=moreTab.getBoundingClientRect();
+  const menuWidth=Math.min(255,window.innerWidth-28);
+  const gap=8;
+  const left=Math.min(Math.max(14,rect.right-menuWidth),window.innerWidth-menuWidth-14);
+  const top=rect.bottom+gap;
+  navMoreMenu.style.width=menuWidth+'px';
+  navMoreMenu.style.left=left+'px';
+  navMoreMenu.style.top=top+'px';
+  navMoreMenu.style.right='auto';
+}
+moreTab.addEventListener('click',(e)=>{
+  e.stopPropagation();
+  const open=!navMoreMenu.classList.contains('open');
+  navMore.classList.toggle('open',open);
+  navMoreMenu.classList.toggle('open',open);
+  moreTab.setAttribute('aria-expanded',String(open));
+  if(open) positionMoreMenu();
+});
+navMoreMenu.addEventListener('click',e=>e.stopPropagation());
+window.addEventListener('resize',positionMoreMenu);
+window.addEventListener('scroll',positionMoreMenu,{passive:true});
+document.addEventListener('click',()=>{
+  if(navMore.classList.contains('open')){
+    navMore.classList.remove('open');
+    navMoreMenu.classList.remove('open');
+    moreTab.setAttribute('aria-expanded','false');
+  }
+});
 showView("power");
 
 </script>
@@ -3211,6 +3493,7 @@ document.addEventListener("DOMContentLoaded", function(){
     power: document.getElementById("powerView"),
     dps: document.getElementById("dpsView"),
     progression: document.getElementById("progressionView"),
+    next: document.getElementById("nextView"),
     rank: document.getElementById("rankView"),
     pet: document.getElementById("petView"),
     promotion: document.getElementById("promotionView")
@@ -3219,14 +3502,18 @@ document.addEventListener("DOMContentLoaded", function(){
     power: document.getElementById("powerTab"),
     dps: document.getElementById("dpsTab"),
     progression: document.getElementById("progressionTab"),
+    next: document.getElementById("nextTab"),
     rank: document.getElementById("rankTab"),
     pet: document.getElementById("petTab"),
     promotion: document.getElementById("promotionTab")
   };
+  const moreTabSafe = document.getElementById("moreTab");
+  const navMoreSafe = document.getElementById("navMore");
   const meta = {
     power: ["Power Calculator", "Find out how much power you need to reach your target power."],
     dps: ["DPS Calculator", "Find out how much damage you can deal and what content you can clear."],
     progression: ["Game Mode Progression", "See how far your calculated DPS can take you through each game mode."],
+    next: ["What Do I Need Next?", "See your next Rank, Promotion, and Game Mode progression checkpoint."],
     rank: ["Rank Up Calculator", "Find out how long it will take to reach your target rank."],
     pet: ["Pet Calculator", "Calculate scaling pet values and look up documented pet multipliers."],
     promotion: ["Promotion Calculator", "See the promotion buffs and missions between your current and target rank."]
@@ -3234,6 +3521,10 @@ document.addEventListener("DOMContentLoaded", function(){
   function switchView(which){
     Object.keys(views).forEach(k => { if(views[k]) views[k].style.display = (k === which ? "block" : "none"); });
     Object.keys(tabs).forEach(k => { if(tabs[k]) tabs[k].classList.toggle("active", k === which); });
+    const inMore = which === "next" || which === "promotion";
+    if(moreTabSafe) moreTabSafe.classList.toggle("active", inMore);
+    if(navMoreSafe) navMoreSafe.classList.remove("open");
+    if(moreTabSafe) moreTabSafe.setAttribute("aria-expanded", "false");
     const title = document.getElementById("pageTitle");
     const tagline = document.getElementById("pageTagline");
     if(meta[which]){
