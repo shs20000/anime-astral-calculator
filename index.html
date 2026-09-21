@@ -1165,7 +1165,7 @@ h1{position:relative;text-wrap:balance}
 .tabs::-webkit-scrollbar{display:none}
 .tab{position:relative;overflow:hidden;flex:0 0 auto;height:48px;border:1px solid transparent!important;border-radius:12px!important;background:transparent!important;color:#91889e!important;padding:0 18px!important;transition:transform .22s ease,color .22s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease!important}
 .tab:before{display:inline-block;margin-right:7px;color:#716781;font-size:12px;transition:.22s ease}
-#powerTab:before{content:"✦"}#dpsTab:before{content:"ϟ"}#rankTab:before{content:"↗"}#petTab:before{content:"◆"}#promotionTab:before{content:"⬆"}
+#powerTab:before{content:"✦"}#dpsTab:before{content:"ϟ"}#progressionTab:before{content:"▦"}#rankTab:before{content:"↗"}#petTab:before{content:"◆"}#promotionTab:before{content:"⬆"}
 .tab:after{content:"";position:absolute;inset:0;transform:translateX(-125%);background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.18) 48%,transparent 70%);transition:none}
 .tab:hover{transform:translateY(-2px)!important;color:#ddd3ee!important;background:rgba(107,71,174,.10)!important;border-color:rgba(118,82,187,.25)!important;box-shadow:0 7px 20px rgba(0,0,0,.18)}
 .tab.active{color:#fff!important;background:linear-gradient(135deg,#9a5cff,#6474ff)!important;border-color:rgba(195,166,255,.55)!important;box-shadow:0 0 28px rgba(130,74,255,.25),0 10px 28px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.18)!important}
@@ -1246,6 +1246,54 @@ footer:before{content:"";display:block;width:min(500px,70%);height:1px;margin:0 
 @keyframes v99ParticleFloat{0%{transform:translate3d(0,8vh,0) scale(.7);opacity:0}12%{opacity:.18}50%{opacity:.5}88%{opacity:.16}100%{transform:translate3d(var(--drift),-110vh,0) scale(1.2);opacity:0}}
 </style>
 
+
+<style id="game-mode-progression-styles">
+.progression-card{overflow:hidden}
+.progression-lead{margin:0 0 18px;color:#91889e;font-size:13px;line-height:1.6}
+.progression-info{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px;padding:13px 15px;border:1px solid #3a2d52;border-radius:16px;background:linear-gradient(135deg,rgba(38,23,62,.82),rgba(12,9,20,.94));box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 10px 28px rgba(0,0,0,.12)}
+.progression-info-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(145deg,rgba(143,80,245,.2),rgba(86,60,145,.1));border:1px solid #64488a;color:#d2b8ff;font-size:17px;font-weight:950;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 0 20px rgba(126,72,230,.1)}
+.progression-info-copy{min-width:0}
+.progression-info-kicker{display:block;color:#9d83c5;font-size:8px;font-weight:950;letter-spacing:.16em;text-transform:uppercase}
+.progression-info strong{display:block;margin-top:2px;color:#f0e8fb;font-size:12px;letter-spacing:.01em}
+.progression-info span{display:block;margin-top:3px;color:#91889e;font-size:11px;line-height:1.45}
+.progression-info b{color:#c5a7ff}
+.progression-link{border:1px solid #65469e;border-radius:10px;padding:10px 13px;background:rgba(126,72,218,.15);color:#cbb4ff;font-size:10px;font-weight:900;letter-spacing:.04em;cursor:pointer;white-space:nowrap;transition:.2s ease}
+.progression-link:hover{transform:translateY(-2px);background:rgba(126,72,218,.24);box-shadow:0 8px 24px rgba(83,45,160,.2);color:#fff}
+.progression-controls{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(230px,.8fr);gap:14px;margin-top:18px;align-items:end}
+.progression-current{min-height:72px;padding:12px 15px;border:1px solid #302747;border-radius:15px;background:#080910;display:flex;flex-direction:column;justify-content:center}
+.progression-current-label{font-size:9px;letter-spacing:.11em;font-weight:900;color:#777082}
+.progression-current strong{font-size:21px;line-height:1.15;color:#eee8f4;margin-top:4px;word-break:break-word}
+.progression-current small{font-size:10px;color:#81788d;margin-top:4px}
+.progression-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.progression-summary>div{padding:14px;border:1px solid #302747;border-radius:14px;background:linear-gradient(145deg,#0e0c16,#08080e)}
+.progression-summary small{display:block;color:#81788d;font-size:8px;letter-spacing:.1em;font-weight:900}
+.progression-summary strong{display:block;color:#eee8f4;font-size:18px;margin-top:5px;line-height:1.2;word-break:break-word}
+.progression-summary span{display:block;color:#756d7d;font-size:9px;margin-top:5px;line-height:1.35}
+.progression-results-heading{margin-top:24px;padding:4px 2px 2px}
+.progression-results-sub{font-size:12px;color:#847b91;margin-top:-7px}
+.progression-results{margin-top:12px;display:grid;gap:12px}
+.progression-mode-card{border:1px solid #302747;border-radius:16px;background:#0d0a12;overflow:hidden}
+.progression-mode-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(90deg,#2a1647 0%,#19152f 100%);border-bottom:1px solid #2a2439}
+.progression-mode-name{font-weight:900;color:#d8c7ff;font-size:14px}
+.progression-mode-note{font-size:10px;color:#9489a5;text-align:right}
+.progression-stage{display:grid;grid-template-columns:minmax(120px,.8fr) minmax(110px,.8fr) minmax(120px,1fr) minmax(125px,.8fr);gap:10px;align-items:center;padding:11px 16px;border-bottom:1px solid #211e2d;font-size:11px}
+.progression-stage:last-child{border-bottom:0}
+.progression-stage-label{font-weight:800;color:#d2cadc}
+.progression-stage-required{color:#aaa0b5}
+.progression-stage-current{color:#eee8f4}
+.progression-stage-result{justify-self:end;padding:5px 9px;border-radius:999px;font-size:9px;font-weight:900;letter-spacing:.035em}
+.progression-stage-result.yes{background:#3a2461;border:1px solid #6d48aa;color:#c9aaff}
+.progression-stage-result.no{background:#42182f;border:1px solid #5a344b;color:#d7aeca}
+.progression-stage-result.unknown{background:#302b38;border:1px solid #4b4554;color:#aaa2b1}
+.progression-unknown-note{padding:11px 16px;color:#777082;font-size:10px;border-top:1px solid #211e2d;background:rgba(50,45,59,.12)}
+@media(max-width:760px){
+  .progression-info{grid-template-columns:auto minmax(0,1fr)}
+  .progression-link{grid-column:1/-1;width:100%}
+  .progression-controls,.progression-summary{grid-template-columns:1fr}
+  .progression-stage{grid-template-columns:1fr 1fr;gap:6px;padding:12px}
+  .progression-stage-result{justify-self:start}
+}
+</style>
 </head>
 <body>
 <a class="discord-join-button" href="https://discord.gg/animeastral" target="_blank" rel="noopener noreferrer" aria-label="Join Anime Astral Discord">
@@ -1264,7 +1312,7 @@ footer:before{content:"";display:block;width:min(500px,70%);height:1px;margin:0 
 
 <nav class="tabs">
   <button class="tab active" id="powerTab" type="button">Power Calculator</button>
-  <button class="tab" id="dpsTab" type="button">DPS Calculator</button><button class="tab" id="rankTab" type="button">Rank Up Calculator</button><button class="tab" id="petTab" type="button">Pet Calculator</button><button class="tab" id="promotionTab" type="button">Promotion Calculator</button>
+  <button class="tab" id="dpsTab" type="button">DPS Calculator</button><button class="tab" id="progressionTab" type="button">Game Mode Progression</button><button class="tab" id="rankTab" type="button">Rank Up Calculator</button><button class="tab" id="petTab" type="button">Pet Calculator</button><button class="tab" id="promotionTab" type="button">Promotion Calculator</button>
 </nav>
 
 <div id="powerView" class="calculator-view">
@@ -1359,6 +1407,61 @@ footer:before{content:"";display:block;width:min(500px,70%);height:1px;margin:0 
 </section>
 </div>
 
+
+<div id="progressionView" class="calculator-view" style="display:none">
+  <section class="tool-card progression-card">
+    <div class="section-title">🗺️ GAME MODE PROGRESSION</div>
+    <p class="progression-lead">Check your confirmed progression through a game mode using the DPS you calculated in the DPS Calculator.</p>
+
+    <div class="progression-info">
+      <div class="progression-info-icon" aria-hidden="true">⚡</div>
+      <div class="progression-info-copy">
+        <span class="progression-info-kicker">DPS CHECK</span>
+        <strong>Calculate your DPS first</strong>
+        <span>Use the <b>DPS Calculator</b> to calculate your current DPS. It will automatically appear here.</span>
+      </div>
+      <button class="progression-link" id="progressionDpsButton" type="button">Open DPS Calculator →</button>
+    </div>
+
+    <div class="progression-controls">
+      <div class="field">
+        <label for="progressionMode">Game Mode</label>
+        <select id="progressionMode" aria-label="Select game mode for progression">
+          <option value="">Select a game mode…</option>
+        </select>
+      </div>
+      <div class="progression-current">
+        <span class="progression-current-label">YOUR DPS</span>
+        <strong id="progressionDps">—</strong>
+        <small id="progressionDpsState">Calculate your DPS in the DPS Calculator.</small>
+      </div>
+    </div>
+
+    <div class="progression-summary" id="progressionSummary" style="display:none">
+      <div><small>CONFIRMED CLEARS</small><strong id="progressionClears">—</strong><span>known requirements you meet</span></div>
+      <div><small>KNOWN STAGES</small><strong id="progressionKnown">—</strong><span>stages with supplied DPS data</span></div>
+      <div><small>HIGHEST CONFIRMED</small><strong id="progressionHighest">—</strong><span id="progressionHighestSub">based only on known requirements</span></div>
+    </div>
+
+    <div class="progression-results-heading" id="progressionResultsHeading" style="display:none">
+      <div>
+        <div class="section-title">WAVE PROGRESSION</div>
+        <div class="progression-results-sub">Unknown means the required DPS has not been supplied yet.</div>
+      </div>
+    </div>
+    <div class="progression-results" id="progressionResults"></div>
+
+    <section class="how-works tool-how-works progression-how">
+      <div class="section-title how-works-title"><span class="how-works-icon">📖</span>HOW IT WORKS</div>
+      <div class="how-works-grid">
+        <div><b>1. Calculate your DPS</b><span>Use the DPS Calculator to calculate your current DPS first.</span></div>
+        <div><b>2. Choose a game mode</b><span>Select the raid, defense, time trial, or other mode you want to check.</span></div>
+        <div><b>3. Review your progression</b><span>Known waves are marked CAN CLEAR or CANNOT CLEAR using your calculated DPS.</span></div>
+        <div><b>4. Watch for new data</b><span>Waves without supplied requirements stay UNKNOWN instead of using made-up values.</span></div>
+      </div>
+    </section>
+  </section>
+</div>
 
 <section id="rankView" class="calculator-view" style="display:none">
   <div class="card">
@@ -2399,6 +2502,9 @@ function calculateDps(){
   if(!Number.isFinite(attackSpeedPercent)||attackSpeedPercent<0){dpsError(attackSpeedInput,"Attack Speed must be 0 or greater.");return;}
   const cps=calculateCps(document.getElementById("dpsFastClick").checked,attackSpeedPercent);
   const dps=power*cps*mult;
+  animeAstralCurrentDps=dps;
+  updateProgressionDps();
+  if(progressionMode.value) renderProgression();
 
   document.getElementById("dpsValue").textContent=formatPower(dps)+"/sec";
   document.getElementById("dpsCps").textContent=cps.toFixed(2)+" CPS";
@@ -2477,6 +2583,102 @@ function calculateDps(){
 document.getElementById("dpsCalculate").addEventListener("click",calculateDps);
 ["dpsPower","damageMultiplier"].forEach(id=>document.getElementById(id).addEventListener("input",e=>clearDpsError(e.target)));
 
+// Game Mode Progression
+let animeAstralCurrentDps=NaN;
+const progressionMode=document.getElementById("progressionMode");
+const progressionDps=document.getElementById("progressionDps");
+const progressionDpsState=document.getElementById("progressionDpsState");
+const progressionSummary=document.getElementById("progressionSummary");
+const progressionResultsHeading=document.getElementById("progressionResultsHeading");
+const progressionResults=document.getElementById("progressionResults");
+Object.keys(DPS_DATA).forEach(mode=>{
+  const option=document.createElement("option");
+  option.value=mode;
+  option.textContent=mode;
+  progressionMode.appendChild(option);
+});
+
+function updateProgressionDps(){
+  if(Number.isFinite(animeAstralCurrentDps)){
+    progressionDps.textContent=formatPower(animeAstralCurrentDps)+"/sec";
+    progressionDpsState.textContent="Using the DPS you last calculated.";
+    progressionDpsState.style.color="#a98aff";
+  }else{
+    progressionDps.textContent="Not calculated";
+    progressionDpsState.textContent="Calculate your DPS in the DPS Calculator.";
+    progressionDpsState.style.color="";
+  }
+}
+
+function renderProgression(){
+  const mode=progressionMode.value;
+  progressionResults.innerHTML="";
+  progressionSummary.style.display="none";
+  progressionResultsHeading.style.display="none";
+  if(!mode)return;
+  const rows=DPS_DATA[mode]||[];
+  const known=rows.filter(r=>Number.isFinite(parseDpsRequirement(r.required)));
+  const can=Number.isFinite(animeAstralCurrentDps)?known.filter(r=>animeAstralCurrentDps>=parseDpsRequirement(r.required)):[];
+  const highest=can.reduce((best,row)=>{
+    const wave=Number((row.stage.match(/\d+(?:\.\d+)?/)||[0])[0]);
+    return !best||wave>best.wave?{row,wave}:best;
+  },null);
+
+  progressionSummary.style.display="grid";
+  progressionResultsHeading.style.display="block";
+  document.getElementById("progressionClears").textContent=Number.isFinite(animeAstralCurrentDps)?`${can.length} / ${known.length}`:"—";
+  document.getElementById("progressionKnown").textContent=`${known.length} / ${rows.length}`;
+  document.getElementById("progressionHighest").textContent=highest?highest.row.stage:"—";
+  document.getElementById("progressionHighestSub").textContent=Number.isFinite(animeAstralCurrentDps)?(highest?`required ${highest.row.required}`:"No confirmed clears yet"):`Calculate DPS first`;
+
+  const card=document.createElement("div");
+  card.className="progression-mode-card";
+  const head=document.createElement("div");
+  head.className="progression-mode-head";
+  const name=document.createElement("div");name.className="progression-mode-name";name.textContent=mode;
+  const note=document.createElement("div");note.className="progression-mode-note";
+  note.textContent=Number.isFinite(animeAstralCurrentDps)?`${can.length}/${known.length} confirmed clears`:`${known.length} known • ${rows.length-known.length} unknown`;
+  head.append(name,note);card.appendChild(head);
+
+  const header=document.createElement("div");
+  header.className="progression-stage";
+  ["Wave / Room","Required DPS","Your DPS","Result"].forEach(label=>{
+    const x=document.createElement("div");x.textContent=label;x.style.color="#70697c";x.style.fontSize="9px";x.style.textTransform="uppercase";x.style.letterSpacing=".08em";header.appendChild(x);
+  });
+  card.appendChild(header);
+
+  rows.forEach(item=>{
+    const row=document.createElement("div");row.className="progression-stage";
+    const stage=document.createElement("div");stage.className="progression-stage-label";stage.textContent=item.stage+(item.note?` • ${item.note}`:"");
+    const required=document.createElement("div");required.className="progression-stage-required";required.textContent=item.required;
+    const current=document.createElement("div");current.className="progression-stage-current";current.textContent=Number.isFinite(animeAstralCurrentDps)?formatPower(animeAstralCurrentDps)+"/s":"—";
+    const result=document.createElement("div");result.className="progression-stage-result";
+    const reqValue=parseDpsRequirement(item.required);
+    if(Number.isFinite(reqValue)&&Number.isFinite(animeAstralCurrentDps)){
+      const ok=animeAstralCurrentDps>=reqValue;
+      result.classList.add(ok?"yes":"no");
+      result.textContent=ok?"✓ CAN CLEAR":"✕ CANNOT CLEAR";
+    }else if(Number.isFinite(reqValue)){
+      result.classList.add("unknown");
+      result.textContent="USE DPS CALCULATOR";
+    }else{
+      result.classList.add("unknown");
+      result.textContent="UNKNOWN";
+    }
+    row.append(stage,required,current,result);card.appendChild(row);
+  });
+  if(rows.some(r=>!Number.isFinite(parseDpsRequirement(r.required)))){
+    const unknown=document.createElement("div");
+    unknown.className="progression-unknown-note";
+    unknown.textContent="Some waves do not have a supplied DPS requirement yet. They are shown as UNKNOWN and are not used when calculating confirmed progression.";
+    card.appendChild(unknown);
+  }
+  progressionResults.appendChild(card);
+}
+
+progressionMode.addEventListener("change",renderProgression);
+document.getElementById("progressionDpsButton").addEventListener("click",()=>showView("dps"));
+updateProgressionDps();
 
 const RANK_ROWS=`1|1.8x|15k
 2|3.1x|200k
@@ -2963,24 +3165,27 @@ if(petCalculate){
 }
 
 const petTab=document.getElementById('petTab'),promotionTab=document.getElementById('promotionTab');
+const progressionTab=document.getElementById('progressionTab');
 
 const powerTab=document.getElementById("powerTab");
 const dpsTab=document.getElementById("dpsTab");
 const rankTab=document.getElementById("rankTab");
 const powerView=document.getElementById("powerView");
 const dpsView=document.getElementById("dpsView");
+const progressionView=document.getElementById("progressionView");
 const rankView=document.getElementById("rankView");
 const petView=document.getElementById("petView");
 const promotionView=document.getElementById("promotionView");
 function showView(which){
-  const views={power:powerView,dps:dpsView,rank:rankView,pet:petView,promotion:promotionView};
+  const views={power:powerView,dps:dpsView,progression:progressionView,rank:rankView,pet:petView,promotion:promotionView};
   Object.entries(views).forEach(([k,v])=>{if(v)v.style.display=which===k?"block":"none"});
-  const tabs={power:powerTab,dps:dpsTab,rank:rankTab,pet:petTab,promotion:promotionTab};
+  const tabs={power:powerTab,dps:dpsTab,progression:progressionTab,rank:rankTab,pet:petTab,promotion:promotionTab};
   Object.entries(tabs).forEach(([k,v])=>v?.classList.toggle("active",which===k));
   const title=document.getElementById("pageTitle"),tagline=document.getElementById("pageTagline");
   const meta={
     power:["Power Calculator","Find out how much power you need to reach your target power."],
     dps:["DPS Calculator","Find out how much damage you can deal and what content you can clear."],
+    progression:["Game Mode Progression","See how far your calculated DPS can take you through each game mode."],
     rank:["Rank Up Calculator","Find out how long it will take to reach your target rank."],
     pet:["Pet Calculator","Calculate scaling pet values and look up documented pet multipliers."],
     promotion:["Promotion Calculator","See the promotion buffs and missions between your current and target rank."]
@@ -2989,6 +3194,7 @@ function showView(which){
 }
 powerTab.addEventListener("click",()=>showView("power"));
 dpsTab.addEventListener("click",()=>showView("dps"));
+progressionTab.addEventListener("click",()=>showView("progression"));
 rankTab.addEventListener("click",()=>showView("rank"));
 petTab.addEventListener("click",()=>showView("pet"));
 promotionTab.addEventListener("click",()=>showView("promotion"));
@@ -3004,6 +3210,7 @@ document.addEventListener("DOMContentLoaded", function(){
   const views = {
     power: document.getElementById("powerView"),
     dps: document.getElementById("dpsView"),
+    progression: document.getElementById("progressionView"),
     rank: document.getElementById("rankView"),
     pet: document.getElementById("petView"),
     promotion: document.getElementById("promotionView")
@@ -3011,6 +3218,7 @@ document.addEventListener("DOMContentLoaded", function(){
   const tabs = {
     power: document.getElementById("powerTab"),
     dps: document.getElementById("dpsTab"),
+    progression: document.getElementById("progressionTab"),
     rank: document.getElementById("rankTab"),
     pet: document.getElementById("petTab"),
     promotion: document.getElementById("promotionTab")
@@ -3018,6 +3226,7 @@ document.addEventListener("DOMContentLoaded", function(){
   const meta = {
     power: ["Power Calculator", "Find out how much power you need to reach your target power."],
     dps: ["DPS Calculator", "Find out how much damage you can deal and what content you can clear."],
+    progression: ["Game Mode Progression", "See how far your calculated DPS can take you through each game mode."],
     rank: ["Rank Up Calculator", "Find out how long it will take to reach your target rank."],
     pet: ["Pet Calculator", "Calculate scaling pet values and look up documented pet multipliers."],
     promotion: ["Promotion Calculator", "See the promotion buffs and missions between your current and target rank."]
