@@ -2920,7 +2920,17 @@ const RANK_ROWS=`1|1.8x|15k
 117|27.8Oc|22.7yV
 118|48.8Oc|4.2yW
 119|85.4Oc|862.8yW
-120|Unknown|Unknown`.trim().split("\n").map(x=>{
+120|Unknown|Unknown
+121|261.6Oc|42.5yY
+122|457.8Oc|10.2yZ
+123|801.1Oc|2.6dA
+124|1.4No|720dA
+125|2.4No|195dB
+126|4.2No|56dC
+127|7.5No|16.5dD
+128|13.1No|5dE
+129|23No|1.7dF
+130|40.2No|???dD`.trim().split("\n").map(x=>{
   const [rank,multiplier,requirement]=x.split("|");
   return {rank:Number(rank),multiplier,requirement};
 });
@@ -3344,7 +3354,7 @@ function renderNextSteps(){
   const rankReq=document.getElementById("nextRankReq");
   const rankGap=document.getElementById("nextRankGap");
   const rankFill=document.getElementById("nextRankFill");
-  if(targetRank<=120){
+  if(targetRank<=130){
     const reqRaw=rankByNumber[currentRank]?.requirement;
     const req=parseCompactPower(reqRaw);
     rankTitle.textContent=`Rank ${targetRank}`;
@@ -3356,7 +3366,7 @@ function renderNextSteps(){
       rankFill.style.width=pct.toFixed(2)+"%";
     }else{rankGap.textContent="Enter your current Power to see the gap.";rankFill.style.width="0%";}
   }else{
-    rankTitle.textContent="Max / Unknown";rankMain.textContent="No next rank is documented after Rank 120.";rankReq.textContent="UNKNOWN";rankGap.textContent="More rank data needed.";rankFill.style.width="0%";
+    rankTitle.textContent="Max / Unknown";rankMain.textContent="No next rank is documented after Rank 130.";rankReq.textContent="UNKNOWN";rankGap.textContent="More rank data needed.";rankFill.style.width="0%";
   }
 
   const promoTarget=currentPromo+1;
